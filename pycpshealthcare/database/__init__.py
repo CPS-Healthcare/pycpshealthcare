@@ -1,1 +1,1 @@
-from .participant import ParticipantInfo
+from .participant_info import ParticipantInfo

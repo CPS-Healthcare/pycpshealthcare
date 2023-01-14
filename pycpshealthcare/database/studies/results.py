@@ -1,4 +1,5 @@
 import pandas as pd
+from itertools import chain
 
 class StudyResults:
     def __init__(self, results):
@@ -8,10 +9,7 @@ class StudyResults:
         return StudyIterable(self)
 
     def __add__(self, other):
-        if other == 0:
-            return self
-        else:
-            return self.__add__(other)
+        return StudyResults(chain(self.results, other.results))
 
     def astype(self, out_type, split_columns=False):
         if out_type == list or out_type == "list":

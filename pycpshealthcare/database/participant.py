@@ -1,33 +1,9 @@
 import pandas as pd
-from bson.codec_options import CodecOptions
-from collections import defaultdict
-from .studies.pancreas import ParticipantPancreasStudy
-from .studies.pancreas import PancreasStudiesGroup
-from .studies.mealtracker import ParticipantMealTrackerStudy
-from .studies.mealtracker import MealTrackerStudiesGroup
 
-class ParticipantInfo:
-
-    def __init__(self, connection) -> None:
-        self.connection = connection
-        self.collection = connection.collections_globalinfo["participantinfo"]
-        options = CodecOptions(tz_aware=True, tzinfo=connection.tzinfo)
-        self.collection = self.collection.with_options(codec_options=options)
-
-    def get_participants(self, participants_names=None, participants_ids=None):
-        if participants_names:
-            query = {
-                "_id": {"$in": participants_ids}
-            }
-            results = self.collection.find(query)
-        elif participants_names:
-            query = {
-                "participant_name": {"$in": participants_names}
-            }
-            results = self.collection.find(query)
-        else:
-            results = self.collection.find()
-        return ParticipantsResults(results, self.connection)
+from .studies.pancreas_utils import ParticipantPancreasStudy
+from .studies.pancreas_utils import PancreasStudiesGroup
+from .studies.mealtracker_utils import ParticipantMealTrackerStudy
+from .studies.mealtracker_utils import MealTrackerStudiesGroup
 
 
 
@@ -58,32 +34,3 @@ class Participant:
                     self.studies["MealTracker"].append(study_obj)
                 self.mealtrackers_group = MealTrackerStudiesGroup(self.studies["MealTracker"], self.connection)
 
-
-
-class ParticipantsResults:
-    def __init__(self, results, connection):
-        self.results = results
-        self.connection = connection
-
-    def __iter__(self):
-        return ParticipantIterable(self)
-
-    def astype(self, out_type):
-        if out_type == list or out_type == "list":
-            return list(self.results)
-        elif out_type == pd.DataFrame or out_type == "dataframe":
-            return pd.DataFrame(self.results)
-        elif out_type == "class":
-            return list(map(lambda x: Participant(x, self.connection), self.results))
-
-
-class ParticipantIterable:
-
-    def __init__(self, element):
-        self.iterable = element
-        self._index = 0
-
-
-    def __next__(self):
-        self._index += 1
-        return next(self.iterable.results)

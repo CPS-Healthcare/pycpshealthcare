@@ -1,0 +1,67 @@
+import pandas as pd
+from bson.codec_options import CodecOptions
+from .participant import Participant
+
+class ParticipantInfo:
+
+    def __init__(self, connection) -> None:
+        self.connection = connection
+        self.collection = connection.collections_globalinfo["participantinfo"]
+        options = CodecOptions(tz_aware=True, tzinfo=connection.tzinfo)
+        self.collection = self.collection.with_options(codec_options=options)
+
+    def get_participants(self, participants_names=None, participants_ids=None, studies=None):
+        if participants_names:
+            query = {
+                "_id": {"$in": participants_ids}
+            }
+            results = self.collection.find(query)
+        elif participants_ids:
+            query = {
+                "participant_name": {"$in": participants_names}
+            }
+        else:
+            query = {}
+
+        if studies:
+            study_filter = {"$or": []}
+            if type(studies) == str:
+                studies = [studies]
+            for study in studies:
+                if study.lower() == "pancreas":
+                    study_filter["$or"].append({f"studies.Pancreas": {"$exists": True}})
+                elif study.lower() == "mealtracker":
+                    study_filter["$or"].append({f"studies.MealTracker": {"$exists": True}})
+            query.update(study_filter)
+        parameters = {"filter": query} if query else {}
+        results = self.collection.find(**parameters)
+        return ParticipantsResults(results, self.connection)
+
+
+class ParticipantsResults:
+    def __init__(self, results, connection):
+        self.results = results
+        self.connection = connection
+
+    def __iter__(self):
+        return ParticipantIterable(self)
+
+    def astype(self, out_type):
+        if out_type == list or out_type == "list":
+            return list(self.results)
+        elif out_type == pd.DataFrame or out_type == "dataframe":
+            return pd.DataFrame(self.results)
+        elif out_type == "class":
+            return list(map(lambda x: Participant(x, self.connection), self.results))
+
+
+class ParticipantIterable:
+
+    def __init__(self, element):
+        self.iterable = element
+        self._index = 0
+
+
+    def __next__(self):
+        self._index += 1
+        return next(self.iterable.results)
