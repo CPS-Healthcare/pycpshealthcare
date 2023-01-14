@@ -26,7 +26,7 @@ class ParticipantMealTrackerStudy:
 
 
     def get_meals_results(self, timestamp_start=None, timestamp_end=None, fields="all", specific_test_ids="all", ouput_format="unwinded"):
-        test_ids = [x.test_id]
+        test_ids = [self.test_id]
         collection = self.connection.collections_mealtracker["mealtracker"]
         return get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, specific_test_ids, ouput_format)
 
