@@ -1,4 +1,4 @@
-from ..participant_info import ParticipantInfo
+from .participant_info import ParticipantInfo
 from .results import StudyResults
 import pandas as pd
 
@@ -7,7 +7,7 @@ class MealTrackerStudy:
     def __init__(self, connection):
         self.connection = connection
         participant_info = ParticipantInfo(connection)
-        self.participants = participant_info.get_participants(studies="MealTracker").astype("class")
+        self.participants = participant_info.get_participants(studies="MealTracker").astype("Participant")
         
     def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, specific_fitbit_id="all", sensors="all", fields="all"):
         results = StudyResults([])

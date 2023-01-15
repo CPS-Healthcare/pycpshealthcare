@@ -1,9 +1,7 @@
-import pandas as pd
-
-from .studies.pancreas_utils import ParticipantPancreasStudy
-from .studies.pancreas_utils import PancreasStudiesGroup
-from .studies.mealtracker_utils import ParticipantMealTrackerStudy
-from .studies.mealtracker_utils import MealTrackerStudiesGroup
+from .pancreas_utils import ParticipantPancreasStudy
+from .pancreas_utils import PancreasStudiesGroup
+from .mealtracker_utils import ParticipantMealTrackerStudy
+from .mealtracker_utils import MealTrackerStudiesGroup
 
 
 
@@ -16,10 +14,10 @@ class Participant:
         self.studies = {}
         self.mealtrackers_group = MealTrackerStudiesGroup([], connection)
         self.pancreas_group = PancreasStudiesGroup([], connection)
-        self.generate_studies_object()
+        self._generate_studies_object()
 
 
-    def generate_studies_object(self):
+    def _generate_studies_object(self):
         for study_type, study_raw in self.studies_raw.items():
             if study_type == "Pancreas":
                 self.studies["Pancreas"] = []

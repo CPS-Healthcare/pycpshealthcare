@@ -1,5 +1,6 @@
 import pandas as pd
 from bson.codec_options import CodecOptions
+from itertools import chain
 from .participant import Participant
 
 class ParticipantInfo:
@@ -10,20 +11,20 @@ class ParticipantInfo:
         options = CodecOptions(tz_aware=True, tzinfo=connection.tzinfo)
         self.collection = self.collection.with_options(codec_options=options)
 
-    def get_participants(self, participants_names=None, participants_ids=None, studies=None):
+    def get_participants(self, participants_names=None, participants_ids=None, studies='all'):
         if participants_names:
             query = {
-                "_id": {"$in": participants_ids}
+                "_id": {"$in": participants_names}
             }
             results = self.collection.find(query)
         elif participants_ids:
             query = {
-                "participant_name": {"$in": participants_names}
+                "participant_name": {"$in": participants_ids}
             }
         else:
             query = {}
 
-        if studies:
+        if studies != "all":
             study_filter = {"$or": []}
             if type(studies) == str:
                 studies = [studies]
@@ -46,13 +47,19 @@ class ParticipantsResults:
     def __iter__(self):
         return ParticipantIterable(self)
 
+    def __add__(self, other):
+        return ParticipantsResults(chain(self.results, other.results))
+
+
     def astype(self, out_type):
         if out_type == list or out_type == "list":
             return list(self.results)
         elif out_type == pd.DataFrame or out_type == "dataframe":
             return pd.DataFrame(self.results)
-        elif out_type == "class":
+        elif out_type.lower() == "participant":
             return list(map(lambda x: Participant(x, self.connection), self.results))
+        else:
+            raise TypeError
 
 
 class ParticipantIterable:
