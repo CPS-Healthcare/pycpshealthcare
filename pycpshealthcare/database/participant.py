@@ -1,7 +1,7 @@
 from .pancreas_utils import ParticipantPancreasStudy
-from .pancreas_utils import PancreasStudiesGroup
+from .pancreas_utils import ParticipantPancreasStudiesGroup
 from .mealtracker_utils import ParticipantMealTrackerStudy
-from .mealtracker_utils import MealTrackerStudiesGroup
+from .mealtracker_utils import ParticipantMealTrackerStudiesGroup
 
 
 
@@ -12,8 +12,8 @@ class Participant:
         self.name = raw_data["participant_name"] if "participant_name" in raw_data else ""
         self.studies_raw = raw_data["studies"] if "studies" in raw_data else ""
         self.studies = {}
-        self.mealtrackers_group = MealTrackerStudiesGroup([], connection)
-        self.pancreas_group = PancreasStudiesGroup([], connection)
+        self.mealtrackers_group = ParticipantMealTrackerStudiesGroup([], connection)
+        self.pancreas_group = ParticipantPancreasStudiesGroup([], connection)
         self._generate_studies_object()
 
 
@@ -24,11 +24,11 @@ class Participant:
                 for study in study_raw:
                     study_obj = ParticipantPancreasStudy(study, self.connection)
                     self.studies["Pancreas"].append(study_obj)
-                self.pancreas_group = PancreasStudiesGroup(self.studies["Pancreas"], self.connection)
+                self.pancreas_group = ParticipantPancreasStudiesGroup(self.studies["Pancreas"], self.connection)
             elif study_type == "MealTracker":
                 self.studies["MealTracker"] = []
                 for study in study_raw:
                     study_obj = ParticipantMealTrackerStudy(study, self.connection)
                     self.studies["MealTracker"].append(study_obj)
-                self.mealtrackers_group = MealTrackerStudiesGroup(self.studies["MealTracker"], self.connection)
+                self.mealtrackers_group = ParticipantMealTrackerStudiesGroup(self.studies["MealTracker"], self.connection)
 

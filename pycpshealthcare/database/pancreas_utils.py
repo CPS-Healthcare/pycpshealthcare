@@ -54,7 +54,7 @@ class ParticipantPancreasStudy:
         return get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_id, sensors, fields)
 
 
-class PancreasStudiesGroup:
+class ParticipantPancreasStudiesGroup:
 
     def __init__(self, data, connection):
         self.connection = connection

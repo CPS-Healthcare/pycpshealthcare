@@ -39,7 +39,7 @@ class ParticipantMealTrackerStudy:
         return StudyResults(results)
 
 
-class MealTrackerStudiesGroup:
+class ParticipantMealTrackerStudiesGroup:
 
     def __init__(self, data, connection):
         self.connection = connection
@@ -63,6 +63,5 @@ class MealTrackerStudiesGroup:
         for index, row in df_meals.iterrows():
             temp = self.get_fitbit_results(row["timestamp_start"], row["timestamp_end"], specific_fitbit_id, sensors, fields)
             results += temp
-        return StudyResults(results)
-
+        return results
 
