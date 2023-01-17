@@ -16,7 +16,7 @@ class CpsConnection:
         else:
             raise Exception
         self.db_pancreas = self.client["Pancreas"]
-        self.db_mealtracker = self.client["AlphaDB"]
+        self.db_mealtracker = self.client["MealTracker"]
         self.db_globalinfo = self.client["GlobalInfo"]
         self.collections_pancreas = {
             "empatica": self.db_pancreas["empatica"],

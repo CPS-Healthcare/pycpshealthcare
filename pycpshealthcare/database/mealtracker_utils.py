@@ -45,6 +45,12 @@ class ParticipantMealTrackerStudiesGroup:
         self.connection = connection
         self.data = data
 
+    def get_test_instance(self, specific_test_id):
+        for study in self.data:
+            if study.test_id == specific_test_id:
+                return study
+        return None
+
     def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, specific_fitbit_id="all", sensors="all", fields="all"):
         fitbit_ids = [x["sensor_id"] for y in self.data for key, value in y.sensors.items() if key == "fitbit" for x in value]
         collection = self.connection.collections_mealtracker["realtimefitbit"]

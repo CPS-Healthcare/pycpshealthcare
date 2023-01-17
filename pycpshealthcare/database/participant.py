@@ -32,3 +32,7 @@ class Participant:
                     self.studies["MealTracker"].append(study_obj)
                 self.mealtrackers_group = ParticipantMealTrackerStudiesGroup(self.studies["MealTracker"], self.connection)
 
+    
+    def __repr__(self) -> str:
+        
+        return f"{self.__class__} object (id: {self.id}, studies: {self.studies}"

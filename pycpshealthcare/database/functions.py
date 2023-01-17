@@ -1,13 +1,13 @@
 from .results import StudyResults
 
-def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_id, sensors, fields):
-        if specific_test_id == "all":
+def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields):
+        if specific_test_ids == "all":
             test_ids = test_ids
         else:
-            if type(specific_test_id) == int:
-                test_ids = [specific_test_id]
-            elif type(specific_test_id) == list:
-                test_ids = specific_test_id
+            if str(specific_test_ids).isnumeric():
+                test_ids = [int(specific_test_ids)]
+            elif type(specific_test_ids) == list:
+                test_ids = specific_test_ids
 
         if fields == "all":
             projection = ""
@@ -46,8 +46,8 @@ def get_mealtracker_meals_results(collection, test_ids, timestamp_start, timesta
     if specific_test_ids == "all":
         test_ids = test_ids
     else:
-        if type(specific_test_ids) == int:
-            test_ids = [specific_test_ids]
+        if str(specific_test_ids).isnumeric():
+                test_ids = [int(specific_test_ids)]
         elif type(specific_test_ids) == list:
             test_ids = specific_test_ids
 
@@ -83,14 +83,14 @@ def get_mealtracker_meals_results(collection, test_ids, timestamp_start, timesta
         return StudyResults(collection.find(**parameters))
 
 
-def get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_id, sensors, fields):
-    if specific_fitbit_id == "all":
+def get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_ids, sensors, fields):
+    if specific_fitbit_ids == "all":
             fitbit_ids = fitbit_ids
     else:
-        if type(specific_fitbit_id) == int:
-            fitbit_ids = [specific_fitbit_id]
-        elif type(specific_fitbit_id) == list:
-            fitbit_ids = specific_fitbit_id
+        if type(specific_fitbit_ids) == int:
+            fitbit_ids = [specific_fitbit_ids]
+        elif type(specific_fitbit_ids) == list:
+            fitbit_ids = specific_fitbit_ids
 
     if fields == "all":
         projection = ""
