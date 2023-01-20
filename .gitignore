@@ -6,4 +6,4 @@ build/
 dist/
 pycpshealthcare.egg-info/
 setup_readme.md
-example.py
+example.*

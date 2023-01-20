@@ -13,7 +13,7 @@ class MealTrackerStudy:
         
     def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, specific_fitbit_ids="all", sensors="all", fields="all"):
         if specific_fitbit_ids == "all":
-            fitbit_ids = fitbit_ids = [x["sensor_id"] for p in self.participants for key, value in p.sensors.items() if key == "fitbit" for x in value]
+            fitbit_ids = [y["sensor_id"] for p in self.participants for t in p.studies["MealTracker"] for key, value in t.sensors.items() for y in value if key == "fitbit"]
         else:
             fitbit_ids = specific_fitbit_ids
 
@@ -23,7 +23,7 @@ class MealTrackerStudy:
 
     def get_meals_results(self, timestamp_start=None, timestamp_end=None, fields="all", specific_test_ids="all", ouput_format="unwinded"):
         if specific_test_ids == "all":
-            test_ids = [p.test_id for p in self.participants]
+            test_ids = [t.test_id for p in self.participants for t in p.studies["MealTracker"]]
         else:
             fitbit_ids = specific_test_ids
         collection = self.connection.collections_mealtracker["mealtracker"]
