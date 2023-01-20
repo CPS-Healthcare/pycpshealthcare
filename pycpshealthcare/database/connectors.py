@@ -5,7 +5,13 @@ import pytz
 class CpsConnection:
 
     def __init__(self, connection_uri=None, host=None,
-                    username=None, password=None, port=None, tzinfo=None):
+                    username=None, password=None, port=None,
+                    database_names = {
+                        "mealtracker": "MealTracker",
+                        "pancreas": "Pancreas",
+                        "globalinfo": "GlobalInfo"
+                        },
+                    tzinfo=None):
         self.tzinfo = tzinfo if tzinfo else pytz.UTC
         if all([username, password, host]):
             uri = f"mongodb://{username}:{password}@{host}"
@@ -15,9 +21,9 @@ class CpsConnection:
             self.client = MongoClient(host=connection_uri)
         else:
             raise Exception
-        self.db_pancreas = self.client["Pancreas"]
-        self.db_mealtracker = self.client["MealTracker"]
-        self.db_globalinfo = self.client["GlobalInfo"]
+        self.db_pancreas = self.client[database_names["pancreas"]]
+        self.db_mealtracker = self.client[database_names["mealtracker"]]
+        self.db_globalinfo = self.client[database_names["globalinfo"]]
         self.collections_pancreas = {
             "empatica": self.db_pancreas["empatica"],
             "equitival": self.db_pancreas["equitival"],
