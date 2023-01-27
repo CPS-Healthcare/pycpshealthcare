@@ -134,13 +134,14 @@ def generate_narray_pipeline(sensor, id_match, bin_size=60, bin_unit="minute", t
     pipeline=[
         match_pipeline,
         {"$group": {
-            "_id": {"$dateTrunc": {"date": "$timestamp", "unit": bin_unit, "binSize": bin_size}},
+            "_id": {"timestamp": {"$dateTrunc": {"date": "$timestamp", "unit": bin_unit, "binSize": bin_size}}, "client_id": "$client_id"},
             "count": {"$count": {}}
             }
         },
         {"$project": {  
             "_id": 0,
-            "timestamp": "$_id",
+            "timestamp": "$_id.timestamp",
+            "client_id": "$_id.client_id",
             "count": 1
             }
         }
@@ -165,7 +166,7 @@ def generate_pipeline(sensor, id_match, bin_size=60, bin_unit="minute", timestam
     pipeline=[
         match_pipeline,
         {"$group": {
-            "_id": {"$dateTrunc": {"date": "$timestamp", "unit": bin_unit, "binSize": bin_size}},
+            "_id": {"timestamp": {"$dateTrunc": {"date": "$timestamp", "unit": bin_unit, "binSize": bin_size}}, "client_id": "$client_id"},
             "avg": {"$avg": "$measures"},
             "max": {"$max": "$measures"},
             "min": {"$min": "$measures"},
@@ -174,7 +175,8 @@ def generate_pipeline(sensor, id_match, bin_size=60, bin_unit="minute", timestam
         },
         {"$project": {  
             "_id": 0,
-            "timestamp": "$_id",
+            "timestamp": "$_id.timestamp",
+            "client_id": "$_id.client_id",
             "avg": 1,
             "max": 1,
             "min": 1,
