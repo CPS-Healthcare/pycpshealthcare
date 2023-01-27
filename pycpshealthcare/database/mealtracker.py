@@ -1,7 +1,8 @@
 from .participant_info import ParticipantInfo
 from .results import StudyResults
 import pandas as pd
-from .functions import get_mealtracker_meals_results, get_mealtracker_fitbit_results
+from .functions import get_mealtracker_meals_results, get_mealtracker_fitbit_results,\
+    get_mealtracker_fitbit_results_grouped
 
 class MealTrackerStudy:
 
@@ -40,3 +41,13 @@ class MealTrackerStudy:
         for x in self.participants:
             results += x.mealtrackers_group.get_fitbit_results(timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
         return results
+
+
+    def get_fitbit_results_grouped(self, sensor, timestamp_start=None, timestamp_end=None, specific_fitbit_ids="all",  bin_size=60, bin_unit="minute"):
+        if specific_fitbit_ids == "all":
+            fitbit_ids = [y["sensor_id"] for p in self.participants for t in p.studies["MealTracker"] for key, value in t.sensors.items() for y in value if key == "fitbit"]
+        else:
+            fitbit_ids = specific_fitbit_ids
+
+        collection = self.connection.collections_mealtracker["realtimefitbit"]
+        return get_mealtracker_fitbit_results_grouped(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_ids, sensor, bin_size, bin_unit)

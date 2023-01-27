@@ -1,5 +1,6 @@
 from .results import StudyResults
-from .functions import get_mealtracker_meals_results, get_mealtracker_fitbit_results
+from .functions import get_mealtracker_meals_results, get_mealtracker_fitbit_results,\
+    get_mealtracker_fitbit_results_grouped
 
 
 class ParticipantMealTrackerStudy:
@@ -70,4 +71,10 @@ class ParticipantMealTrackerStudiesGroup:
             temp = self.get_fitbit_results(row["timestamp_start"], row["timestamp_end"], specific_fitbit_id, sensors, fields)
             results += temp
         return results
+
+    
+    def get_mealtracker_fitbit_results_grouped(self, sensor, timestamp_start=None, timestamp_end=None, specific_fitbit_ids="all", bin_size=60, bin_unit="minute"):
+        fitbit_ids = [x["sensor_id"] for y in self.data for key, value in y.sensors.items() if key == "fitbit" for x in value]
+        collection = self.connection.collections_mealtracker["realtimefitbit"]
+        return get_mealtracker_fitbit_results_grouped(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_ids, sensor, bin_size, bin_unit)
 
