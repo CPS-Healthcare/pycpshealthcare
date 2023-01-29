@@ -16,9 +16,9 @@ class CpsConnection:
         if all([username, password, host]):
             uri = f"mongodb://{username}:{password}@{host}"
             if port: uri = f"{uri}:{port}"
-            self.client = MongoClient(host=uri)
+            self.client = MongoClient(host=uri, tz_aware=True)
         elif connection_uri:
-            self.client = MongoClient(host=connection_uri)
+            self.client = MongoClient(host=connection_uri, tz_aware=True)
         else:
             raise Exception
         self.db_pancreas = self.client[database_names["pancreas"]]
