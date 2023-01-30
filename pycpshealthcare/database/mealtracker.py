@@ -1,7 +1,7 @@
 from .participant_info import ParticipantInfo
 from .results import StudyResults
 import pandas as pd
-from .functions import get_mealtracker_meals_results, get_mealtracker_fitbit_results,\
+from .mealtracker_functions import get_mealtracker_meals_results, get_mealtracker_fitbit_results,\
     get_mealtracker_fitbit_results_grouped
 
 class MealTrackerStudy:

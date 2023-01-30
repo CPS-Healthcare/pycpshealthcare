@@ -1,5 +1,5 @@
 from .results import StudyResults
-from .functions import get_mealtracker_meals_results, get_mealtracker_fitbit_results,\
+from .mealtracker_functions import get_mealtracker_meals_results, get_mealtracker_fitbit_results,\
     get_mealtracker_fitbit_results_grouped
 
 

@@ -9,7 +9,8 @@ class CpsConnection:
                     database_names = {
                         "mealtracker": "MealTracker",
                         "pancreas": "Pancreas",
-                        "globalinfo": "GlobalInfo"
+                        "globalinfo": "GlobalInfo",
+                        "sanpedro": "SanPedro"
                         },
                     tzinfo=None):
         self.tzinfo = tzinfo if tzinfo else pytz.UTC
@@ -24,6 +25,7 @@ class CpsConnection:
         self.db_pancreas = self.client[database_names["pancreas"]]
         self.db_mealtracker = self.client[database_names["mealtracker"]]
         self.db_globalinfo = self.client[database_names["globalinfo"]]
+        self.db_sanpedro = self.client[database_names["sanpedro"]]
         self.collections_pancreas = {
             "empatica": self.db_pancreas["empatica"],
             "equitival": self.db_pancreas["equitival"],
@@ -39,6 +41,13 @@ class CpsConnection:
         }
         self.collections_globalinfo = {
             "participantinfo": self.db_globalinfo["ParticipantInfo"]
+        }
+        self.collections_sanpedro = {
+            "fitbit": self.db_sanpedro["fitbit"],
+            "inbody": self.db_sanpedro["inbody"],
+            "alimentacion": self.db_sanpedro["alimentacion"],
+            "patrones_minsal_2018": self.db_sanpedro["patrones_minsal_2018"],
+            "FreeStyle_LibreLink": self.db_sanpedro["freestyle_librelink"],
         }
         
     def close(self):

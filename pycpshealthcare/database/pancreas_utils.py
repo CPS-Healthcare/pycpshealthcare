@@ -1,4 +1,4 @@
-from .functions import get_pancreas_sensor_results
+from .pancreas_functions import get_pancreas_sensor_results
 
 
 class ParticipantPancreasStudy:

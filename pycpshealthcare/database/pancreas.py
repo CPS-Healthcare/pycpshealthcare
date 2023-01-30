@@ -1,6 +1,6 @@
 from .results import StudyResults
 from .participant_info import ParticipantInfo
-from .functions import get_pancreas_sensor_results
+from .pancreas_functions import get_pancreas_sensor_results
 
 class PancreasStudy:
 

@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 setup(
     name='pycpshealthcare',
     packages=find_packages(),
-    version='0.4.3',
+    version='0.5.0',
     description='Python library for ANID ACT210083 project data collection and processing.',
     author='Fernando Huanca',
     license='MIT',

@@ -2,6 +2,8 @@ from .pancreas_utils import ParticipantPancreasStudy
 from .pancreas_utils import ParticipantPancreasStudiesGroup
 from .mealtracker_utils import ParticipantMealTrackerStudy
 from .mealtracker_utils import ParticipantMealTrackerStudiesGroup
+from .sanpredro_utils import ParticipantSanPedroStudy
+from .sanpredro_utils import ParticipantSanPedroStudiesGroup
 
 
 
@@ -14,6 +16,7 @@ class Participant:
         self.studies = {}
         self.mealtrackers_group = ParticipantMealTrackerStudiesGroup([], connection)
         self.pancreas_group = ParticipantPancreasStudiesGroup([], connection)
+        self.sanpedro_group = ParticipantSanPedroStudiesGroup([], connection)
         self._generate_studies_object()
 
 
@@ -31,6 +34,12 @@ class Participant:
                     study_obj = ParticipantMealTrackerStudy(study, self.connection)
                     self.studies["MealTracker"].append(study_obj)
                 self.mealtrackers_group = ParticipantMealTrackerStudiesGroup(self.studies["MealTracker"], self.connection)
+            elif study_type == "SanPedro":
+                self.studies["SanPedro"] = []
+                for study in study_raw:
+                    study_obj = ParticipantSanPedroStudy(study, self.connection)
+                    self.studies["SanPedro"].append(study_obj)
+                self.sanpedro_group = ParticipantSanPedroStudiesGroup(self.studies["SanPedro"], self.connection)
 
     
     def __repr__(self) -> str:
