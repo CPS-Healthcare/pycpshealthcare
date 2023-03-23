@@ -11,12 +11,20 @@ class SanPedroStudy:
         self.test_ids = [t.test_id for x in self.participants for t in x.studies["Pancreas"]]
 
 
+    def get_fitbit_v2_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
+        if specific_test_ids == "all":
+            test_ids = self.test_ids
+        else:
+            test_ids = specific_test_ids
+        collection = self.connection.collection_sanpedro["fitbit_v2"]
+        return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
+
     def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
         if specific_test_ids == "all":
             test_ids = self.test_ids
         else:
             test_ids = specific_test_ids
-        collection = self.connection.collections_pancreas["fitbit"]
+        collection = self.connection.collection_sanpedro["fitbit"]
         return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
     
     def get_alimentacion_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
@@ -24,7 +32,7 @@ class SanPedroStudy:
             test_ids = self.test_ids
         else:
             test_ids = specific_test_ids
-        collection = self.connection.collections_pancreas["alimentacion"]
+        collection = self.connection.collection_sanpedro["alimentacion"]
         return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
     
     def get_patrones_minsal_2018_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
@@ -32,7 +40,7 @@ class SanPedroStudy:
             test_ids = self.test_ids
         else:
             test_ids = specific_test_ids
-        collection = self.connection.collections_pancreas["patrones_minsal_2018"]
+        collection = self.connection.collection_sanpedro["patrones_minsal_2018"]
         return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
     
     def get_inbody_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
@@ -40,7 +48,7 @@ class SanPedroStudy:
             test_ids = self.test_ids
         else:
             test_ids = specific_test_ids
-        collection = self.connection.collections_pancreas["inbody"]
+        collection = self.connection.collection_sanpedro["inbody"]
         return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
     
     def get_freestyle_librelink_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
@@ -48,7 +56,15 @@ class SanPedroStudy:
             test_ids = self.test_ids
         else:
             test_ids = specific_test_ids
-        collection = self.connection.collections_pancreas["freestyle_librelink"]
+        collection = self.connection.collection_sanpedro["freestyle_librelink"]
         return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
 
-   
+
+    def get_fitbit_v2_results_grouped(self, measure, timestamp_start=None, timestamp_end=None, specific_test_ids="all",  bin_size=60, bin_unit="minute"):
+        if specific_test_ids == "all":
+            test_ids = self.test_ids
+        else:
+            test_ids = specific_test_ids
+
+        collection = self.connection.collections_mealtracker["realtimefitbit"]
+        return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, measure, bin_size, bin_unit)

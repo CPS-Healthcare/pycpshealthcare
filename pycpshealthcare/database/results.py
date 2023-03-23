@@ -6,7 +6,7 @@ class StudyResults:
         self.results = results
 
     def __iter__(self):
-        return StudyIterable(self)
+        return StudyIterator(self)
 
     def __add__(self, other):
         return StudyResults(chain(self.results, other.results))
@@ -25,7 +25,7 @@ class StudyResults:
             return pd.DataFrame(self.results)
 
 
-class StudyIterable:
+class StudyIterator:
 
     def __init__(self, element):
         self.iterable = element

@@ -44,6 +44,7 @@ class CpsConnection:
         }
         self.collections_sanpedro = {
             "fitbit": self.db_sanpedro["fitbit"],
+            "fitbit_v2": self.db_sanpedro["fitbit_v2"],
             "inbody": self.db_sanpedro["inbody"],
             "alimentacion": self.db_sanpedro["alimentacion"],
             "patrones_minsal_2018": self.db_sanpedro["patrones_minsal_2018"],
