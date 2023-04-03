@@ -1,6 +1,7 @@
 import pandas as pd
 from itertools import chain
 
+
 class StudyResults:
     def __init__(self, results):
         self.results = results
@@ -30,7 +31,6 @@ class StudyIterator:
     def __init__(self, element):
         self.iterable = element
         self._index = 0
-
 
     def __next__(self):
         self._index += 1

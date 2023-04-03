@@ -4,4 +4,4 @@ from .pancreas import PancreasStudy
 from .pancreas_utils import ParticipantPancreasStudiesGroup, ParticipantPancreasStudy
 from .mealtracker_utils import ParticipantMealTrackerStudiesGroup, ParticipantMealTrackerStudy
 from .mealtracker import MealTrackerStudy
-from .sanpredro import SanPedroStudy
+from .sanpedro import SanPedroStudy

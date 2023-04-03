@@ -11,7 +11,7 @@ class ParticipantInfo:
         options = CodecOptions(tz_aware=True, tzinfo=connection.tzinfo)
         self.collection = self.collection.with_options(codec_options=options)
 
-    def get_participants(self, participants_names=None, participants_ids=None, studies='all'):
+    def get_participants(self, participants_names=None, participants_ids=None, studies='all', bring_id=False):
         if participants_names:
             query = {
                 "_id": {"$in": participants_names}
@@ -24,7 +24,7 @@ class ParticipantInfo:
         else:
             query = {}
 
-        if studies != "all":
+        if (type(studies) == str and studies != "all") or (type(studies) == list and "all" not in studies):
             study_filter = {"$or": []}
             if type(studies) == str:
                 studies = [studies]
@@ -37,6 +37,8 @@ class ParticipantInfo:
                     study_filter["$or"].append({f"studies.SanPedro": {"$exists": True}})
             query.update(study_filter)
         parameters = {"filter": query} if query else {}
+        if bring_id==False:
+            parameters["projection"] = {"_id": 0}
         results = self.collection.find(**parameters)
         return ParticipantsResults(results, self.connection)
 

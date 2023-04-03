@@ -2,8 +2,8 @@ from .pancreas_utils import ParticipantPancreasStudy
 from .pancreas_utils import ParticipantPancreasStudiesGroup
 from .mealtracker_utils import ParticipantMealTrackerStudy
 from .mealtracker_utils import ParticipantMealTrackerStudiesGroup
-from .sanpredro_utils import ParticipantSanPedroStudy
-from .sanpredro_utils import ParticipantSanPedroStudiesGroup
+from .sanpedro_utils import ParticipantSanPedroStudy
+from .sanpedro_utils import ParticipantSanPedroStudiesGroup
 
 
 

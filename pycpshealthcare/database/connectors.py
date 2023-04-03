@@ -28,7 +28,7 @@ class CpsConnection:
         self.db_sanpedro = self.client[database_names["sanpedro"]]
         self.collections_pancreas = {
             "empatica": self.db_pancreas["empatica"],
-            "equitival": self.db_pancreas["equitival"],
+            "equivital": self.db_pancreas["equivital"],
             "fitbit": self.db_pancreas["fitbit"],
             "fitnesspal_ejercicio": self.db_pancreas["fitnesspal_ejercicio"],
             "fitnesspal_nutricion": self.db_pancreas["fitnesspal_nutricion"],

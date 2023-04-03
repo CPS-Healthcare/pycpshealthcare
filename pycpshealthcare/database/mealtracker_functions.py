@@ -141,6 +141,11 @@ def generate_pipeline(sensor, id_match, bin_size=60, bin_unit="minute", timestam
             "min": 1,
             "count": 1
             }
+        },
+        {"$sort": {
+            "client_id": 1,
+            "timestamp": 1,
+            }
         }
     ]
     return pipeline
