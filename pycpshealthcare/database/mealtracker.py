@@ -12,14 +12,14 @@ class MealTrackerStudy:
         self.participants = participant_info.get_participants(studies="MealTracker").astype("Participant")
 
         
-    def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, specific_fitbit_ids="all", sensors="all", fields="all"):
+    def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, specific_fitbit_ids="all", values="all", fields="all"):
         if specific_fitbit_ids == "all":
             fitbit_ids = [y["sensor_id"] for p in self.participants for t in p.studies["MealTracker"] for key, value in t.sensors.items() for y in value if key == "fitbit"]
         else:
             fitbit_ids = specific_fitbit_ids
 
         collection = self.connection.collections_mealtracker["realtimefitbit"]
-        return get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_ids, sensors, fields)
+        return get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_ids, values, fields)
 
 
     def get_meals_results(self, timestamp_start=None, timestamp_end=None, fields="all", specific_test_ids="all", ouput_format="unwinded"):
@@ -43,11 +43,11 @@ class MealTrackerStudy:
         return results
 
 
-    def get_fitbit_results_grouped(self, sensor, timestamp_start=None, timestamp_end=None, specific_fitbit_ids="all",  bin_size=60, bin_unit="minute"):
+    def get_fitbit_results_grouped(self, values, timestamp_start=None, timestamp_end=None, specific_fitbit_ids="all",  bin_size=60, bin_unit="minute"):
         if specific_fitbit_ids == "all":
             fitbit_ids = [y["sensor_id"] for p in self.participants for t in p.studies["MealTracker"] for key, value in t.sensors.items() for y in value if key == "fitbit"]
         else:
             fitbit_ids = specific_fitbit_ids
 
         collection = self.connection.collections_mealtracker["realtimefitbit"]
-        return get_mealtracker_fitbit_results_grouped(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_ids, sensor, bin_size, bin_unit)
+        return get_mealtracker_fitbit_results_grouped(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_ids, values, bin_size, bin_unit)

@@ -2,7 +2,7 @@ from .results import StudyResults
 from .utils import generate_narray_pipeline
 
 
-def get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields):
+def get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields):
     if specific_test_ids == "all":
         test_ids = test_ids
     else:
@@ -48,7 +48,7 @@ def get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestam
 
 def get_sanpedro_results_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size=60, bin_unit="minute"):
     if specific_test_ids == "all":
-            test_ids = test_ids
+        test_ids = test_ids
     else:
         if type(specific_test_ids) == int:
             test_ids = [specific_test_ids]
@@ -58,4 +58,5 @@ def get_sanpedro_results_grouped(test_ids, collection, timestamp_start, timestam
     id_match = {"test_id": {"$in": test_ids}}
 
     pipeline = generate_narray_pipeline(id_match, bin_size, bin_unit, timestamp_start, timestamp_end, types=values)
+    print(pipeline)
     return StudyResults(collection.aggregate(pipeline))

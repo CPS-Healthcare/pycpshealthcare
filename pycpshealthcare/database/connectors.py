@@ -48,7 +48,7 @@ class CpsConnection:
             "inbody": self.db_sanpedro["inbody"],
             "alimentacion": self.db_sanpedro["alimentacion"],
             "patrones_minsal_2018": self.db_sanpedro["patrones_minsal_2018"],
-            "FreeStyle_LibreLink": self.db_sanpedro["freestyle_librelink"],
+            "freestyle_librelink": self.db_sanpedro["FreeStyle_LibreLink"],
         }
         
     def close(self):

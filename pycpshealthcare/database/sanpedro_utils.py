@@ -1,4 +1,4 @@
-from .sanpedro_functions import get_sanpredro_sensor_results, get_sanpedro_results_grouped
+from .sanpedro_functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped
 
 
 class ParticipantSanPedroStudy:
@@ -32,7 +32,7 @@ def create_get_sensor_method(collection_name):
     def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_id="all", sensors="all", fields="all"):
         test_ids = [self.test_id]
         collection = self.connection.collections_sanpedro[collection_name]
-        return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_id, sensors, fields)
+        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_id, sensors, fields)
     return get_sensor_results
 
 
@@ -45,7 +45,7 @@ def create_get_sensor_grouped_method(collection_name, sensor_values):
         if values == "all":
             values = sensor_values 
         collection = self.connection.collections_sanpedro[collection_name]
-        return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size, bin_unit)
+        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size, bin_unit)
     return get_sensor_results_grouped
   
 methods_parameters = {
@@ -80,7 +80,7 @@ def create_get_sensor_method_2(collection_name):
     def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
         test_ids = [x.test_id for x in self.data]
         collection = self.connection.collections_sanpedro[collection_name]
-        return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
+        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
     return get_sensor_results
 
 
@@ -93,7 +93,7 @@ def create_get_sensor_grouped_method_2(collection_name, sensor_values):
         if values == "all":
             values = sensor_values 
         collection = self.connection.collections_pancreas[collection_name]
-        return get_sanpredro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size, bin_unit)
+        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size, bin_unit)
     return get_sensor_results_grouped
     
 methods_parameters_2 = {
