@@ -1,9 +1,9 @@
 from .results import StudyResults
 from .participant_info import ParticipantInfo
-from .sanpedro_functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped
+from .sanpedro_functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped, get_sanpedro_metadata_results
 from .sanpedro_values import fitbit_values, fitbit_v2_values,\
     alimentacion_values, patrones_minsal_2018_values,\
-    inbody_values, freestyle_librelink_values
+    inbody_values, freestyle_librelink_values, holter_values
 
 class SanPedroStudy:
 
@@ -12,6 +12,11 @@ class SanPedroStudy:
         participant_info = ParticipantInfo(connection)
         self.participants = participant_info.get_participants(studies="SanPedro").astype("participant")
         self.test_ids = [t.test_id for x in self.participants for t in x.studies["SanPedro"]]
+
+    def get_fitbit_v2_metadata_results(self, metadata_type, timestamp_start=None, timestamp_end=None, specific_test_ids="all", fields="all"):
+        test_ids = self.test_ids
+        collection = self.connection.collections_sanpedro["fitbit_v2_metadata"]
+        return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, metadata_type, fields)
     
 
 def create_get_sensor_method(collection_name):
@@ -35,6 +40,7 @@ def create_get_sensor_grouped_method(collection_name, sensor_values):
 methods_parameters = {
     "get_fitbit_v2_results": create_get_sensor_method(collection_name="fitbit_v2"),
     "get_fitbit_results": create_get_sensor_method(collection_name="fitbit"),
+    "get_holter_results": create_get_sensor_method(collection_name="holter"),
     "get_alimentacion_results": create_get_sensor_method(collection_name="alimentacion"),
     "get_patrones_minsal_2018_results": create_get_sensor_method(collection_name="patrones_minsal_2018"),
     "get_inbody_results": create_get_sensor_method(collection_name="inbody"),
@@ -49,6 +55,10 @@ grouped_methods_parameters = {
     "get_fitbit_results_grouped": create_get_sensor_grouped_method(
         collection_name="fitbit",
         sensor_values=fitbit_values
+        ),
+    "get_holter_results_grouped": create_get_sensor_grouped_method(
+        collection_name="holter",
+        sensor_values=holter_values
         ),
     "get_alimentacion_results_grouped": create_get_sensor_grouped_method(
         collection_name="alimentacion",

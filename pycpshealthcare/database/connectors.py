@@ -43,8 +43,10 @@ class CpsConnection:
             "participantinfo": self.db_globalinfo["ParticipantInfo"]
         }
         self.collections_sanpedro = {
+            "holter": self.db_sanpedro["holter"],
             "fitbit": self.db_sanpedro["fitbit"],
             "fitbit_v2": self.db_sanpedro["fitbit_v2"],
+            "fitbit_v2_metadata": self.db_sanpedro["fitbit_v2_metadata"],
             "inbody": self.db_sanpedro["inbody"],
             "alimentacion": self.db_sanpedro["alimentacion"],
             "patrones_minsal_2018": self.db_sanpedro["patrones_minsal_2018"],

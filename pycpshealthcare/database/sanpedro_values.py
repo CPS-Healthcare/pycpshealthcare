@@ -7,6 +7,13 @@ fitbit_values = [
     "seconds",
 ]
 
+holter_values = [
+    'DIA_value',
+    'HR_HOLTER_value',
+    'MEAN_PRESS_value',
+    'SYS_value',
+]
+
 fitbit_v2_values = [
     'SLEEP_level',
     'SLEEP_seconds',
