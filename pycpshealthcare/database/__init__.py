@@ -5,3 +5,4 @@ from .pancreas_utils import ParticipantPancreasStudiesGroup, ParticipantPancreas
 from .mealtracker_utils import ParticipantMealTrackerStudiesGroup, ParticipantMealTrackerStudy
 from .mealtracker import MealTrackerStudy
 from .sanpedro import SanPedroStudy
+from .marcoleta import MarcoletaStudy

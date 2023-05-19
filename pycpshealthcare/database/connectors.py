@@ -10,7 +10,8 @@ class CpsConnection:
                         "mealtracker": "MealTracker",
                         "pancreas": "Pancreas",
                         "globalinfo": "GlobalInfo",
-                        "sanpedro": "SanPedro"
+                        "sanpedro": "SanPedro",
+                        "marcoleta": "Marcoleta"
                         },
                     tzinfo=None):
         self.tzinfo = tzinfo if tzinfo else pytz.UTC
@@ -26,6 +27,7 @@ class CpsConnection:
         self.db_mealtracker = self.client[database_names["mealtracker"]]
         self.db_globalinfo = self.client[database_names["globalinfo"]]
         self.db_sanpedro = self.client[database_names["sanpedro"]]
+        self.db_marcoleta = self.client[database_names["marcoleta"]]
         self.collections_pancreas = {
             "empatica": self.db_pancreas["empatica"],
             "equivital": self.db_pancreas["equivital"],
@@ -51,6 +53,11 @@ class CpsConnection:
             "alimentacion": self.db_sanpedro["alimentacion"],
             "patrones_minsal_2018": self.db_sanpedro["patrones_minsal_2018"],
             "freestyle_librelink": self.db_sanpedro["FreeStyle_LibreLink"],
+        }
+        self.collections_marcoleta = {
+            "holter": self.db_marcoleta["holter"],
+            "fitbit_v2": self.db_marcoleta["fitbit_v2"],
+            "fitbit_v2_metadata": self.db_marcoleta["fitbit_v2_metadata"],
         }
         
     def close(self):
