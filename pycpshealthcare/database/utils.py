@@ -50,6 +50,7 @@ def generate_vector_magnitude_pipeline(id_match, timestamp_start=None, timestamp
     pipeline=[
         match_pipeline,
         {"$project": {
+            "_id": 0,
             "timestamp": 1,
             "test_id": 1,
             "values":{
