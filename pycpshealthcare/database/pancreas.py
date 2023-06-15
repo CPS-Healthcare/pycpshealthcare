@@ -1,7 +1,7 @@
 from .results import StudyResults
 from .participant_info import ParticipantInfo
 from .pancreas_functions import get_pancreas_sensor_results, \
-    get_pancreas_results_grouped
+    get_pancreas_results_grouped, get_accel_vector_magnitude, get_accel_vector_magnitude_grouped
 
 from .pancreas_values import fitbit_values, empatica_values, equivital_values,\
     guardian_values, fitnesspal_ejercicio_values, fitnesspal_nutricion_values,\
@@ -15,6 +15,17 @@ class PancreasStudy:
         participant_info = ParticipantInfo(connection)
         self.participants = participant_info.get_participants(studies="Pancreas").astype("participant")
         self.test_ids = [t.test_id for x in self.participants for t in x.studies["Pancreas"]]
+
+
+    def get_empatica_accel_vector_magnitude(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all"):
+        collection = self.connection.collections_pancreas["empatica"]
+        return get_accel_vector_magnitude(self.test_ids, collection, timestamp_start, timestamp_end, specific_test_ids)
+    
+
+    def get_empatica_accel_vector_magnitude_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", bin_size=60, bin_unit="minute"):
+        collection = self.connection.collections_pancreas["empatica"]
+        return get_accel_vector_magnitude_grouped(self.test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, bin_size, bin_unit)
+
 
 
 def create_get_sensor_method(collection_name):

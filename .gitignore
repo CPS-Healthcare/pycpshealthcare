@@ -5,5 +5,5 @@ tester.py
 build/
 dist/
 pycpshealthcare.egg-info/
-setup_readme.md
 example.*
+test_vector.py

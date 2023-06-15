@@ -1,5 +1,5 @@
 from .results import StudyResults
-from .utils import generate_narray_pipeline
+from .utils import generate_narray_pipeline, generate_vector_magnitude_pipeline, generate_vector_stats_magnitude_pipeline
 
 def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, fields):
         if specific_test_ids == "all":
@@ -58,4 +58,34 @@ def get_pancreas_results_grouped(test_ids, collection, timestamp_start, timestam
     id_match = {"test_id": {"$in": test_ids}}
 
     pipeline = generate_narray_pipeline(id_match, bin_size, bin_unit, timestamp_start, timestamp_end, types=values)
+    return StudyResults(collection.aggregate(pipeline))
+
+
+def get_accel_vector_magnitude(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids):
+    if specific_test_ids == "all":
+            test_ids = test_ids
+    else:
+        if type(specific_test_ids) == int:
+            test_ids = [specific_test_ids]
+        elif type(specific_test_ids) == list:
+            test_ids = specific_test_ids
+
+    id_match = {"test_id": {"$in": test_ids}}
+
+    pipeline = generate_vector_magnitude_pipeline(id_match, timestamp_start, timestamp_end)
+    return StudyResults(collection.aggregate(pipeline))
+
+
+def get_accel_vector_magnitude_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, bin_size=60, bin_unit="minute"):
+    if specific_test_ids == "all":
+            test_ids = test_ids
+    else:
+        if type(specific_test_ids) == int:
+            test_ids = [specific_test_ids]
+        elif type(specific_test_ids) == list:
+            test_ids = specific_test_ids
+
+    id_match = {"test_id": {"$in": test_ids}}
+
+    pipeline = generate_vector_stats_magnitude_pipeline(id_match, bin_size, bin_unit, timestamp_start, timestamp_end)
     return StudyResults(collection.aggregate(pipeline))

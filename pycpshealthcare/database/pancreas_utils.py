@@ -1,4 +1,5 @@
-from .pancreas_functions import get_pancreas_sensor_results, get_pancreas_results_grouped
+from .pancreas_functions import get_pancreas_sensor_results, get_pancreas_results_grouped,\
+    get_accel_vector_magnitude, get_accel_vector_magnitude_grouped
 from .pancreas_values import fitbit_values, empatica_values, equivital_values, guardian_values, \
     fitnesspal_ejercicio_values, fitnesspal_nutricion_values, oscar_values
 
@@ -19,6 +20,17 @@ class ParticipantPancreasStudy:
         init_date = self.start.strftime("%Y-%m-%d")
         end_date = self.end.strftime("%Y-%m-%d")
         return f"{self.__class__} object (id:{self.test_id}, start_date:{init_date}, end_date:{end_date})"
+
+    def get_empatica_accel_vector_magnitude(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all"):
+        test_ids = [self.test_id]
+        collection = self.connection.collections_pancreas["empatica"]
+        return get_accel_vector_magnitude(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids)
+    
+    def get_empatica_accel_vector_magnitude(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", bin_size=60, bin_unit="minute"):
+        test_ids = [self.test_id]
+        collection = self.connection.collections_pancreas["empatica"]
+        return get_accel_vector_magnitude_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, bin_size, bin_unit)
+    
 
 
 def create_get_sensor_method(collection_name):
