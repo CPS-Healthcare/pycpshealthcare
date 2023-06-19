@@ -51,6 +51,7 @@ def create_get_sensor_grouped_method(collection_name, sensor_values):
 methods_parameters = {
     "get_fitbit_v2_results": create_get_sensor_method(collection_name="fitbit_v2"),
     "get_holter_results": create_get_sensor_method(collection_name="holter"),
+    "get_autoreports_results": create_get_sensor_method(collection_name="autoreports"),
 }
 for key, value in methods_parameters.items():
     setattr(ParticipantMarcoletaStudy, key, value) 
@@ -95,6 +96,7 @@ def create_get_sensor_grouped_method_2(collection_name, sensor_values):
 methods_parameters_2 = {
     "get_fitbit_v2_results": create_get_sensor_method_2(collection_name="fitbit_v2"),
     "get_holter_results": create_get_sensor_method_2(collection_name="holter"),
+    "get_autoreports_results": create_get_sensor_method_2(collection_name="autoreports"),
 }
 for key, value in methods_parameters_2.items():
     setattr(ParticipantMarcoletaStudiesGroup, key, value) 

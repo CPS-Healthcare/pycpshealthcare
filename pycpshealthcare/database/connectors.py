@@ -58,6 +58,7 @@ class CpsConnection:
             "holter": self.db_marcoleta["holter"],
             "fitbit_v2": self.db_marcoleta["fitbit_v2"],
             "fitbit_v2_metadata": self.db_marcoleta["fitbit_v2_metadata"],
+            "autoreports": self.db_marcoleta["autoreports"],
         }
         
     def close(self):

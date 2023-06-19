@@ -1,7 +1,7 @@
 from .results import StudyResults
 from .participant_info import ParticipantInfo
 from .sanpedro_functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped, get_sanpedro_metadata_results
-from .sanpedro_values import fitbit_v2_values, holter_values
+from .marcoleta_values import fitbit_v2_values, holter_values, autoreportes_values
 
 class MarcoletaStudy:
 
@@ -38,6 +38,7 @@ def create_get_sensor_grouped_method(collection_name, sensor_values):
 methods_parameters = {
     "get_fitbit_v2_results": create_get_sensor_method(collection_name="fitbit_v2"),
     "get_holter_results": create_get_sensor_method(collection_name="holter"),
+    "get_autoreports_results":  create_get_sensor_method(collection_name="autoreports")
 }
 
 grouped_methods_parameters = {
@@ -48,6 +49,10 @@ grouped_methods_parameters = {
     "get_holter_results_grouped": create_get_sensor_grouped_method(
         collection_name="holter",
         sensor_values=holter_values
+        ),
+    "get_autoreports_results_grouped": create_get_sensor_grouped_method(
+        collection_name="autoreports",
+        sensor_values=autoreportes_values
         ),
 }
 
