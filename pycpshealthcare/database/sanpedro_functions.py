@@ -2,7 +2,7 @@ from .results import StudyResults
 from .utils import generate_narray_pipeline
 
 
-def get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields):
+def get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields, time_sorted=True):
     if specific_test_ids == "all":
         test_ids = test_ids
     else:
@@ -42,7 +42,10 @@ def get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp
     parameters = {"filter": query}
     if projection:
         parameters["projection"] = projection
-    return StudyResults(collection.find(**parameters))
+    if time_sorted:
+        return StudyResults(collection.find(**parameters).sort([["timestamp", 1]]))
+    else:
+        return StudyResults(collection.find(**parameters))
 
 
 def get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, metadata_type, fields):
