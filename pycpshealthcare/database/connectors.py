@@ -11,7 +11,8 @@ class CpsConnection:
                         "pancreas": "Pancreas",
                         "globalinfo": "GlobalInfo",
                         "sanpedro": "SanPedro",
-                        "marcoleta": "Marcoleta"
+                        "marcoleta": "Marcoleta",
+                        "chrononevado": "ChronoNevado"
                         },
                     tzinfo=None):
         self.tzinfo = tzinfo if tzinfo else pytz.UTC
@@ -28,6 +29,7 @@ class CpsConnection:
         self.db_globalinfo = self.client[database_names["globalinfo"]]
         self.db_sanpedro = self.client[database_names["sanpedro"]]
         self.db_marcoleta = self.client[database_names["marcoleta"]]
+        self.db_chrononevado = self.client[database_names["chrononevado"]]
         self.collections_pancreas = {
             "empatica": self.db_pancreas["empatica"],
             "equivital": self.db_pancreas["equivital"],
@@ -59,6 +61,15 @@ class CpsConnection:
             "fitbit_v2": self.db_marcoleta["fitbit_v2"],
             "fitbit_v2_metadata": self.db_marcoleta["fitbit_v2_metadata"],
             "autoreports": self.db_marcoleta["autoreports"],
+        }
+        self.collections_chrononevado = {
+            "CpetEnvironmentData": self.db_chrononevado["CPETEnvironmentData"],
+            "CpetParticipantData": self.db_chrononevado["CPETParticipantData"],
+            "CpetRawData": self.db_chrononevado["CPETRawData"],
+            "CpetTestData": self.db_chrononevado["CPETTestData"],
+            "FinapresData": self.db_chrononevado["FinapresData"],
+            "Spo2RawData": self.db_chrononevado["Spo2RawData"],
+
         }
         
     def close(self):

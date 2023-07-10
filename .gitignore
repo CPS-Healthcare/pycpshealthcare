@@ -7,3 +7,4 @@ dist/
 pycpshealthcare.egg-info/
 example.*
 test_vector.py
+test*

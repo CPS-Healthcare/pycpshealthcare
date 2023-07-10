@@ -6,7 +6,8 @@ from .sanpedro_utils import ParticipantSanPedroStudy
 from .sanpedro_utils import ParticipantSanPedroStudiesGroup
 from .marcoleta_utils import ParticipantMarcoletaStudiesGroup
 from .marcoleta_utils import ParticipantMarcoletaStudy
-
+from .chrononevado_utils import ParticipantChronoNevadoStudy
+from .chrononevado_utils import ParticipantChronoNevadoStudiesGroup
 
 
 class Participant:
@@ -20,6 +21,7 @@ class Participant:
         self.pancreas_group = ParticipantPancreasStudiesGroup([], connection)
         self.sanpedro_group = ParticipantSanPedroStudiesGroup([], connection)
         self.marcoleta_group = ParticipantMarcoletaStudiesGroup([], connection)
+        self.chrononevado_group = ParticipantChronoNevadoStudiesGroup([], connection)
         self._generate_studies_object()
 
 
@@ -49,6 +51,12 @@ class Participant:
                     study_obj = ParticipantMarcoletaStudy(study, self.connection)
                     self.studies["Marcoleta"].append(study_obj)
                 self.marcoleta_group = ParticipantMarcoletaStudiesGroup(self.studies["Marcoleta"], self.connection)
+            elif study_type == "ChronoNevado":
+                self.studies["ChronoNevado"] = []
+                for study in study_raw:
+                    study_obj = ParticipantChronoNevadoStudy(study, self.connection)
+                    self.studies["ChronoNevado"].append(study_obj)
+                self.marcoleta_group = ParticipantChronoNevadoStudiesGroup(self.studies["ChronoNevado"], self.connection)
 
     
     def __repr__(self) -> str:

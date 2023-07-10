@@ -14,12 +14,12 @@ class ParticipantInfo:
     def get_participants(self, participants_names=None, participants_ids=None, studies='all', bring_id=False):
         if participants_names:
             query = {
-                "_id": {"$in": participants_names}
+                "_id": {"$in": participants_ids}
             }
             results = self.collection.find(query)
         elif participants_ids:
             query = {
-                "participant_name": {"$in": participants_ids}
+                "participant_name": {"$in": participants_names}
             }
         else:
             query = {}
@@ -37,6 +37,8 @@ class ParticipantInfo:
                     study_filter["$or"].append({f"studies.SanPedro": {"$exists": True}})
                 elif study.lower() == "marcoleta":
                     study_filter["$or"].append({f"studies.Marcoleta": {"$exists": True}})
+                elif study.lower() == "chrononevado":
+                    study_filter["$or"].append({f"studies.ChronoNevado": {"$exists": True}})
             query.update(study_filter)
         parameters = {"filter": query} if query else {}
         if bring_id==False:
@@ -57,10 +59,13 @@ class ParticipantsResults:
         return ParticipantsResults(chain(self.results, other.results))
 
 
-    def astype(self, out_type):
+    def astype(self, out_type, split_columns=False):
         if out_type == list or out_type == "list":
             return list(self.results)
         elif out_type == pd.DataFrame or out_type == "dataframe":
+            if split_columns:
+                df = pd.json_normalize(self.results)
+                return df
             return pd.DataFrame(self.results)
         elif out_type.lower() == "participant":
             return list(map(lambda x: Participant(x, self.connection), self.results))
