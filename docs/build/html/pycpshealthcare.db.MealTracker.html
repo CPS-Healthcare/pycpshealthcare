@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pycpshealthcare.db.MealTracker package &mdash; PyCPSHealthcare 1.8.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pycpshealthcare.db.Pancreas package" href="pycpshealthcare.db.Pancreas.html" />
+    <link rel="prev" title="pycpshealthcare.db.Marcoleta package" href="pycpshealthcare.db.Marcoleta.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PyCPSHealthcare
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pycpshealthcare</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pycpshealthcare.html">pycpshealthcare package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pycpshealthcare.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="pycpshealthcare.db.html">pycpshealthcare.db package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycpshealthcare.html#module-pycpshealthcare">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyCPSHealthcare</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">pycpshealthcare</a></li>
+          <li class="breadcrumb-item"><a href="pycpshealthcare.html">pycpshealthcare package</a></li>
+          <li class="breadcrumb-item"><a href="pycpshealthcare.db.html">pycpshealthcare.db package</a></li>
+      <li class="breadcrumb-item active">pycpshealthcare.db.MealTracker package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pycpshealthcare.db.MealTracker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pycpshealthcare-db-mealtracker-package">
+<h1>pycpshealthcare.db.MealTracker package<a class="headerlink" href="#pycpshealthcare-db-mealtracker-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-pycpshealthcare.db.MealTracker.functions">
+<span id="pycpshealthcare-db-mealtracker-functions-module"></span><h2>pycpshealthcare.db.MealTracker.functions module<a class="headerlink" href="#module-pycpshealthcare.db.MealTracker.functions" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.functions.generate_narray_pipeline">
+<span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.functions.</span></span><span class="sig-name descname"><span class="pre">generate_narray_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/functions.html#generate_narray_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.functions.generate_narray_pipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.functions.generate_pipeline">
+<span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.functions.</span></span><span class="sig-name descname"><span class="pre">generate_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_match</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/functions.html#generate_pipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.functions.generate_pipeline" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.functions.get_mealtracker_fitbit_results">
+<span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.functions.</span></span><span class="sig-name descname"><span class="pre">get_mealtracker_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitbit_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_fitbit_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/functions.html#get_mealtracker_fitbit_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.functions.get_mealtracker_fitbit_results" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.functions.get_mealtracker_fitbit_results_grouped">
+<span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.functions.</span></span><span class="sig-name descname"><span class="pre">get_mealtracker_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitbit_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_fitbit_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/functions.html#get_mealtracker_fitbit_results_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.functions.get_mealtracker_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.functions.get_mealtracker_meals_results">
+<span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.functions.</span></span><span class="sig-name descname"><span class="pre">get_mealtracker_meals_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_test_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ouput_format</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/functions.html#get_mealtracker_meals_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.functions.get_mealtracker_meals_results" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-pycpshealthcare.db.MealTracker.participant_study">
+<span id="pycpshealthcare-db-mealtracker-participant-study-module"></span><h2>pycpshealthcare.db.MealTracker.participant_study module<a class="headerlink" href="#module-pycpshealthcare.db.MealTracker.participant_study" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.participant_study.</span></span><span class="sig-name descname"><span class="pre">ParticipantMealTrackerStudiesGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals">
+<span class="sig-name descname"><span class="pre">get_fitbit_at_meals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_fitbit_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results">
+<span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_fitbit_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results_grouped">
+<span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_fitbit_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_results_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_meals_results">
+<span class="sig-name descname"><span class="pre">get_meals_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ouput_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unwinded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_meals_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_meals_results" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_test_instance">
+<span class="sig-name descname"><span class="pre">get_test_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">specific_test_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_test_instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_test_instance" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.participant_study.</span></span><span class="sig-name descname"><span class="pre">ParticipantMealTrackerStudy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudy" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudy.get_fitbit_at_meals">
+<span class="sig-name descname"><span class="pre">get_fitbit_at_meals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_fitbit_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudy.get_fitbit_at_meals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudy.get_fitbit_at_meals" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudy.get_fitbit_results">
+<span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_fitbit_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudy.get_fitbit_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudy.get_fitbit_results" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudy.get_meals_results">
+<span class="sig-name descname"><span class="pre">get_meals_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ouput_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unwinded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudy.get_meals_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudy.get_meals_results" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycpshealthcare.db.MealTracker.study">
+<span id="pycpshealthcare-db-mealtracker-study-module"></span><h2>pycpshealthcare.db.MealTracker.study module<a class="headerlink" href="#module-pycpshealthcare.db.MealTracker.study" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.study.MealTrackerStudy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.study.</span></span><span class="sig-name descname"><span class="pre">MealTrackerStudy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/study.html#MealTrackerStudy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.study.MealTrackerStudy" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_at_meals">
+<span class="sig-name descname"><span class="pre">get_fitbit_at_meals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_fitbit_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/study.html#MealTrackerStudy.get_fitbit_at_meals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_at_meals" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_results">
+<span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_fitbit_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/study.html#MealTrackerStudy.get_fitbit_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_results" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_results_grouped">
+<span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_fitbit_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/study.html#MealTrackerStudy.get_fitbit_results_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_meals_results">
+<span class="sig-name descname"><span class="pre">get_meals_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specific_test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ouput_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unwinded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/study.html#MealTrackerStudy.get_meals_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_meals_results" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycpshealthcare.db.MealTracker">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycpshealthcare.db.MealTracker" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pycpshealthcare.db.Marcoleta.html" class="btn btn-neutral float-left" title="pycpshealthcare.db.Marcoleta package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pycpshealthcare.db.Pancreas.html" class="btn btn-neutral float-right" title="pycpshealthcare.db.Pancreas package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Fernando Huanca.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

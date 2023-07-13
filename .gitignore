@@ -3,6 +3,7 @@
 tester.py
 .venv/
 build/
+!docs/build/
 dist/
 pycpshealthcare.egg-info/
 example.*
