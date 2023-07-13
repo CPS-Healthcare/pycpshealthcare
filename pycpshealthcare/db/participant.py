@@ -1,13 +1,13 @@
-from .pancreas_utils import ParticipantPancreasStudy
-from .pancreas_utils import ParticipantPancreasStudiesGroup
-from .mealtracker_utils import ParticipantMealTrackerStudy
-from .mealtracker_utils import ParticipantMealTrackerStudiesGroup
-from .sanpedro_utils import ParticipantSanPedroStudy
-from .sanpedro_utils import ParticipantSanPedroStudiesGroup
-from .marcoleta_utils import ParticipantMarcoletaStudiesGroup
-from .marcoleta_utils import ParticipantMarcoletaStudy
-from .chrononevado_utils import ParticipantChronoNevadoStudy
-from .chrononevado_utils import ParticipantChronoNevadoStudiesGroup
+from .Pancreas.participant_study import ParticipantPancreasStudy
+from .Pancreas.participant_study import ParticipantPancreasStudiesGroup
+from .MealTracker.participant_study import ParticipantMealTrackerStudy
+from .MealTracker.participant_study import ParticipantMealTrackerStudiesGroup
+from .SanPedro.participant_study import ParticipantSanPedroStudy
+from .SanPedro.participant_study import ParticipantSanPedroStudiesGroup
+from .Marcoleta.participant_study import ParticipantMarcoletaStudiesGroup
+from .Marcoleta.participant_study import ParticipantMarcoletaStudy
+from .ChronoNevado.participant_study import ParticipantChronoNevadoStudy
+from .ChronoNevado.participant_study import ParticipantChronoNevadoStudiesGroup
 
 
 class Participant:

@@ -10,3 +10,4 @@ pip install https://github.com/CPS-Healthcare/pycpshealthcare/releases/download/
 pip install https://github.com/CPS-Healthcare/pycpshealthcare/releases/download/v1.4.1/pycpshealthcare-1.4.1-py2.py3-none-any.whl
 pip install https://github.com/CPS-Healthcare/pycpshealthcare/releases/download/v1.7.0/pycpshealthcare-1.7.0-py2.py3-none-any.whl
 pip install https://github.com/CPS-Healthcare/pycpshealthcare/releases/download/v1.8.0/pycpshealthcare-1.8.0-py2.py3-none-any.whl
+pip install https://github.com/CPS-Healthcare/pycpshealthcare/releases/download/v2.0.0/pycpshealthcare-2.0.0-py2.py3-none-any.whl

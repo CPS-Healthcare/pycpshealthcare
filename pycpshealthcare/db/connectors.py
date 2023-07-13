@@ -1,8 +1,53 @@
+"""
+Submodule for managing MongoDB connection, dabases and connections.
+"""
+
 from pymongo import MongoClient
 import pytz
 
 
 class CpsConnection:
+    """
+    A class that manages the MongoDB client, databases and collections.
+
+    :return: conector
+    :param connection_uri: The full MongoDB connection uri. Not needed if host, username and password are passed.
+    :type connection_uri:  str, optional
+
+    :param host: Database host. Not needed if connection_uri is passed.
+    :type host:  str, optional
+
+    :param username: Database username. Not needed if connection_uri is passed.
+    :type username:  str, optional
+    
+    :param password: Database password. Not needed if connection_uri is passed.
+    :type password:  str, optional
+    
+    :param port: Database port. Not needed if connection_uri is passed.
+    :type port:  str|int, optional
+    
+    :param database_names: Database dict that maps pycpshealthcare studies names to databases names, defaults to {
+        "mealtracker": "MealTracker",
+        "pancreas": "Pancreas",
+        "globalinfo": "GlobalInfo",
+        "sanpedro": "SanPedro",
+        "marcoleta": "Marcoleta",
+        "chrononevado": "ChronoNevado"}
+    :type database_names:  dict, optional
+
+    :param tzinfo: Timezone for results, defaults to pytz.UTC.
+    :type tzinfo:  pytz.Timezone, optional
+
+    :return: A MongoDB client handler.
+
+    - Example with connection_uri::
+
+        connection = CpsConnection(uri="mongodb://user:pass@localhost:27017")
+        
+    - Example without connection_uri::
+
+        connection = CpsConnection(username="user", password="pass", host="localhost", port="27017")
+    """
 
     def __init__(self, connection_uri=None, host=None,
                     username=None, password=None, port=None,
@@ -63,15 +108,18 @@ class CpsConnection:
             "autoreports": self.db_marcoleta["autoreports"],
         }
         self.collections_chrononevado = {
-            "CpetEnvironmentData": self.db_chrononevado["CPETEnvironmentData"],
-            "CpetParticipantData": self.db_chrononevado["CPETParticipantData"],
-            "CpetRawData": self.db_chrononevado["CPETRawData"],
-            "CpetTestData": self.db_chrononevado["CPETTestData"],
+            "CpetEnvironmentData": self.db_chrononevado["CpetEnvironmentData"],
+            "CpetParticipantData": self.db_chrononevado["CpetParticipantData"],
+            "CpetRawData": self.db_chrononevado["CpetRawData"],
+            "CpetTestData": self.db_chrononevado["CpetTestData"],
             "FinapresData": self.db_chrononevado["FinapresData"],
             "Spo2RawData": self.db_chrononevado["Spo2RawData"],
 
         }
         
     def close(self):
+        """
+        Closes database connection.
+        """
         self.client.close()
 

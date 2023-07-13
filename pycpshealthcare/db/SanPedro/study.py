@@ -1,7 +1,7 @@
-from .results import StudyResults
-from .participant_info import ParticipantInfo
-from .sanpedro_functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped, get_sanpedro_metadata_results
-from .sanpedro_values import fitbit_values, fitbit_v2_values,\
+from ..results import StudyResults
+from ..participant_info import ParticipantInfo
+from .functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped, get_sanpedro_metadata_results
+from .values import fitbit_values, fitbit_v2_values,\
     alimentacion_values, patrones_minsal_2018_values,\
     inbody_values, freestyle_librelink_values, holter_values
 
@@ -19,7 +19,7 @@ class SanPedroStudy:
         return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, metadata_type, fields)
     
 
-def create_get_sensor_method(collection_name):
+def _create_get_sensor_method(collection_name):
     def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", fields="all"):
         test_ids = self.test_ids
         collection = self.connection.collections_sanpedro[collection_name]
@@ -27,7 +27,7 @@ def create_get_sensor_method(collection_name):
     return get_sensor_results
 
 
-def create_get_sensor_grouped_method(collection_name, sensor_values):
+def _create_get_sensor_grouped_method(collection_name, sensor_values):
     def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
         test_ids = self.test_ids
         if values == "all":
@@ -38,41 +38,41 @@ def create_get_sensor_grouped_method(collection_name, sensor_values):
     
 
 methods_parameters = {
-    "get_fitbit_v2_results": create_get_sensor_method(collection_name="fitbit_v2"),
-    "get_fitbit_results": create_get_sensor_method(collection_name="fitbit"),
-    "get_holter_results": create_get_sensor_method(collection_name="holter"),
-    "get_alimentacion_results": create_get_sensor_method(collection_name="alimentacion"),
-    "get_patrones_minsal_2018_results": create_get_sensor_method(collection_name="patrones_minsal_2018"),
-    "get_inbody_results": create_get_sensor_method(collection_name="inbody"),
-    "get_freestyle_librelink_results": create_get_sensor_method(collection_name="freestyle_librelink"),
+    "get_fitbit_v2_results": _create_get_sensor_method(collection_name="fitbit_v2"),
+    "get_fitbit_results": _create_get_sensor_method(collection_name="fitbit"),
+    "get_holter_results": _create_get_sensor_method(collection_name="holter"),
+    "get_alimentacion_results": _create_get_sensor_method(collection_name="alimentacion"),
+    "get_patrones_minsal_2018_results": _create_get_sensor_method(collection_name="patrones_minsal_2018"),
+    "get_inbody_results": _create_get_sensor_method(collection_name="inbody"),
+    "get_freestyle_librelink_results": _create_get_sensor_method(collection_name="freestyle_librelink"),
 }
 
 grouped_methods_parameters = {
-    "get_fitbit_v2_results_grouped": create_get_sensor_grouped_method(
+    "get_fitbit_v2_results_grouped": _create_get_sensor_grouped_method(
         collection_name="fitbit_v2",
         sensor_values=fitbit_v2_values
         ),
-    "get_fitbit_results_grouped": create_get_sensor_grouped_method(
+    "get_fitbit_results_grouped": _create_get_sensor_grouped_method(
         collection_name="fitbit",
         sensor_values=fitbit_values
         ),
-    "get_holter_results_grouped": create_get_sensor_grouped_method(
+    "get_holter_results_grouped": _create_get_sensor_grouped_method(
         collection_name="holter",
         sensor_values=holter_values
         ),
-    "get_alimentacion_results_grouped": create_get_sensor_grouped_method(
+    "get_alimentacion_results_grouped": _create_get_sensor_grouped_method(
         collection_name="alimentacion",
         sensor_values=alimentacion_values
         ),
-    "get_patrones_minsal_2018_results_grouped": create_get_sensor_grouped_method(
+    "get_patrones_minsal_2018_results_grouped": _create_get_sensor_grouped_method(
         collection_name="patrones_minsal_2018",
         sensor_values=patrones_minsal_2018_values
         ),
-    "get_inbody_results_grouped": create_get_sensor_grouped_method(
+    "get_inbody_results_grouped": _create_get_sensor_grouped_method(
         collection_name="inbody",
         sensor_values=inbody_values
         ),
-    "get_freestyle_librelink_results_grouped": create_get_sensor_grouped_method(
+    "get_freestyle_librelink_results_grouped": _create_get_sensor_grouped_method(
         collection_name="freestyle_librelink",
         sensor_values=freestyle_librelink_values
         ),

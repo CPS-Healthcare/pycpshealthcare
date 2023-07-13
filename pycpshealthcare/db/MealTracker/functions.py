@@ -1,4 +1,4 @@
-from .results import StudyResults
+from ..results import StudyResults
 
 
 def get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, specific_test_ids, ouput_format):

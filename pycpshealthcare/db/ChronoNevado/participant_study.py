@@ -1,5 +1,5 @@
-from .chrononevado_functions import get_chrononevado_sensor_results, get_chrononevado_results_grouped
-from .chrononevado_values import cpet_environment_data_values, cpet_participant_data_values, \
+from .functions import get_chrononevado_sensor_results, get_chrononevado_results_grouped
+from .values import cpet_environment_data_values, cpet_participant_data_values, \
 cpet_raw_data_values, cpet_test_data_values, finapres_data_values, finapres_raw_data_values, spo2_raw_data_values
 
 
@@ -22,7 +22,7 @@ class ParticipantChronoNevadoStudy:
    
 
 
-def create_get_sensor_method(collection_name):
+def _create_get_sensor_method(collection_name):
     def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_id="all", sensors="all", fields="all"):
         test_ids = [self.test_id]
         collection = self.connection.collections_chrononevado[collection_name]
@@ -30,7 +30,7 @@ def create_get_sensor_method(collection_name):
     return get_sensor_results
 
 
-def create_get_sensor_grouped_method(collection_name, sensor_values):
+def _create_get_sensor_grouped_method(collection_name, sensor_values):
     def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
         test_ids = [self.test_id]
         if values == "all":
@@ -41,41 +41,41 @@ def create_get_sensor_grouped_method(collection_name, sensor_values):
     
 
 methods_parameters = {
-    "get_cpet_raw_data": create_get_sensor_method(collection_name="CpetRawData"),
-    "get_cpet_participant_data": create_get_sensor_method(collection_name="CpetParticipantData"),
-    "get_cpet_test_data": create_get_sensor_method(collection_name="CpetTestData"),
-    "get_cpet_environment_data": create_get_sensor_method(collection_name="CpetEnvironmentData"),
-    "get_finapres_data": create_get_sensor_method(collection_name="FinapresData"),
-    "get_finapres_rawdata": create_get_sensor_method(collection_name="FinapresRawData"),
-    "get_spo2_rawdata": create_get_sensor_method(collection_name="Spo2RawData"),
+    "get_cpet_raw_data": _create_get_sensor_method(collection_name="CpetRawData"),
+    "get_cpet_participant_data": _create_get_sensor_method(collection_name="CpetParticipantData"),
+    "get_cpet_test_data": _create_get_sensor_method(collection_name="CpetTestData"),
+    "get_cpet_environment_data": _create_get_sensor_method(collection_name="CpetEnvironmentData"),
+    "get_finapres_data": _create_get_sensor_method(collection_name="FinapresData"),
+    "get_finapres_rawdata": _create_get_sensor_method(collection_name="FinapresRawData"),
+    "get_spo2_rawdata": _create_get_sensor_method(collection_name="Spo2RawData"),
 }
 
 grouped_methods_parameters = {
-    "get_cpet_raw_data": create_get_sensor_grouped_method(
+    "get_cpet_raw_data_grouped": _create_get_sensor_grouped_method(
         collection_name="CpetRawData",
         sensor_values=cpet_raw_data_values
         ),
-    "get_cpet_participant_data": create_get_sensor_grouped_method(
+    "get_cpet_participant_data_grouped": _create_get_sensor_grouped_method(
         collection_name="CpetParticipantData",
         sensor_values=cpet_participant_data_values
         ),
-    "get_cpet_test_data": create_get_sensor_grouped_method(
+    "get_cpet_test_data_grouped": _create_get_sensor_grouped_method(
         collection_name="CpetTestData",
         sensor_values=cpet_test_data_values
         ),
-    "get_cpet_environment_data": create_get_sensor_grouped_method(
+    "get_cpet_environment_data_grouped": _create_get_sensor_grouped_method(
         collection_name="CpetEnvironmentData",
         sensor_values=cpet_environment_data_values
         ),
-    "get_finapres_data": create_get_sensor_grouped_method(
+    "get_finapres_data_grouped": _create_get_sensor_grouped_method(
         collection_name="FinapresData",
         sensor_values=finapres_data_values
         ),
-    "get_finapres_rawdata": create_get_sensor_grouped_method(
+    "get_finapres_rawdata_grouped": _create_get_sensor_grouped_method(
         collection_name="FinapresRawData",
         sensor_values=finapres_raw_data_values,
         ),
-    "get_spo2_rawdata": create_get_sensor_grouped_method(
+    "get_spo2_rawdata_grouped": _create_get_sensor_grouped_method(
         collection_name="Spo2RawData",
         sensor_values=spo2_raw_data_values),
 }
@@ -101,7 +101,7 @@ class ParticipantChronoNevadoStudiesGroup:
         return None
 
 
-def create_get_sensor_method_2(collection_name):
+def _create_get_sensor_method_2(collection_name):
     def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
         test_ids = [x.test_id for x in self.data]
         collection = self.connection.collections_chrononevado[collection_name]
@@ -109,7 +109,7 @@ def create_get_sensor_method_2(collection_name):
     return get_sensor_results
 
 
-def create_get_sensor_grouped_method_2(collection_name, sensor_values):
+def _create_get_sensor_grouped_method_2(collection_name, sensor_values):
     def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
         test_ids = [x.test_id for x in self.data]
         if values == "all":
@@ -119,41 +119,41 @@ def create_get_sensor_grouped_method_2(collection_name, sensor_values):
     return get_sensor_results_grouped
 
 methods_parameters_2 = {
-    "get_cpet_raw_data": create_get_sensor_method_2(collection_name="CpetRawData"),
-    "get_cpet_participant_data": create_get_sensor_method_2(collection_name="CpetParticipantData"),
-    "get_cpet_test_data": create_get_sensor_method_2(collection_name="CpetTestData"),
-    "get_cpet_environment_data": create_get_sensor_method_2(collection_name="CpetEnvironmentData"),
-    "get_finapres_data": create_get_sensor_method_2(collection_name="FinapresData"),
-    "get_finapres_rawdata": create_get_sensor_method_2(collection_name="FinapresRawData"),
-    "get_spo2_rawdata": create_get_sensor_method_2(collection_name="Spo2RawData"),
+    "get_cpet_raw_data": _create_get_sensor_method_2(collection_name="CpetRawData"),
+    "get_cpet_participant_data": _create_get_sensor_method_2(collection_name="CpetParticipantData"),
+    "get_cpet_test_data": _create_get_sensor_method_2(collection_name="CpetTestData"),
+    "get_cpet_environment_data": _create_get_sensor_method_2(collection_name="CpetEnvironmentData"),
+    "get_finapres_data": _create_get_sensor_method_2(collection_name="FinapresData"),
+    "get_finapres_rawdata": _create_get_sensor_method_2(collection_name="FinapresRawData"),
+    "get_spo2_rawdata": _create_get_sensor_method_2(collection_name="Spo2RawData"),
 }
 
 grouped_methods_parameters_2 = {
-    "get_cpet_raw_data": create_get_sensor_grouped_method_2(
+    "get_cpet_raw_data_grouped": _create_get_sensor_grouped_method_2(
         collection_name="CpetRawData",
         sensor_values=cpet_raw_data_values
         ),
-    "get_cpet_participant_data": create_get_sensor_grouped_method_2(
+    "get_cpet_participant_data_grouped": _create_get_sensor_grouped_method_2(
         collection_name="CpetParticipantData",
         sensor_values=cpet_participant_data_values
         ),
-    "get_cpet_test_data": create_get_sensor_grouped_method_2(
+    "get_cpet_test_data_grouped": _create_get_sensor_grouped_method_2(
         collection_name="CpetTestData",
         sensor_values=cpet_test_data_values
         ),
-    "get_cpet_environment_data": create_get_sensor_grouped_method_2(
+    "get_cpet_environment_data_grouped": _create_get_sensor_grouped_method_2(
         collection_name="CpetEnvironmentData",
         sensor_values=cpet_environment_data_values
         ),
-    "get_finapres_data": create_get_sensor_grouped_method_2(
+    "get_finapres_data_grouped": _create_get_sensor_grouped_method_2(
         collection_name="FinapresData",
         sensor_values=finapres_data_values
         ),
-    "get_finapres_rawdata": create_get_sensor_grouped_method_2(
+    "get_finapres_rawdata_grouped": _create_get_sensor_grouped_method_2(
         collection_name="FinapresRawData",
         sensor_values=finapres_raw_data_values,
         ),
-    "get_spo2_rawdata": create_get_sensor_grouped_method_2(
+    "get_spo2_rawdata_grouped": _create_get_sensor_grouped_method_2(
         collection_name="Spo2RawData",
         sensor_values=spo2_raw_data_values),
 }

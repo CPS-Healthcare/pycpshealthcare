@@ -1,5 +1,5 @@
-from .results import StudyResults
-from .utils import generate_narray_pipeline
+from ..results import StudyResults
+from ..utils import generate_narray_pipeline
 
 
 def get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields, time_sorted=True):

@@ -1,4 +1,4 @@
-from .sanpedro_functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped
+from .functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped
 
 
 class ParticipantMarcoletaStudy:
@@ -28,7 +28,7 @@ class ParticipantMarcoletaStudy:
         return get_sanpedro_results_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_id, measure, bin_size, bin_unit)
 
 
-def create_get_sensor_method(collection_name):
+def _create_get_sensor_method(collection_name):
     def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_id="all", sensors="all", fields="all"):
         test_ids = [self.test_id]
         collection = self.connection.collections_marcoleta[collection_name]
@@ -36,7 +36,7 @@ def create_get_sensor_method(collection_name):
     return get_sensor_results
 
 
-def create_get_sensor_grouped_method(collection_name, sensor_values):
+def _create_get_sensor_grouped_method(collection_name, sensor_values):
     def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
         if specific_test_ids == "all":
             test_ids = self.test_ids
@@ -49,9 +49,9 @@ def create_get_sensor_grouped_method(collection_name, sensor_values):
     return get_sensor_results_grouped
   
 methods_parameters = {
-    "get_fitbit_v2_results": create_get_sensor_method(collection_name="fitbit_v2"),
-    "get_holter_results": create_get_sensor_method(collection_name="holter"),
-    "get_autoreports_results": create_get_sensor_method(collection_name="autoreports"),
+    "get_fitbit_v2_results": _create_get_sensor_method(collection_name="fitbit_v2"),
+    "get_holter_results": _create_get_sensor_method(collection_name="holter"),
+    "get_autoreports_results": _create_get_sensor_method(collection_name="autoreports"),
 }
 for key, value in methods_parameters.items():
     setattr(ParticipantMarcoletaStudy, key, value) 
@@ -73,7 +73,7 @@ class ParticipantMarcoletaStudiesGroup:
         return None
 
 
-def create_get_sensor_method_2(collection_name):
+def _create_get_sensor_method_2(collection_name):
     def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
         test_ids = [x.test_id for x in self.data]
         collection = self.connection.collections_marcoleta[collection_name]
@@ -81,7 +81,7 @@ def create_get_sensor_method_2(collection_name):
     return get_sensor_results
 
 
-def create_get_sensor_grouped_method_2(collection_name, sensor_values):
+def _create_get_sensor_grouped_method_2(collection_name, sensor_values):
     def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
         if specific_test_ids == "all":
             test_ids = self.test_ids
@@ -94,9 +94,9 @@ def create_get_sensor_grouped_method_2(collection_name, sensor_values):
     return get_sensor_results_grouped
     
 methods_parameters_2 = {
-    "get_fitbit_v2_results": create_get_sensor_method_2(collection_name="fitbit_v2"),
-    "get_holter_results": create_get_sensor_method_2(collection_name="holter"),
-    "get_autoreports_results": create_get_sensor_method_2(collection_name="autoreports"),
+    "get_fitbit_v2_results": _create_get_sensor_method_2(collection_name="fitbit_v2"),
+    "get_holter_results": _create_get_sensor_method_2(collection_name="holter"),
+    "get_autoreports_results": _create_get_sensor_method_2(collection_name="autoreports"),
 }
 for key, value in methods_parameters_2.items():
     setattr(ParticipantMarcoletaStudiesGroup, key, value) 

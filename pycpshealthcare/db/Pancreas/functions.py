@@ -1,5 +1,5 @@
-from .results import StudyResults
-from .utils import generate_narray_pipeline, generate_vector_magnitude_pipeline, generate_vector_stats_magnitude_pipeline
+from ..results import StudyResults
+from ..utils import generate_narray_pipeline, generate_vector_magnitude_pipeline, generate_vector_stats_magnitude_pipeline
 
 def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, fields, time_sorted=True):
         if specific_test_ids == "all":

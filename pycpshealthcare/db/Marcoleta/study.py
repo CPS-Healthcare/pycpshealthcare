@@ -1,7 +1,7 @@
-from .results import StudyResults
-from .participant_info import ParticipantInfo
-from .sanpedro_functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped, get_sanpedro_metadata_results
-from .marcoleta_values import fitbit_v2_values, holter_values, autoreportes_values
+from ..results import StudyResults
+from ..participant_info import ParticipantInfo
+from .functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped, get_sanpedro_metadata_results
+from .values import fitbit_v2_values, holter_values, autoreportes_values
 
 class MarcoletaStudy:
 
@@ -17,7 +17,7 @@ class MarcoletaStudy:
         return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, metadata_type, fields)
     
 
-def create_get_sensor_method(collection_name):
+def _create_get_sensor_method(collection_name):
     def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", fields="all"):
         test_ids = self.test_ids
         collection = self.connection.collections_marcoleta[collection_name]
@@ -25,7 +25,7 @@ def create_get_sensor_method(collection_name):
     return get_sensor_results
 
 
-def create_get_sensor_grouped_method(collection_name, sensor_values):
+def _create_get_sensor_grouped_method(collection_name, sensor_values):
     def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
         test_ids = self.test_ids
         if values == "all":
@@ -36,21 +36,21 @@ def create_get_sensor_grouped_method(collection_name, sensor_values):
     
 
 methods_parameters = {
-    "get_fitbit_v2_results": create_get_sensor_method(collection_name="fitbit_v2"),
-    "get_holter_results": create_get_sensor_method(collection_name="holter"),
-    "get_autoreports_results":  create_get_sensor_method(collection_name="autoreports")
+    "get_fitbit_v2_results": _create_get_sensor_method(collection_name="fitbit_v2"),
+    "get_holter_results": _create_get_sensor_method(collection_name="holter"),
+    "get_autoreports_results":  _create_get_sensor_method(collection_name="autoreports")
 }
 
 grouped_methods_parameters = {
-    "get_fitbit_v2_results_grouped": create_get_sensor_grouped_method(
+    "get_fitbit_v2_results_grouped": _create_get_sensor_grouped_method(
         collection_name="fitbit_v2",
         sensor_values=fitbit_v2_values
         ),
-    "get_holter_results_grouped": create_get_sensor_grouped_method(
+    "get_holter_results_grouped": _create_get_sensor_grouped_method(
         collection_name="holter",
         sensor_values=holter_values
         ),
-    "get_autoreports_results_grouped": create_get_sensor_grouped_method(
+    "get_autoreports_results_grouped": _create_get_sensor_grouped_method(
         collection_name="autoreports",
         sensor_values=autoreportes_values
         ),
