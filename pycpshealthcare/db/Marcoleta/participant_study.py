@@ -1,7 +1,7 @@
-from .functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped
+from .functions import get_marcoleta_sensor_results, get_marcoleta_results_grouped
 
 
-class ParticipantMarcoletaStudy:
+class MarcoletaStudyOcurrence:
 
     def __init__(self, study_info, connection):
         self.connection = connection
@@ -18,34 +18,27 @@ class ParticipantMarcoletaStudy:
         return f"{self.__class__} object (id:{self.test_id}, start_date:{init_date}, end_date:{end_date})"
             
 
-    def get_fitbit_v2_results_grouped(self, measure, timestamp_start=None, timestamp_end=None, specific_test_id="all",  bin_size=60, bin_unit="minute"):
-        if specific_test_id == "all":
-            test_ids = self.test_id
-        else:
-            test_ids = specific_test_id
-
+    def get_fitbit_v2_results_grouped(self, measure, timestamp_start=None, timestamp_end=None,  bin_size=60, bin_unit="minute"):
+        test_ids = [self.test_id]
         collection = self.connection.collections_marcoleta["fitbit_v2"]
-        return get_sanpedro_results_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_id, measure, bin_size, bin_unit)
+        return get_marcoleta_results_grouped(test_ids, collection, timestamp_start, timestamp_end, measure, bin_size, bin_unit)
 
 
 def _create_get_sensor_method(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_id="all", sensors="all", fields="all"):
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, sensors="all", fields="all"):
         test_ids = [self.test_id]
         collection = self.connection.collections_marcoleta[collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_id, sensors, fields)
+        return get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestamp_end, sensors, fields)
     return get_sensor_results
 
 
 def _create_get_sensor_grouped_method(collection_name, sensor_values):
-    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
-        if specific_test_ids == "all":
-            test_ids = self.test_ids
-        else:
-            test_ids = specific_test_ids
+    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, values="all", bin_size=60, bin_unit="minute"):
+        test_ids = [self.test_id]
         if values == "all":
             values = sensor_values 
         collection = self.connection.collections_marcoleta[collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size, bin_unit)
+        return get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
     return get_sensor_results_grouped
   
 methods_parameters = {
@@ -54,7 +47,7 @@ methods_parameters = {
     "get_autoreports_results": _create_get_sensor_method(collection_name="autoreports"),
 }
 for key, value in methods_parameters.items():
-    setattr(ParticipantMarcoletaStudy, key, value) 
+    setattr(MarcoletaStudyOcurrence, key, value) 
 
 
 
@@ -74,23 +67,32 @@ class ParticipantMarcoletaStudiesGroup:
 
 
 def _create_get_sensor_method_2(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
-        test_ids = [x.test_id for x in self.data]
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, sensors="all", fields="all"):
+        if test_ids == "all":
+            test_ids = [x.test_id for x in self.data]
+        else:
+            if type(test_ids) == int:
+                test_ids = [test_ids]
+            elif type(test_ids) == list:
+                test_ids = test_ids
         collection = self.connection.collections_marcoleta[collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
+        return get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestamp_end, sensors, fields)
     return get_sensor_results
 
 
 def _create_get_sensor_grouped_method_2(collection_name, sensor_values):
-    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
-        if specific_test_ids == "all":
-            test_ids = self.test_ids
+    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", bin_size=60, bin_unit="minute"):
+        if test_ids == "all":
+            test_ids = [x.test_id for x in self.data]
         else:
-            test_ids = specific_test_ids
+            if type(test_ids) == int:
+                test_ids = [test_ids]
+            elif type(test_ids) == list:
+                test_ids = test_ids
         if values == "all":
             values = sensor_values 
         collection = self.connection.collections_pancreas[collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size, bin_unit)
+        return get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
     return get_sensor_results_grouped
     
 methods_parameters_2 = {

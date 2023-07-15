@@ -3,7 +3,7 @@ from .functions import get_mealtracker_meals_results, get_mealtracker_fitbit_res
     get_mealtracker_fitbit_results_grouped
 
 
-class ParticipantMealTrackerStudy:
+class MealTrackerStudyOcurrence:
 
     def __init__(self, study_info, connection):
         self.connection = connection
@@ -20,22 +20,34 @@ class ParticipantMealTrackerStudy:
         
 
     def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, specific_fitbit_id="all", sensors="all", fields="all"):
-        fitbit_ids = [x["sensor_id"] for key, value in self.sensors.items() if key == "fitbit" for x in value]
+        if fitbit_ids == "all":
+            fitbit_ids = [x["sensor_id"] for key, value in self.sensors.items() if key == "fitbit" for x in value]
+        else:
+            if str(fitbit_ids).isnumeric():
+                fitbit_ids = [int(fitbit_ids)]
+            elif type(fitbit_ids) == list:
+                fitbit_ids = fitbit_ids
         collection = self.connection.collections_mealtracker["realtimefitbit"]
-        return get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_id, sensors, fields)
+        return get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, sensors, fields)
 
 
-    def get_meals_results(self, timestamp_start=None, timestamp_end=None, fields="all", specific_test_ids="all", ouput_format="unwinded"):
-        test_ids = [self.test_id]
+    def get_meals_results(self, timestamp_start=None, timestamp_end=None, fields="all", test_ids="all", ouput_format="unwinded"):
+        if test_ids == "all":
+            test_ids = [self.test_id]
+        else:
+            if str(test_ids).isnumeric():
+                test_ids = [int(test_ids)]
+            elif type(test_ids) == list:
+                test_ids = test_ids
         collection = self.connection.collections_mealtracker["mealtracker"]
-        return get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, specific_test_ids, ouput_format)
+        return get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, ouput_format)
 
     
-    def get_fitbit_at_meals(self, timestamp_start=None, timestamp_end=None, fields="all", specific_test_ids="all", specific_fitbit_id="all", sensors="all"):
-        df_meals = self.get_meals_results(timestamp_start, timestamp_end, "all", specific_test_ids).astype("dataframe", True)
+    def get_fitbit_at_meals(self, timestamp_start=None, timestamp_end=None, fields="all", test_ids="all", sensors="all"):
+        df_meals = self.get_meals_results(timestamp_start, timestamp_end, "all", test_ids).astype("dataframe", True)
         results = []
         for index, row in df_meals.iterrows():
-            temp = self.get_fitbit_results(row["timestamp_start"], row["timestamp_end"], specific_fitbit_id, sensors, fields)
+            temp = self.get_fitbit_results(row["timestamp_start"], row["timestamp_end"], test_ids, sensors, fields)
             results += temp
         return StudyResults(results)
 
@@ -52,29 +64,43 @@ class ParticipantMealTrackerStudiesGroup:
                 return study
         return None
 
-    def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, specific_fitbit_id="all", sensors="all", fields="all"):
-        fitbit_ids = [x["sensor_id"] for y in self.data for key, value in y.sensors.items() if key == "fitbit" for x in value]
+    def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, sensors="all", fields="all"):
+        if fitbit_ids == "all":
+            fitbit_ids = [x["sensor_id"] for y in self.data for key, value in y.sensors.items() if key == "fitbit" for x in value]
+        else:
+            if str(fitbit_ids).isnumeric():
+                fitbit_ids = [int(fitbit_ids)]
+            elif type(fitbit_ids) == list:
+                fitbit_ids = fitbit_ids
+        
         collection = self.connection.collections_mealtracker["realtimefitbit"]
-        return get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_id, sensors, fields)
+        return get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, sensors, fields)
 
         
-    def get_meals_results(self, timestamp_start=None, timestamp_end=None, fields="all", specific_test_ids="all", ouput_format="unwinded"):
-        test_ids = [x.test_id for x in self.data]
+    def get_meals_results(self, timestamp_start=None, timestamp_end=None, fields="all", ouput_format="unwinded"):
+        if test_ids == "all":
+            test_ids = [x.test_id for x in self.data]
+        else:
+            if str(test_ids).isnumeric():
+                test_ids = [int(test_ids)]
+            elif type(test_ids) == list:
+                test_ids = test_ids
+        
         collection = self.connection.collections_mealtracker["mealtracker"]
-        return get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, specific_test_ids, ouput_format)
+        return get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, ouput_format)
 
     
-    def get_fitbit_at_meals(self, timestamp_start=None, timestamp_end=None, fields="all", specific_test_ids="all", specific_fitbit_id="all", sensors="all"):
-        df_meals = self.get_meals_results(timestamp_start, timestamp_end, "all", specific_test_ids).astype("dataframe", True)
+    def get_fitbit_at_meals(self, timestamp_start=None, timestamp_end=None, fields="all", test_ids="all", sensors="all"):
+        df_meals = self.get_meals_results(timestamp_start, timestamp_end, "all", test_ids).astype("dataframe", True)
         results = StudyResults([])
         for index, row in df_meals.iterrows():
-            temp = self.get_fitbit_results(row["timestamp_start"], row["timestamp_end"], specific_fitbit_id, sensors, fields)
+            temp = self.get_fitbit_results(row["timestamp_start"], row["timestamp_end"], test_ids, sensors, fields)
             results += temp
         return results
 
     
-    def get_fitbit_results_grouped(self, sensor, timestamp_start=None, timestamp_end=None, specific_fitbit_ids="all", bin_size=60, bin_unit="minute"):
+    def get_fitbit_results_grouped(self, sensor, timestamp_start=None, timestamp_end=None, fitbit_ids="all", bin_size=60, bin_unit="minute"):
         fitbit_ids = [x["sensor_id"] for y in self.data for key, value in y.sensors.items() if key == "fitbit" for x in value]
         collection = self.connection.collections_mealtracker["realtimefitbit"]
-        return get_mealtracker_fitbit_results_grouped(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_ids, sensor, bin_size, bin_unit)
+        return get_mealtracker_fitbit_results_grouped(fitbit_ids, collection, timestamp_start, timestamp_end, sensor, bin_size, bin_unit)
 

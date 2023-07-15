@@ -1,11 +1,14 @@
 *__pycache__*
 *.pyc
 tester.py
+.pytest_cache
+.vscode
 .venv/
 build/
 !docs/build/
 dist/
 pycpshealthcare.egg-info/
 example.*
-test_vector.py
-test*
+_test*
+test_scripts
+.env

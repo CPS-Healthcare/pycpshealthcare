@@ -1,14 +1,7 @@
 from ..results import StudyResults
 from ..utils import generate_narray_pipeline, generate_vector_magnitude_pipeline, generate_vector_stats_magnitude_pipeline
 
-def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, fields, time_sorted=True):
-        if specific_test_ids == "all":
-            test_ids = test_ids
-        else:
-            if str(specific_test_ids).isnumeric():
-                test_ids = [int(specific_test_ids)]
-            elif type(specific_test_ids) == list:
-                test_ids = specific_test_ids
+def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields, time_sorted=True):
 
         if fields == "all":
             projection = ""
@@ -49,14 +42,7 @@ def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp
 
 
 
-def get_pancreas_results_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size=60, bin_unit="minute"):
-    if specific_test_ids == "all":
-            test_ids = test_ids
-    else:
-        if type(specific_test_ids) == int:
-            test_ids = [specific_test_ids]
-        elif type(specific_test_ids) == list:
-            test_ids = specific_test_ids
+def get_pancreas_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size=60, bin_unit="minute"):
 
     id_match = {"test_id": {"$in": test_ids}}
 
@@ -79,14 +65,7 @@ def get_accel_vector_magnitude(test_ids, collection, timestamp_start, timestamp_
     return StudyResults(collection.aggregate(pipeline))
 
 
-def get_accel_vector_magnitude_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, bin_size=60, bin_unit="minute"):
-    if specific_test_ids == "all":
-            test_ids = test_ids
-    else:
-        if type(specific_test_ids) == int:
-            test_ids = [specific_test_ids]
-        elif type(specific_test_ids) == list:
-            test_ids = specific_test_ids
+def get_accel_vector_magnitude_grouped(test_ids, collection, timestamp_start, timestamp_end, bin_size=60, bin_unit="minute"):
 
     id_match = {"test_id": {"$in": test_ids}}
 

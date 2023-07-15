@@ -16,38 +16,44 @@ class ChronoNevadoStudy:
         self.test_ids = [t.test_id for x in self.participants for t in x.studies["ChronoNevado"]]
 
 
-    # def get_empatica_accel_vector_magnitude(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all"):
+    # def get_empatica_accel_vector_magnitude(self, timestamp_start=None, timestamp_end=None, test_ids="all"):
     #     collection = self.connection.collections_chrononevado["empatica"]
-    #     return get_accel_vector_magnitude(self.test_ids, collection, timestamp_start, timestamp_end, specific_test_ids)
+    #     return get_accel_vector_magnitude(self.test_ids, collection, timestamp_start, timestamp_end, test_ids)
     
 
-    # def get_empatica_accel_vector_magnitude_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", bin_size=60, bin_unit="minute"):
+    # def get_empatica_accel_vector_magnitude_grouped(self, timestamp_start=None, timestamp_end=None, test_ids="all", bin_size=60, bin_unit="minute"):
     #     collection = self.connection.collections_chrononevado["empatica"]
-    #     return get_accel_vector_magnitude_grouped(self.test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, bin_size, bin_unit)
+    #     return get_accel_vector_magnitude_grouped(self.test_ids, collection, timestamp_start, timestamp_end, test_ids, bin_size, bin_unit)
 
 
 
 def _create_get_sensor_method(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", fields="all"):
-        if specific_test_ids == "all":
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", fields="all"):
+        if test_ids == "all":
             test_ids = self.test_ids
         else:
-            test_ids = specific_test_ids
+            if str(test_ids).isnumeric():
+                test_ids = [int(test_ids)]
+            elif type(test_ids) == list:
+                test_ids = test_ids
         collection = self.connection.collections_chrononevado[collection_name]
-        return get_chrononevado_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, fields)
+        return get_chrononevado_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
     return get_sensor_results
 
 
 def _create_get_sensor_grouped_method(collection_name, sensor_values):
-    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
-        if specific_test_ids == "all":
+    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", bin_size=60, bin_unit="minute"):
+        if test_ids == "all":
             test_ids = self.test_ids
         else:
-            test_ids = specific_test_ids
+            if str(test_ids).isnumeric():
+                test_ids = [int(test_ids)]
+            elif type(test_ids) == list:
+                test_ids = test_ids
         if values == "all":
             values = sensor_values 
         collection = self.connection.collections_chrononevado[collection_name]
-        return get_chrononevado_results_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size, bin_unit)
+        return get_chrononevado_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
     return get_sensor_results_grouped
     
 

@@ -6,7 +6,7 @@ cpet_raw_data_values, cpet_test_data_values, finapres_data_values, finapres_raw_
 # TODO: Test this classes!
 
 
-class ParticipantChronoNevadoStudy:
+class ChronoNevadoStudyOcurrence:
 
     def __init__(self, study_info, connection):
         self.connection = connection
@@ -23,20 +23,20 @@ class ParticipantChronoNevadoStudy:
 
 
 def _create_get_sensor_method(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_id="all", sensors="all", fields="all"):
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, sensors="all", fields="all"):
         test_ids = [self.test_id]
         collection = self.connection.collections_chrononevado[collection_name]
-        return get_chrononevado_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_id, sensors, fields)
+        return get_chrononevado_sensor_results(test_ids, collection, timestamp_start, timestamp_end, sensors, fields)
     return get_sensor_results
 
 
 def _create_get_sensor_grouped_method(collection_name, sensor_values):
-    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
+    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, values="all", bin_size=60, bin_unit="minute"):
         test_ids = [self.test_id]
         if values == "all":
             values = sensor_values
         collection = self.connection.collections_chrononevado[collection_name]
-        return get_chrononevado_results_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size, bin_unit)
+        return get_chrononevado_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
     return get_sensor_results_grouped
     
 
@@ -81,10 +81,10 @@ grouped_methods_parameters = {
 }
 
 for key, value in methods_parameters.items():
-    setattr(ParticipantChronoNevadoStudy, key, value)
+    setattr(ChronoNevadoStudyOcurrence, key, value)
 
 for key, value in grouped_methods_parameters.items():
-    setattr(ParticipantChronoNevadoStudy, key, value)
+    setattr(ChronoNevadoStudyOcurrence, key, value)
 
 
 
@@ -94,28 +94,41 @@ class ParticipantChronoNevadoStudiesGroup:
         self.connection = connection
         self.data = data
 
-    def get_test_instance(self, specific_test_id):
+    def get_test_instance(self, test_id):
         for study in self.data:
-            if study.test_id == specific_test_id:
+            if study.test_id == test_id:
                 return study
         return None
 
 
 def _create_get_sensor_method_2(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", sensors="all", fields="all"):
-        test_ids = [x.test_id for x in self.data]
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", sensors="all", fields="all"):
+        if test_ids == "all":
+            test_ids = [x.test_id for x in self.data]
+        else:
+            if str(test_ids).isnumeric():
+                test_ids = [int(test_ids)]
+            elif type(test_ids) == list:
+                test_ids = test_ids
         collection = self.connection.collections_chrononevado[collection_name]
-        return get_chrononevado_sensor_results(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, sensors, fields)
+        return get_chrononevado_sensor_results(test_ids, collection, timestamp_start, timestamp_end, sensors, fields)
     return get_sensor_results
 
 
 def _create_get_sensor_grouped_method_2(collection_name, sensor_values):
-    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids="all", values="all", bin_size=60, bin_unit="minute"):
+    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", bin_size=60, bin_unit="minute"):
         test_ids = [x.test_id for x in self.data]
+        if test_ids == "all":
+            test_ids = test_ids
+        else:
+            if str(test_ids).isnumeric():
+                test_ids = [int(test_ids)]
+            elif type(test_ids) == list:
+                test_ids = test_ids
         if values == "all":
             values = sensor_values
         collection = self.connection.collections_chrononevado[collection_name]
-        return get_chrononevado_results_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size, bin_unit)
+        return get_chrononevado_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
     return get_sensor_results_grouped
 
 methods_parameters_2 = {

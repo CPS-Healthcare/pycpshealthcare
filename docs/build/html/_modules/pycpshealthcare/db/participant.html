@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pycpshealthcare.db.participant &mdash; PyCPSHealthcare 1.8.0 documentation</title>
+  <title>pycpshealthcare.db.participant &mdash; PyCPSHealthcare 2.0.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
@@ -83,6 +83,18 @@
 
 
 <div class="viewcode-block" id="Participant"><a class="viewcode-back" href="../../../pycpshealthcare.db.html#pycpshealthcare.db.participant.Participant">[docs]</a><span class="k">class</span> <span class="nc">Participant</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for representing a GlobalInfo.ParticipantInfo MongoDB document</span>
+<span class="sd">    as a Python object. Contains ParticipantStudiesGroup family instances for each</span>
+<span class="sd">    of the studies.</span>
+<span class="sd">    </span>
+<span class="sd">    :param raw_data: A MongoDB document as a dictionary.</span>
+<span class="sd">    :type raw_data:  dict</span>
+
+<span class="sd">    :param connection: A pycpshealthcare.db.connector.CpsConnection instance.</span>
+<span class="sd">    :type connection:  pycpshealthcare.db.connector.CpsConnection</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_data</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">connection</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;_id&quot;</span> <span class="ow">in</span> <span class="n">raw_data</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>

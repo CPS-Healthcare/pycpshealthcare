@@ -10,7 +10,6 @@ class CpsConnection:
     """
     A class that manages the MongoDB client, databases and collections.
 
-    :return: conector
     :param connection_uri: The full MongoDB connection uri. Not needed if host, username and password are passed.
     :type connection_uri:  str, optional
 
@@ -38,7 +37,6 @@ class CpsConnection:
     :param tzinfo: Timezone for results, defaults to pytz.UTC.
     :type tzinfo:  pytz.Timezone, optional
 
-    :return: A MongoDB client handler.
 
     - Example with connection_uri::
 

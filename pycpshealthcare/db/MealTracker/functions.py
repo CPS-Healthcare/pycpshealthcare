@@ -1,14 +1,7 @@
 from ..results import StudyResults
 
 
-def get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, specific_test_ids, ouput_format):
-    if specific_test_ids == "all":
-        test_ids = test_ids
-    else:
-        if str(specific_test_ids).isnumeric():
-                test_ids = [int(specific_test_ids)]
-        elif type(specific_test_ids) == list:
-            test_ids = specific_test_ids
+def get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, ouput_format):
 
     if fields == "all":
         projection = ""
@@ -42,14 +35,7 @@ def get_mealtracker_meals_results(collection, test_ids, timestamp_start, timesta
         return StudyResults(collection.find(**parameters))
 
 
-def get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_ids, values, fields):
-    if specific_fitbit_ids == "all":
-            fitbit_ids = fitbit_ids
-    else:
-        if type(specific_fitbit_ids) == int:
-            fitbit_ids = [specific_fitbit_ids]
-        elif type(specific_fitbit_ids) == list:
-            fitbit_ids = specific_fitbit_ids
+def get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, values, fields):
 
     if fields == "all":
         projection = ""
@@ -224,14 +210,8 @@ def generate_pipeline(sensor, id_match, bin_size=60, bin_unit="minute", timestam
     return pipeline
 
 
-def get_mealtracker_fitbit_results_grouped(fitbit_ids, collection, timestamp_start, timestamp_end, specific_fitbit_ids, values, bin_size=60, bin_unit="minute"):
-    if specific_fitbit_ids == "all":
-            fitbit_ids = fitbit_ids
-    else:
-        if type(specific_fitbit_ids) == int:
-            fitbit_ids = [specific_fitbit_ids]
-        elif type(specific_fitbit_ids) == list:
-            fitbit_ids = specific_fitbit_ids
+def get_mealtracker_fitbit_results_grouped(fitbit_ids, collection, timestamp_start, timestamp_end, values, bin_size=60, bin_unit="minute"):
+    
     if values == "all": values = ["accel", "gyro", "hrm", "batt"]
 
     id_match = { "client_id": {"$in": fitbit_ids} }

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pycpshealthcare.db package &mdash; PyCPSHealthcare 1.8.0 documentation</title>
+  <title>pycpshealthcare.db package &mdash; PyCPSHealthcare 2.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -396,11 +396,8 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class that manages the MongoDB client, databases and collections.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>conector</p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
 <li><p><strong>connection_uri</strong> (<em>str</em><em>, </em><em>optional</em>) – The full MongoDB connection uri. Not needed if host, username and password are passed.</p></li>
 <li><p><strong>host</strong> (<em>str</em><em>, </em><em>optional</em>) – Database host. Not needed if connection_uri is passed.</p></li>
 <li><p><strong>username</strong> (<em>str</em><em>, </em><em>optional</em>) – Database username. Not needed if connection_uri is passed.</p></li>
@@ -415,9 +412,6 @@
 “chrononevado”: “ChronoNevado”}</p></li>
 <li><p><strong>tzinfo</strong> (<em>pytz.Timezone</em><em>, </em><em>optional</em>) – Timezone for results, defaults to pytz.UTC.</p></li>
 </ul>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A MongoDB client handler.</p>
 </dd>
 </dl>
 <ul>
@@ -450,6 +444,17 @@
 <dt class="sig sig-object py" id="pycpshealthcare.db.participant.Participant">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.participant.</span></span><span class="sig-name descname"><span class="pre">Participant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/participant.html#Participant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.participant.Participant" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for representing a GlobalInfo.ParticipantInfo MongoDB document
+as a Python object. Contains ParticipantStudiesGroup family instances for each
+of the studies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>raw_data</strong> (<em>dict</em>) – A MongoDB document as a dictionary.</p></li>
+<li><p><strong>connection</strong> (<em>pycpshealthcare.db.connector.CpsConnection</em>) – A pycpshealthcare.db.connector.CpsConnection instance.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
