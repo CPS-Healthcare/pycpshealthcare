@@ -1,5 +1,6 @@
-from .functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped
-
+from .functions import get_sanpedro_sensor_results, get_sanpedro_results_grouped, get_sanpedro_metadata_results
+from .values import fitbit_v2_values, fitbit_values, freestyle_librelink_values, holter_values,\
+      patrones_minsal_2018_values, alimentacion_values, inbody_values
 #TODO: make grouped methods for both classes
 
 class SanPedroStudyOcurrence:
@@ -19,17 +20,17 @@ class SanPedroStudyOcurrence:
         return f"{self.__class__} object (id:{self.test_id}, start_date:{init_date}, end_date:{end_date})"
             
 
-    def get_fitbit_v2_results_grouped(self, measure, timestamp_start=None, timestamp_end=None, bin_size=60, bin_unit="minute"):
+    def get_fitbit_v2_metadata_results(self, metadata_type, timestamp_start=None, timestamp_end=None, test_ids="all", fields="all"):
         test_ids = [self.test_id]
-        collection = self.connection.collections_sanpedro["fitbit_v2"]
-        return get_sanpedro_results_grouped(test_ids, collection, timestamp_start, timestamp_end, measure, bin_size, bin_unit)
+        collection = self.connection.collections["SanPedro"]["fitbit_v2_metadata"]
+        return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type, fields)
 
 
 def _create_get_sensor_method(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, sensors="all", fields="all"):
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, values="all", fields="all"):
         test_ids = [self.test_id]
-        collection = self.connection.collections_sanpedro[collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, sensors, fields)
+        collection = self.connection.collections["SanPedro"][collection_name]
+        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
     return get_sensor_results
 
 
@@ -38,8 +39,8 @@ def _create_get_sensor_grouped_method(collection_name, sensor_values):
         test_ids = [self.test_id]
         if values == "all":
             values = sensor_values 
-        collection = self.connection.collections_sanpedro[collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
+        collection = self.connection.collections["SanPedro"][collection_name]
+        return get_sanpedro_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
     return get_sensor_results_grouped
   
 methods_parameters = {
@@ -51,7 +52,19 @@ methods_parameters = {
     "get_inbody_results": _create_get_sensor_method(collection_name="inbody"),
     "get_freestyle_librelink_results": _create_get_sensor_method(collection_name="freestyle_librelink"),
 }
+grouped_methods_parameters = {
+    "get_fitbit_v2_results_grouped": _create_get_sensor_grouped_method(collection_name="fitbit_v2", sensor_values=fitbit_v2_values),
+    "get_fitbit_results_grouped": _create_get_sensor_grouped_method(collection_name="fitbit", sensor_values=fitbit_values),
+    "get_holter_results_grouped": _create_get_sensor_grouped_method(collection_name="holter", sensor_values=holter_values),
+    "get_alimentacion_results_grouped": _create_get_sensor_grouped_method(collection_name="alimentacion", sensor_values=alimentacion_values),
+    "get_patrones_minsal_2018_results_grouped": _create_get_sensor_grouped_method(collection_name="patrones_minsal_2018", sensor_values=patrones_minsal_2018_values),
+    "get_inbody_results_grouped": _create_get_sensor_grouped_method(collection_name="inbody", sensor_values=inbody_values),
+    "get_freestyle_librelink_results_grouped": _create_get_sensor_grouped_method(collection_name="freestyle_librelink", sensor_values=freestyle_librelink_values),
+}
 for key, value in methods_parameters.items():
+    setattr(SanPedroStudyOcurrence, key, value) 
+
+for key, value in grouped_methods_parameters.items():
     setattr(SanPedroStudyOcurrence, key, value) 
 
 
@@ -69,10 +82,8 @@ class ParticipantSanPedroStudiesGroup:
             if study.test_id == specific_test_id:
                 return study
         return None
-
-
-def _create_get_sensor_method_2(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", sensors="all", fields="all"):
+    
+    def get_fitbit_v2_metadata_results(self, metadata_type, timestamp_start=None, timestamp_end=None, test_ids="all", fields="all"):
         if test_ids == "all":
             test_ids = [x.test_id for x in self.data]
         else:
@@ -80,8 +91,15 @@ def _create_get_sensor_method_2(collection_name):
                 test_ids = [int(test_ids)]
             elif type(test_ids) == list:
                 test_ids = test_ids
-        collection = self.connection.collections_sanpedro[collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, sensors, fields)
+        collection = self.connection.collections["SanPedro"]["fitbit_v2_metadata"]
+        return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type, fields)
+
+
+def _create_get_sensor_method_2(collection_name):
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, values="all", fields="all"):
+        test_ids = [x.test_id for x in self.data]
+        collection = self.connection.collections["SanPedro"][collection_name]
+        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
     return get_sensor_results
 
 
@@ -96,8 +114,8 @@ def _create_get_sensor_grouped_method_2(collection_name, sensor_values):
                 test_ids = test_ids
         if values == "all":
             values = sensor_values 
-        collection = self.connection.collections_pancreas[collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
+        collection = self.connection.collections["SanPedro"][collection_name]
+        return get_sanpedro_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
     return get_sensor_results_grouped
     
 methods_parameters_2 = {
@@ -109,5 +127,17 @@ methods_parameters_2 = {
     "get_inbody_results": _create_get_sensor_method_2(collection_name="inbody"),
     "get_freestyle_librelink_results": _create_get_sensor_method_2(collection_name="freestyle_librelink"),
 }
+grouped_methods_parameters_2 = {
+    "get_fitbit_v2_results_grouped": _create_get_sensor_grouped_method_2(collection_name="fitbit_v2", sensor_values=fitbit_v2_values),
+    "get_fitbit_results_grouped": _create_get_sensor_grouped_method_2(collection_name="fitbit", sensor_values=fitbit_values),
+    "get_holter_results_grouped": _create_get_sensor_grouped_method_2(collection_name="holter", sensor_values=holter_values),
+    "get_alimentacion_results_grouped": _create_get_sensor_grouped_method_2(collection_name="alimentacion", sensor_values=alimentacion_values),
+    "get_patrones_minsal_2018_results_grouped": _create_get_sensor_grouped_method_2(collection_name="patrones_minsal_2018", sensor_values=patrones_minsal_2018_values),
+    "get_inbody_results_grouped": _create_get_sensor_grouped_method_2(collection_name="inbody", sensor_values=inbody_values),
+    "get_freestyle_librelink_results_grouped": _create_get_sensor_grouped_method_2(collection_name="freestyle_librelink", sensor_values=freestyle_librelink_values),
+}
 for key, value in methods_parameters_2.items():
+    setattr(ParticipantSanPedroStudiesGroup, key, value) 
+
+for key, value in grouped_methods_parameters_2.items():
     setattr(ParticipantSanPedroStudiesGroup, key, value) 

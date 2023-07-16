@@ -25,7 +25,7 @@ class PancreasStudy:
                 test_ids = [int(test_ids)]
             elif type(test_ids) == list:
                 test_ids = test_ids
-        collection = self.connection.collections_pancreas["empatica"]
+        collection = self.connection.collections["Pancreas"]["empatica"]
         return get_accel_vector_magnitude(test_ids, collection, timestamp_start, timestamp_end)
     
 
@@ -37,7 +37,7 @@ class PancreasStudy:
                 test_ids = [int(test_ids)]
             elif type(test_ids) == list:
                 test_ids = test_ids
-        collection = self.connection.collections_pancreas["empatica"]
+        collection = self.connection.collections["Pancreas"]["empatica"]
         return get_accel_vector_magnitude_grouped(test_ids, collection, timestamp_start, timestamp_end, bin_size, bin_unit)
 
 
@@ -51,7 +51,7 @@ def _create_get_sensor_method(collection_name):
                 test_ids = [int(test_ids)]
             elif type(test_ids) == list:
                 test_ids = test_ids
-        collection = self.connection.collections_pancreas[collection_name]
+        collection = self.connection.collections["Pancreas"][collection_name]
         return get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
     return get_sensor_results
 
@@ -67,8 +67,8 @@ def _create_get_sensor_grouped_method(collection_name, sensor_values):
                 test_ids = test_ids
         if values == "all":
             values = sensor_values 
-        collection = self.connection.collections_pancreas[collection_name]
-        return get_pancreas_results_grouped(test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, values, bin_size, bin_unit)
+        collection = self.connection.collections["Pancreas"][collection_name]
+        return get_pancreas_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
     return get_sensor_results_grouped
     
 

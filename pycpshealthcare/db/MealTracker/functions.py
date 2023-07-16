@@ -1,4 +1,5 @@
 from ..results import StudyResults
+from ..utils import generate_narray_pipeline
 
 
 def get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, ouput_format):
@@ -35,7 +36,7 @@ def get_mealtracker_meals_results(collection, test_ids, timestamp_start, timesta
         return StudyResults(collection.find(**parameters))
 
 
-def get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, timestamp_end, values, fields):
+def get_mealtracker_fitbit_results(test_ids, collection, timestamp_start, timestamp_end, values, fields, time_sorted=True):
 
     if fields == "all":
         projection = ""
@@ -49,13 +50,16 @@ def get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, time
             projection["_id"] = 0
 
     query = {
-            "client_id": {"$in": fitbit_ids}
+            "test_id": {"$in": test_ids}
         }
 
     if values == "all":
         pass
+    elif type(values) == str:
+        query[f"values.{values}"] = {"$exists": True}
     else:
-        query["sensor"] = {"$in": values}
+        for sensor in values:
+            query[f"values.{sensor}"] = {"$exists": True}
 
     if timestamp_start or timestamp_end:
         query["timestamp"] = {}
@@ -63,162 +67,18 @@ def get_mealtracker_fitbit_results(fitbit_ids, collection, timestamp_start, time
             query["timestamp"]["$gte"] = timestamp_start
         if timestamp_end:
             query["timestamp"]["$lte"] = timestamp_end
+
     parameters = {"filter": query}
+    print(query)
     if projection: parameters["projection"] = projection
-    return StudyResults(collection.find(**parameters))
+    if time_sorted:
+        return StudyResults(collection.find(**parameters).sort([["timestamp", 1]]))
+    else:
+        return StudyResults(collection.find(**parameters))
 
 
-def generate_narray_pipeline(sensor, id_match, bin_size=60, bin_unit="minute", timestamp_start=None, timestamp_end=None, dim=3):
-    match_pipeline = {"$match": {"sensor": {"$in": sensor}, **id_match}}
-    if timestamp_start or timestamp_end:
-        match_pipeline["$match"]["timestamp"] = {}
-        if timestamp_start:
-            match_pipeline["$match"]["timestamp"]["$gte"] = timestamp_start
-        if timestamp_end:
-            match_pipeline["$match"]["timestamp"]["$lte"] = timestamp_end
-    pipeline=[
-        match_pipeline,
-        {"$group": {
-            "_id": {"timestamp": {"$dateTrunc": {"date": "$timestamp", "unit": bin_unit, "binSize": bin_size}}, "client_id": "$client_id", "sensor": "$sensor"},
-            "count": {"$count": {}}
-            }
-        },
-        {"$project": {  
-            "_id": 0,
-            "timestamp": "$_id.timestamp",
-            "client_id": "$_id.client_id",
-            "count": 1,
-            "sensor": "$_id.sensor"
-            }
-        }
-    ]
-    group_pipe = {}
-    coordinates = ["x", "y", "z"]
-    for oper in ["avg", "min", "max"]:
-        for j, coord in enumerate(coordinates):
-            group_pipe[f"{oper}_{j}"] = {f"${oper}": {"$cond": {"if": {"$isArray": "$measures"}, "then": {'$ifNull': [{"$arrayElemAt": ["$measures", j]}, 0]}, "else": "$measures" if j==0 else None}}}
-            # group_pipe[f"{oper}"] = {f"${oper}": {"$cond": {"if": {"$isArray": "$measures"}, "then": None, "else": "$measures"}}}
-            
-                 
-                   
-    pipeline[1]["$group"].update(group_pipe)
-    oper_full = [f"{oper}_{i}" for i, coord in enumerate(coordinates) for oper in ["avg", "min", "max"]] + ["avg", "min", "max"]
-    project_pip_1 ={f"{oper}": 1 for oper in oper_full}
-    pipeline[2]["$project"].update(project_pip_1)
-    
-    project_pip_2 = {
-        "$project": {
-            f"{oper}": [{"k": "$sensor", "v":  [f"${oper}_0", f"${oper}_1", f"${oper}_2"]}]
-                for oper in ["avg", "min", "max"]
-            }
-        }
-    project_pip_2["$project"].update({ 
-        "timestamp": 1,
-        "client_id": 1,
-        "count": 1,
-        "sensor": 1
-        })
-    project_pip_3 = {
-        "$project": {
-            f"{oper}": {"$arrayToObject": f"${oper}"} for oper in oper_full
-            }
-        }
-    project_pip_3["$project"].update({ 
-        "timestamp": 1,
-        "client_id": 1,
-        "count": 1,
-        })
-    project_pip_4 = {
-        "$project": {
-            f"{oper}.{i}": {
-                "$filter": {
-                    "input": f"${oper}.{i}",
-                    "as": "d",
-                    "cond": {
-                        "$ne": ["$$d", None]
-                        }
-                    }
-                } for i in sensor for oper in ["avg", "min", "max"]
-           }
-        }
-    project_pip_4["$project"].update({
-        "timestamp": 1,
-        "client_id": 1,
-        "count": 1,
-        })
-    project_pip_5 = {
-        "$project": {  
-           f"{oper}.{i}": {
-            "$cond": {
-                "if": {"$isArray": f"${oper}.{i}"},
-                "then": {"$cond":{
-                    "if": {"$eq": [{"$size": f"${oper}.{i}"}, 1]},
-                    "then": {"$arrayElemAt": [f"${oper}.{i}", 0]},
-                    "else": f"${oper}.{i}"
-                }},
-                "else": "$$REMOVE"
-                }
-            } for i in sensor for oper in ["avg", "min", "max"]
-           }
-        }
-    project_pip_5["$project"].update({
-        "timestamp": 1,
-        "client_id": 1,
-        "count": 1,
-        })
-    pipeline.append(project_pip_2)
-    pipeline.append(project_pip_3)
-    pipeline.append(project_pip_4)
-    pipeline.append(project_pip_5)
-    return pipeline
 
-
-def generate_pipeline(sensor, id_match, bin_size=60, bin_unit="minute", timestamp_start=None, timestamp_end=None):
-    match_pipeline = {"$match": {"sensor": {"$in": sensor}, **id_match}}
-    if timestamp_start or timestamp_end:
-        match_pipeline["$match"]["timestamp"] = {}
-        if timestamp_start:
-            match_pipeline["$match"]["timestamp"]["$gte"] = timestamp_start
-        if timestamp_end:
-            match_pipeline["$match"]["timestamp"]["$lte"] = timestamp_end
-    pipeline=[
-        match_pipeline,
-        {"$group": {
-            "_id": {"timestamp": {"$dateTrunc": {"date": "$timestamp", "unit": bin_unit, "binSize": bin_size}}, "client_id": "$client_id"},
-            "avg": {"$avg": "$measures"},
-            "max": {"$max": "$measures"},
-            "min": {"$min": "$measures"},
-            "count": {"$count": {}}
-            }
-        },
-        {"$project": {  
-            "_id": 0,
-            "timestamp": "$_id.timestamp",
-            "client_id": "$_id.client_id",
-            "avg": 1,
-            "max": 1,
-            "min": 1,
-            "count": 1
-            }
-        },
-        {"$sort": {
-            "client_id": 1,
-            "timestamp": 1,
-            }
-        }
-    ]
-    return pipeline
-
-
-def get_mealtracker_fitbit_results_grouped(fitbit_ids, collection, timestamp_start, timestamp_end, values, bin_size=60, bin_unit="minute"):
-    
-    if values == "all": values = ["accel", "gyro", "hrm", "batt"]
-
-    id_match = { "client_id": {"$in": fitbit_ids} }
-
-    # if values in ["hrm", "batt"]:
-    #     pipeline = generate_pipeline(values, id_match, bin_size, bin_unit, timestamp_start, timestamp_end )
-    # elif values in ["accel", "gyro"]:
-    pipeline = generate_narray_pipeline(values, id_match, bin_size, bin_unit, timestamp_start, timestamp_end, dim=3)
-
+def get_mealtracker_fitbit_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size=60, bin_unit="minute"):
+    id_match = {"test_id": {"$in": test_ids}}
+    pipeline = generate_narray_pipeline(id_match, bin_size, bin_unit, timestamp_start, timestamp_end, types=values)
     return StudyResults(collection.aggregate(pipeline))

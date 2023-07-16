@@ -50,12 +50,12 @@ class CpsConnection:
     def __init__(self, connection_uri=None, host=None,
                     username=None, password=None, port=None,
                     database_names = {
-                        "mealtracker": "MealTracker",
-                        "pancreas": "Pancreas",
-                        "globalinfo": "GlobalInfo",
-                        "sanpedro": "SanPedro",
-                        "marcoleta": "Marcoleta",
-                        "chrononevado": "ChronoNevado"
+                        "MealTracker": "MealTrackerV2",
+                        "Pancreas": "Pancreas",
+                        "GlobalInfo": "GlobalInfo",
+                        "SanPedro": "SanPedro",
+                        "Marcoleta": "Marcoleta",
+                        "ChronoNevado": "ChronoNevado"
                         },
                     tzinfo=None):
         self.tzinfo = tzinfo if tzinfo else pytz.UTC
@@ -67,51 +67,55 @@ class CpsConnection:
             self.client = MongoClient(host=connection_uri, tz_aware=True, tzinfo=self.tzinfo)
         else:
             raise Exception
-        self.db_pancreas = self.client[database_names["pancreas"]]
-        self.db_mealtracker = self.client[database_names["mealtracker"]]
-        self.db_globalinfo = self.client[database_names["globalinfo"]]
-        self.db_sanpedro = self.client[database_names["sanpedro"]]
-        self.db_marcoleta = self.client[database_names["marcoleta"]]
-        self.db_chrononevado = self.client[database_names["chrononevado"]]
-        self.collections_pancreas = {
-            "empatica": self.db_pancreas["empatica"],
-            "equivital": self.db_pancreas["equivital"],
-            "fitbit": self.db_pancreas["fitbit"],
-            "fitnesspal_ejercicio": self.db_pancreas["fitnesspal_ejercicio"],
-            "fitnesspal_nutricion": self.db_pancreas["fitnesspal_nutricion"],
-            "guardian": self.db_pancreas["guardian"],
-            "oscar": self.db_pancreas["oscar"],
+        self.dbs = {
+            "GlobalInfo": self.client[database_names["GlobalInfo"]],
+            "Pancreas": self.client[database_names["Pancreas"]],
+            "MealTracker": self.client[database_names["MealTracker"]],
+            "SanPedro": self.client[database_names["SanPedro"]],
+            "Marcoleta": self.client[database_names["Marcoleta"]],
+            "ChronoNevado": self.client[database_names["ChronoNevado"]]
         }
-        self.collections_mealtracker = {
-            "mealtracker": self.db_mealtracker["MealTrack"],
-            "realtimefitbit": self.db_mealtracker["RealtimeFitbit"]
+        self.collections = {}
+        self.collections["Pancreas"] = {
+            "empatica": self.dbs["Pancreas"]["empatica"],
+            "equivital": self.dbs["Pancreas"]["equivital"],
+            "fitbit": self.dbs["Pancreas"]["fitbit"],
+            "fitnesspal_ejercicio": self.dbs["Pancreas"]["fitnesspal_ejercicio"],
+            "fitnesspal_nutricion": self.dbs["Pancreas"]["fitnesspal_nutricion"],
+            "guardian": self.dbs["Pancreas"]["guardian"],
+            "oscar": self.dbs["Pancreas"]["oscar"],
         }
-        self.collections_globalinfo = {
-            "participantinfo": self.db_globalinfo["ParticipantInfo"]
+        self.collections["MealTracker"] = {
+            "MealTrack": self.dbs["MealTracker"]["MealTrack"],
+            "RealtimeFitbit": self.dbs["MealTracker"]["RealtimeFitbit"]
         }
-        self.collections_sanpedro = {
-            "holter": self.db_sanpedro["holter"],
-            "fitbit": self.db_sanpedro["fitbit"],
-            "fitbit_v2": self.db_sanpedro["fitbit_v2"],
-            "fitbit_v2_metadata": self.db_sanpedro["fitbit_v2_metadata"],
-            "inbody": self.db_sanpedro["inbody"],
-            "alimentacion": self.db_sanpedro["alimentacion"],
-            "patrones_minsal_2018": self.db_sanpedro["patrones_minsal_2018"],
-            "freestyle_librelink": self.db_sanpedro["FreeStyle_LibreLink"],
+        self.collections["GlobalInfo"] = {
+            "ParticipantInfo": self.dbs["GlobalInfo"]["ParticipantInfo"]
         }
-        self.collections_marcoleta = {
-            "holter": self.db_marcoleta["holter"],
-            "fitbit_v2": self.db_marcoleta["fitbit_v2"],
-            "fitbit_v2_metadata": self.db_marcoleta["fitbit_v2_metadata"],
-            "autoreports": self.db_marcoleta["autoreports"],
+        self.collections["SanPedro"] = {
+            "holter": self.dbs["SanPedro"]["holter"],
+            "fitbit": self.dbs["SanPedro"]["fitbit"],
+            "fitbit_v2": self.dbs["SanPedro"]["fitbit_v2"],
+            "fitbit_v2_metadata": self.dbs["SanPedro"]["fitbit_v2_metadata"],
+            "inbody": self.dbs["SanPedro"]["inbody"],
+            "alimentacion": self.dbs["SanPedro"]["alimentacion"],
+            "patrones_minsal_2018": self.dbs["SanPedro"]["patrones_minsal_2018"],
+            "freestyle_librelink": self.dbs["SanPedro"]["FreeStyle_LibreLink"],
         }
-        self.collections_chrononevado = {
-            "CpetEnvironmentData": self.db_chrononevado["CpetEnvironmentData"],
-            "CpetParticipantData": self.db_chrononevado["CpetParticipantData"],
-            "CpetRawData": self.db_chrononevado["CpetRawData"],
-            "CpetTestData": self.db_chrononevado["CpetTestData"],
-            "FinapresData": self.db_chrononevado["FinapresData"],
-            "Spo2RawData": self.db_chrononevado["Spo2RawData"],
+        self.collections["Marcoleta"] = {
+            "holter": self.dbs["Marcoleta"]["holter"],
+            "fitbit_v2": self.dbs["Marcoleta"]["fitbit_v2"],
+            "fitbit_v2_metadata": self.dbs["Marcoleta"]["fitbit_v2_metadata"],
+            "autoreports": self.dbs["Marcoleta"]["autoreports"],
+        }
+        self.collections["ChronoNevado"] = {
+            "CpetEnvironmentData": self.dbs["ChronoNevado"]["CpetEnvironmentData"],
+            "CpetParticipantData": self.dbs["ChronoNevado"]["CpetParticipantData"],
+            "CpetRawData": self.dbs["ChronoNevado"]["CpetRawData"],
+            "CpetTestData": self.dbs["ChronoNevado"]["CpetTestData"],
+            "FinapresData": self.dbs["ChronoNevado"]["FinapresData"],
+            "FinapresRawData": self.dbs["ChronoNevado"]["FinapresRawData"],
+            "Spo2RawData": self.dbs["ChronoNevado"]["Spo2RawData"],
 
         }
         

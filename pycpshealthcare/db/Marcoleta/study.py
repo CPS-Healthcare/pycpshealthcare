@@ -1,6 +1,6 @@
 from ..results import StudyResults
 from ..participant_info import ParticipantInfo
-from .functions import get_marcoleta_sensor_results, get_marcoleta_results_grouped, get_marcoleta_metadata_results
+from .functions import get_marcoleta_sensor_results, get_marcoleta_sensor_results_grouped, get_marcoleta_metadata_results
 from .values import fitbit_v2_values, holter_values, autoreportes_values
 
 class MarcoletaStudy:
@@ -19,7 +19,7 @@ class MarcoletaStudy:
                 test_ids = [test_ids]
             elif type(test_ids) == list:
                 test_ids = test_ids
-        collection = self.connection.collections_marcoleta["fitbit_v2_metadata"]
+        collection = self.connection.collections["Marcoleta"]["fitbit_v2_metadata"]
         return get_marcoleta_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type, fields)
     
 
@@ -32,7 +32,7 @@ def _create_get_sensor_method(collection_name):
                 test_ids = [test_ids]
             elif type(test_ids) == list:
                 test_ids = test_ids
-        collection = self.connection.collections_marcoleta[collection_name]
+        collection = self.connection.collections["Marcoleta"][collection_name]
         return get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
     return get_sensor_results
 
@@ -48,8 +48,8 @@ def _create_get_sensor_grouped_method(collection_name, sensor_values):
                 test_ids = test_ids
         if values == "all":
             values = sensor_values 
-        collection = self.connection.collections_marcoleta[collection_name]
-        return get_marcoleta_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
+        collection = self.connection.collections["Marcoleta"][collection_name]
+        return get_marcoleta_sensor_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
     return get_sensor_results_grouped
     
 

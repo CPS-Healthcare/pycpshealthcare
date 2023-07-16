@@ -21,7 +21,7 @@ class SanPedroStudy:
                 test_ids = [int(test_ids)]
             elif type(test_ids) == list:
                 test_ids = test_ids
-        collection = self.connection.collections_sanpedro["fitbit_v2_metadata"]
+        collection = self.connection.collections["SanPedro"]["fitbit_v2_metadata"]
         return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type, fields)
     
 
@@ -34,7 +34,7 @@ def _create_get_sensor_method(collection_name):
                 test_ids = [int(test_ids)]
             elif type(test_ids) == list:
                 test_ids = test_ids
-        collection = self.connection.collections_sanpedro[collection_name]
+        collection = self.connection.collections["SanPedro"][collection_name]
         return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
     return get_sensor_results
 
@@ -50,7 +50,7 @@ def _create_get_sensor_grouped_method(collection_name, sensor_values):
                 test_ids = test_ids
         if values == "all":
             values = sensor_values 
-        collection = self.connection.collections_sanpedro[collection_name]
+        collection = self.connection.collections["SanPedro"][collection_name]
         return get_sanpedro_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
     return get_sensor_results_grouped
     

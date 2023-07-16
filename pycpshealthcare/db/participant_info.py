@@ -7,7 +7,7 @@ class ParticipantInfo:
 
     def __init__(self, connection) -> None:
         self.connection = connection
-        self.collection = connection.collections_globalinfo["participantinfo"]
+        self.collection = connection.collections["GlobalInfo"]["ParticipantInfo"]
         options = CodecOptions(tz_aware=True, tzinfo=connection.tzinfo)
         self.collection = self.collection.with_options(codec_options=options)
 
@@ -51,12 +51,21 @@ class ParticipantsResults:
     def __init__(self, results, connection):
         self.results = results
         self.connection = connection
+        self._index = 0
 
     def __iter__(self):
-        return ParticipantIterable(self)
+        return self
+  
+    def __next__(self):
+        item = next(self.results, None)
+        if item is None:
+            raise StopIteration
+        else:
+            self._index += 1
+        return item
 
     def __add__(self, other):
-        return ParticipantsResults(chain(self.results, other.results))
+        return ParticipantsResults(chain(self.results, other.results), self.connection)
 
 
     def astype(self, out_type, split_columns=False):
@@ -72,14 +81,3 @@ class ParticipantsResults:
         else:
             raise TypeError
 
-
-class ParticipantIterable:
-
-    def __init__(self, element):
-        self.iterable = element
-        self._index = 0
-
-
-    def __next__(self):
-        self._index += 1
-        return next(self.iterable.results)

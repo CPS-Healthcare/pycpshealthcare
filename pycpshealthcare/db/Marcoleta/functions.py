@@ -2,7 +2,7 @@ from ..results import StudyResults
 from ..utils import generate_narray_pipeline
 
 
-def get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestamp_end, sensors, fields, time_sorted=True):
+def get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields, time_sorted=True):
 
     if fields == "all":
         projection = ""
@@ -19,10 +19,10 @@ def get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestam
             "test_id": {"$in": test_ids}
         }
 
-    if sensors == "all":
+    if values == "all":
         pass
     else:
-        for sensor in sensors:
+        for sensor in values:
             query[f"values.{sensor}"] = {"$exists": True}
 
     if timestamp_start or timestamp_end:
@@ -75,7 +75,7 @@ def get_marcoleta_metadata_results(test_ids, collection, timestamp_start, timest
 
 
 
-def get_marcoleta_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size=60, bin_unit="minute"):
+def get_marcoleta_sensor_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size=60, bin_unit="minute"):
 
     id_match = {"test_id": {"$in": test_ids}}
 
