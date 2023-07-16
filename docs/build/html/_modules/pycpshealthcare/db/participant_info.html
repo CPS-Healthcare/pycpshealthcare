@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pycpshealthcare.db.participant_info &mdash; PyCPSHealthcare 1.8.0 documentation</title>
+  <title>pycpshealthcare.db.participant_info &mdash; PyCPSHealthcare 2.0.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
@@ -79,7 +79,7 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">connection</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collection</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">collections_globalinfo</span><span class="p">[</span><span class="s2">&quot;participantinfo&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collection</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="s2">&quot;GlobalInfo&quot;</span><span class="p">][</span><span class="s2">&quot;ParticipantInfo&quot;</span><span class="p">]</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">CodecOptions</span><span class="p">(</span><span class="n">tz_aware</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tzinfo</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">tzinfo</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">collection</span><span class="o">.</span><span class="n">with_options</span><span class="p">(</span><span class="n">codec_options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
 
@@ -123,12 +123,21 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">results</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">connection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">ParticipantIterable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+  
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">item</span>
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">ParticipantsResults</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">results</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ParticipantsResults</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">results</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="ParticipantsResults.astype"><a class="viewcode-back" href="../../../pycpshealthcare.db.html#pycpshealthcare.db.participant_info.ParticipantsResults.astype">[docs]</a>    <span class="k">def</span> <span class="nf">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_type</span><span class="p">,</span> <span class="n">split_columns</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -144,17 +153,6 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span></div></div>
 
-
-<div class="viewcode-block" id="ParticipantIterable"><a class="viewcode-back" href="../../../pycpshealthcare.db.html#pycpshealthcare.db.participant_info.ParticipantIterable">[docs]</a><span class="k">class</span> <span class="nc">ParticipantIterable</span><span class="p">:</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">iterable</span> <span class="o">=</span> <span class="n">element</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="mi">0</span>
-
-
-    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iterable</span><span class="o">.</span><span class="n">results</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

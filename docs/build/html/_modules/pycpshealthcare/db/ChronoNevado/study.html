@@ -88,43 +88,43 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">test_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">test_id</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">participants</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">studies</span><span class="p">[</span><span class="s2">&quot;ChronoNevado&quot;</span><span class="p">]]</span></div>
 
 
-    <span class="c1"># def get_empatica_accel_vector_magnitude(self, timestamp_start=None, timestamp_end=None, specific_test_ids=&quot;all&quot;):</span>
-    <span class="c1">#     collection = self.connection.collections_chrononevado[&quot;empatica&quot;]</span>
-    <span class="c1">#     return get_accel_vector_magnitude(self.test_ids, collection, timestamp_start, timestamp_end, specific_test_ids)</span>
+    <span class="c1"># def get_empatica_accel_vector_magnitude(self, timestamp_start=None, timestamp_end=None, test_ids=&quot;all&quot;):</span>
+    <span class="c1">#     collection = self.connection.collections[&quot;ChronoNevado&quot;][&quot;empatica&quot;]</span>
+    <span class="c1">#     return get_accel_vector_magnitude(self.test_ids, collection, timestamp_start, timestamp_end, test_ids)</span>
     
 
-    <span class="c1"># def get_empatica_accel_vector_magnitude_grouped(self, timestamp_start=None, timestamp_end=None, specific_test_ids=&quot;all&quot;, bin_size=60, bin_unit=&quot;minute&quot;):</span>
-    <span class="c1">#     collection = self.connection.collections_chrononevado[&quot;empatica&quot;]</span>
-    <span class="c1">#     return get_accel_vector_magnitude_grouped(self.test_ids, collection, timestamp_start, timestamp_end, specific_test_ids, bin_size, bin_unit)</span>
+    <span class="c1"># def get_empatica_accel_vector_magnitude_grouped(self, timestamp_start=None, timestamp_end=None, test_ids=&quot;all&quot;, bin_size=60, bin_unit=&quot;minute&quot;):</span>
+    <span class="c1">#     collection = self.connection.collections[&quot;ChronoNevado&quot;][&quot;empatica&quot;]</span>
+    <span class="c1">#     return get_accel_vector_magnitude_grouped(self.test_ids, collection, timestamp_start, timestamp_end, test_ids, bin_size, bin_unit)</span>
 
 
 
 <span class="k">def</span> <span class="nf">_create_get_sensor_method</span><span class="p">(</span><span class="n">collection_name</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get_sensor_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">specific_test_ids</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">specific_test_ids</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
-            <span class="n">test_ids</span> <span class="o">=</span> <span class="n">test_ids</span>
+    <span class="k">def</span> <span class="nf">get_sensor_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_ids</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">test_ids</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
+            <span class="n">test_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_ids</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">specific_test_ids</span><span class="p">)</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
-                <span class="n">test_ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">specific_test_ids</span><span class="p">)]</span>
-            <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">specific_test_ids</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
-                <span class="n">test_ids</span> <span class="o">=</span> <span class="n">specific_test_ids</span>
-        <span class="n">collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">collections_chrononevado</span><span class="p">[</span><span class="n">collection_name</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">get_chrononevado_sensor_results</span><span class="p">(</span><span class="n">test_ids</span><span class="p">,</span> <span class="n">collection</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">fields</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_ids</span><span class="p">)</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
+                <span class="n">test_ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">test_ids</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">test_ids</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="n">test_ids</span> <span class="o">=</span> <span class="n">test_ids</span>
+        <span class="n">collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="s2">&quot;ChronoNevado&quot;</span><span class="p">][</span><span class="n">collection_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">get_chrononevado_sensor_results</span><span class="p">(</span><span class="n">test_ids</span><span class="p">,</span> <span class="n">collection</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">get_sensor_results</span>
 
 
 <span class="k">def</span> <span class="nf">_create_get_sensor_grouped_method</span><span class="p">(</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">sensor_values</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">get_sensor_results_grouped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">specific_test_ids</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">bin_size</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">bin_unit</span><span class="o">=</span><span class="s2">&quot;minute&quot;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">specific_test_ids</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_sensor_results_grouped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_ids</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">bin_size</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">bin_unit</span><span class="o">=</span><span class="s2">&quot;minute&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">test_ids</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
             <span class="n">test_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_ids</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">specific_test_ids</span><span class="p">)</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
-                <span class="n">test_ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">specific_test_ids</span><span class="p">)]</span>
-            <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">specific_test_ids</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
-                <span class="n">test_ids</span> <span class="o">=</span> <span class="n">specific_test_ids</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">test_ids</span><span class="p">)</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
+                <span class="n">test_ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">test_ids</span><span class="p">)]</span>
+            <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">test_ids</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="n">test_ids</span> <span class="o">=</span> <span class="n">test_ids</span>
         <span class="k">if</span> <span class="n">values</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
             <span class="n">values</span> <span class="o">=</span> <span class="n">sensor_values</span> 
-        <span class="n">collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">collections_chrononevado</span><span class="p">[</span><span class="n">collection_name</span><span class="p">]</span>
+        <span class="n">collection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="s2">&quot;ChronoNevado&quot;</span><span class="p">][</span><span class="n">collection_name</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">get_chrononevado_results_grouped</span><span class="p">(</span><span class="n">test_ids</span><span class="p">,</span> <span class="n">collection</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">bin_size</span><span class="p">,</span> <span class="n">bin_unit</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">get_sensor_results_grouped</span>
     
@@ -135,8 +135,8 @@
     <span class="s2">&quot;get_cpet_test_data&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_method</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;CpetTestData&quot;</span><span class="p">),</span>
     <span class="s2">&quot;get_cpet_environment_data&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_method</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;CpetEnvironmentData&quot;</span><span class="p">),</span>
     <span class="s2">&quot;get_finapres_data&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_method</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;FinapresData&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;get_finapres_rawdata&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_method</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;FinapresRawData&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;get_spo2_rawdata&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_method</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;Spo2RawData&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;get_finapres_raw_data&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_method</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;FinapresRawData&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;get_spo2_raw_data&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_method</span><span class="p">(</span><span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;Spo2RawData&quot;</span><span class="p">),</span>
 <span class="p">}</span>
 
 <span class="n">grouped_methods_parameters</span> <span class="o">=</span> <span class="p">{</span>
@@ -160,11 +160,11 @@
         <span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;FinapresData&quot;</span><span class="p">,</span>
         <span class="n">sensor_values</span><span class="o">=</span><span class="n">finapres_data_values</span>
         <span class="p">),</span>
-    <span class="s2">&quot;get_finapres_rawdata_grouped&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_grouped_method</span><span class="p">(</span>
+    <span class="s2">&quot;get_finapres_raw_data_grouped&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_grouped_method</span><span class="p">(</span>
         <span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;FinapresRawData&quot;</span><span class="p">,</span>
         <span class="n">sensor_values</span><span class="o">=</span><span class="n">finapres_raw_data_values</span><span class="p">,</span>
         <span class="p">),</span>
-    <span class="s2">&quot;get_spo2_rawdata_grouped&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_grouped_method</span><span class="p">(</span>
+    <span class="s2">&quot;get_spo2_raw_data_grouped&quot;</span><span class="p">:</span> <span class="n">_create_get_sensor_grouped_method</span><span class="p">(</span>
         <span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;Spo2RawData&quot;</span><span class="p">,</span>
         <span class="n">sensor_values</span><span class="o">=</span><span class="n">spo2_raw_data_values</span><span class="p">),</span>
 <span class="p">}</span>
