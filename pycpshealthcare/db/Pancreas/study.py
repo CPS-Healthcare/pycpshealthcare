@@ -43,7 +43,7 @@ class PancreasStudy:
 
 
 def _create_get_sensor_method(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", fields="all"):
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all"):
         if test_ids == "all":
             test_ids = self.test_ids
         else:
@@ -52,7 +52,7 @@ def _create_get_sensor_method(collection_name):
             elif type(test_ids) == list:
                 test_ids = test_ids
         collection = self.connection.collections["Pancreas"][collection_name]
-        return get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
+        return get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values)
     return get_sensor_results
 
 

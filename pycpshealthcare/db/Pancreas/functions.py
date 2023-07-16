@@ -1,30 +1,32 @@
 from ..results import StudyResults
 from ..utils import generate_narray_pipeline, generate_vector_magnitude_pipeline, generate_vector_stats_magnitude_pipeline
 
-def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields, time_sorted=True):
+def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, time_sorted=True):
 
-    if fields == "all":
-        projection = ""
-    else:
-        if type(fields) == str:
-            projection = [fields]
-        elif type(fields) == list:
-            projection = fields
-        projection = {x: 1 for x in projection}
-        if "_id" not in projection.keys():
-            projection["_id"] = 0
+    projection = {
+        "_id": 0,
+        "timestamp": 1,
+        "test_id": 1,
+        "values": 1,
+    }       
 
     query = {
-            "test_id": {"$in": test_ids}
-        }
+        "test_id": {"$in": test_ids}
+    }
 
     if values == "all":
         pass
     elif type(values) == str:
         query[f"values.{values}"] = {"$exists": True}
+        del projection["values"]
+        projection[f"values.{values}"] = 1
     else:
+        query["$or"] = []
+        del projection["values"]
         for sensor in values:
-            query[f"values.{sensor}"] = {"$exists": True}
+            query["$or"].append({f"values.{sensor}": {"$exists": True}})
+            projection[f"values.{sensor}"] = 1
+
 
     if timestamp_start or timestamp_end:
         query["timestamp"] = {}

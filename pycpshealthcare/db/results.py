@@ -29,7 +29,5 @@ class StudyResults:
                 df = pd.DataFrame(self.results)
                 if "values" in df.columns:
                     df = pd.concat([df.drop(["values"], axis=1), df["values"].apply(pd.Series)], axis=1)
-                elif "records" in df.columns:
-                    df = pd.concat([df.drop(["records"], axis=1), df["records"].apply(pd.Series)], axis=1)
                 return df
             return pd.DataFrame(self.results)

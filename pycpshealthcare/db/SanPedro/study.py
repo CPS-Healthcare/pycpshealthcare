@@ -13,7 +13,7 @@ class SanPedroStudy:
         self.participants = participant_info.get_participants(studies="SanPedro").astype("participant")
         self.test_ids = [t.test_id for x in self.participants for t in x.studies["SanPedro"]]
 
-    def get_fitbit_v2_metadata_results(self, metadata_type, timestamp_start=None, timestamp_end=None, test_ids="all", fields="all"):
+    def get_fitbit_v2_metadata_results(self, metadata_type, timestamp_start=None, timestamp_end=None, test_ids="all"):
         if test_ids == "all":
             test_ids = self.test_ids
         else:
@@ -22,11 +22,11 @@ class SanPedroStudy:
             elif type(test_ids) == list:
                 test_ids = test_ids
         collection = self.connection.collections["SanPedro"]["fitbit_v2_metadata"]
-        return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type, fields)
+        return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type)
     
 
 def _create_get_sensor_method(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", fields="all"):
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all"):
         if test_ids == "all":
             test_ids = self.test_ids
         else:
@@ -35,7 +35,7 @@ def _create_get_sensor_method(collection_name):
             elif type(test_ids) == list:
                 test_ids = test_ids
         collection = self.connection.collections["SanPedro"][collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
+        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values)
     return get_sensor_results
 
 

@@ -20,17 +20,17 @@ class SanPedroStudyOcurrence:
         return f"{self.__class__} object (id:{self.test_id}, start_date:{init_date}, end_date:{end_date})"
             
 
-    def get_fitbit_v2_metadata_results(self, metadata_type, timestamp_start=None, timestamp_end=None, test_ids="all", fields="all"):
+    def get_fitbit_v2_metadata_results(self, metadata_type, timestamp_start=None, timestamp_end=None, test_ids="all"):
         test_ids = [self.test_id]
         collection = self.connection.collections["SanPedro"]["fitbit_v2_metadata"]
-        return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type, fields)
+        return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type)
 
 
 def _create_get_sensor_method(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, values="all", fields="all"):
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, values="all"):
         test_ids = [self.test_id]
         collection = self.connection.collections["SanPedro"][collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
+        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values)
     return get_sensor_results
 
 
@@ -83,7 +83,7 @@ class ParticipantSanPedroStudiesGroup:
                 return study
         return None
     
-    def get_fitbit_v2_metadata_results(self, metadata_type, timestamp_start=None, timestamp_end=None, test_ids="all", fields="all"):
+    def get_fitbit_v2_metadata_results(self, metadata_type, timestamp_start=None, timestamp_end=None, test_ids="all"):
         if test_ids == "all":
             test_ids = [x.test_id for x in self.data]
         else:
@@ -92,14 +92,14 @@ class ParticipantSanPedroStudiesGroup:
             elif type(test_ids) == list:
                 test_ids = test_ids
         collection = self.connection.collections["SanPedro"]["fitbit_v2_metadata"]
-        return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type, fields)
+        return get_sanpedro_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type)
 
 
 def _create_get_sensor_method_2(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, values="all", fields="all"):
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, values="all"):
         test_ids = [x.test_id for x in self.data]
         collection = self.connection.collections["SanPedro"][collection_name]
-        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
+        return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values)
     return get_sensor_results
 
 

@@ -102,7 +102,7 @@ class ParticipantChronoNevadoStudiesGroup:
 
 
 def _create_get_sensor_method_2(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", fields="all"):
+    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all"):
         if test_ids == "all":
             test_ids = [x.test_id for x in self.data]
         else:
@@ -111,7 +111,7 @@ def _create_get_sensor_method_2(collection_name):
             elif type(test_ids) == list:
                 test_ids = test_ids
         collection = self.connection.collections["ChronoNevado"][collection_name]
-        return get_chrononevado_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
+        return get_chrononevado_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values)
     return get_sensor_results
 
 

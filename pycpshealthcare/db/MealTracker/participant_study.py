@@ -19,23 +19,23 @@ class MealTrackerStudyOcurrence:
         return f"{self.__class__} object (id: {self.test_id}, start_date:{init_date}, end_date:{end_date})"
         
 
-    def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, values="all", fields="all"):
+    def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, values="all"):
         test_ids = [self.test_id]
         collection = self.connection.collections["MealTracker"]["RealtimeFitbit"]
-        return get_mealtracker_fitbit_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
+        return get_mealtracker_fitbit_results(test_ids, collection, timestamp_start, timestamp_end, values)
 
 
-    def get_meals_results(self, timestamp_start=None, timestamp_end=None, fields="all", ouput_format="unwinded"):
+    def get_meals_results(self, timestamp_start=None, timestamp_end=None, ouput_format="unwinded"):
         test_ids = [self.test_id]
         collection = self.connection.collections["MealTracker"]["MealTrack"]
-        return get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, ouput_format)
+        return get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, ouput_format)
 
     
-    def get_fitbit_at_meals(self, timestamp_start=None, timestamp_end=None, fields="all", values="all"):
-        df_meals = self.get_meals_results(timestamp_start, timestamp_end, "all").astype("dataframe", True)
+    def get_fitbit_at_meals(self, timestamp_start=None, timestamp_end=None, values="all"):
+        df_meals = self.get_meals_results(timestamp_start, timestamp_end).astype("dataframe", True)
         results = StudyResults(iter([]))
         for index, row in df_meals.iterrows():
-            temp = self.get_fitbit_results(row["timestamp_start"], row["timestamp_end"], values, fields)
+            temp = self.get_fitbit_results(row["timestamp_start"], row["timestamp_end"], values)
             results += temp
         return StudyResults(results)
 
@@ -43,6 +43,16 @@ class MealTrackerStudyOcurrence:
         test_ids = [self.test_id]
         collection = self.connection.collections["MealTracker"]["RealtimeFitbit"]
         return get_mealtracker_fitbit_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
+    
+
+    def get_fitbit_at_meals_grouped(self, timestamp_start=None, timestamp_end=None, values="all", bin_size=60, bin_unit="minute"):
+        test_ids = [self.test_id]
+        df_meals = self.get_meals_results(timestamp_start, timestamp_end).astype("dataframe", True)
+        results = StudyResults(iter([]))
+        for index, row in df_meals.iterrows():
+            temp = self.get_fitbit_results_grouped(row["timestamp_start"], row["timestamp_end"], test_ids, values, bin_size, bin_unit)
+            results += temp
+        return StudyResults(results)
 
 
 
@@ -58,7 +68,7 @@ class ParticipantMealTrackerStudiesGroup:
                 return study
         return None
 
-    def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", fields="all"):
+    def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all"):
         if test_ids == "all":
             test_ids = [x.test_id for x in self.data]
         else:
@@ -70,10 +80,10 @@ class ParticipantMealTrackerStudiesGroup:
             values = realtime_fitbit_values
         
         collection = self.connection.collections["MealTracker"]["RealtimeFitbit"]
-        return get_mealtracker_fitbit_results(test_ids, collection, timestamp_start, timestamp_end, values, fields)
+        return get_mealtracker_fitbit_results(test_ids, collection, timestamp_start, timestamp_end, values)
 
         
-    def get_meals_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", fields="all", ouput_format="unwinded"):
+    def get_meals_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", ouput_format="unwinded"):
         if test_ids == "all":
             test_ids = [x.test_id for x in self.data]
         else:
@@ -83,14 +93,14 @@ class ParticipantMealTrackerStudiesGroup:
                 test_ids = test_ids
 
         collection = self.connection.collections["MealTracker"]["MealTrack"]
-        return get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, fields, ouput_format)
+        return get_mealtracker_meals_results(collection, test_ids, timestamp_start, timestamp_end, ouput_format)
 
     
-    def get_fitbit_at_meals(self, timestamp_start=None, timestamp_end=None, fields="all", test_ids="all", sensors="all"):
-        df_meals = self.get_meals_results(timestamp_start, timestamp_end, test_ids, "all").astype("dataframe", True)
+    def get_fitbit_at_meals(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all"):
+        df_meals = self.get_meals_results(timestamp_start, timestamp_end, test_ids).astype("dataframe", True)
         results = StudyResults(iter([]))
         for index, row in df_meals.iterrows():
-            temp = self.get_fitbit_results(row["timestamp_start"], row["timestamp_end"], test_ids, sensors, fields)
+            temp = self.get_fitbit_results(row["timestamp_start"], row["timestamp_end"], test_ids, values)
             results += temp
         return results
 
@@ -105,4 +115,13 @@ class ParticipantMealTrackerStudiesGroup:
                 test_ids = test_ids
         collection = self.connection.collections["MealTracker"]["RealtimeFitbit"]
         return get_mealtracker_fitbit_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
+
+
+    def get_fitbit_at_meals_grouped(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", bin_size=60, bin_unit="minute"):
+        df_meals = self.get_meals_results(timestamp_start, timestamp_end, test_ids).astype("dataframe", True)
+        results = StudyResults(iter([]))
+        for index, row in df_meals.iterrows():
+            temp = self.get_fitbit_results_grouped(row["timestamp_start"], row["timestamp_end"], test_ids, values, bin_size, bin_unit)
+            results += temp
+        return results
 
