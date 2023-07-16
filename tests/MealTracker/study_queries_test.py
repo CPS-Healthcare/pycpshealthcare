@@ -53,33 +53,57 @@ def test_meals(params, expected):
             next(study.get_meals_results(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"]))
 
 
-# @pytest.mark.parametrize("params, expected", date_params)
-# def test_fitbit_at_meals(params, expected):
+@pytest.mark.parametrize("params, expected", date_params)
+def test_fitbit_at_meals(params, expected):
     
-#     connection = CpsConnection(host=DB_HOST, username=DB_USERNAME, password=DB_PASSWORD, port=DB_PORT)
-#     study = MealTrackerStudy(connection)
-#     if expected == True:
-#         try:
-#             next(study.get_fitbit_at_meals(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"]))
-#             return
-#         except StopIteration:
-#             assert False, "Iterator is empty"
-#     else:
-#         with pytest.raises(StopIteration):
-#             next(study.get_fitbit_at_meals(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"]))
+    connection = CpsConnection(host=DB_HOST, username=DB_USERNAME, password=DB_PASSWORD, port=DB_PORT)
+    study = MealTrackerStudy(connection)
+    if expected == True:
+        try:
+            next(study.get_fitbit_at_meals(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"]))
+            return
+        except StopIteration:
+            assert False, "Iterator is empty"
+    else:
+        with pytest.raises(StopIteration):
+            next(study.get_fitbit_at_meals(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"]))
     
 
-# @pytest.mark.parametrize("params, expected", date_params)
-# def test_fitbit_grouped(params, expected):
+date_params_grouped = [
+    ({"ts_start": datetime(2023,1, 1), "ts_end": datetime(2023, 1, 2)}, True),
+    ({"ts_start": datetime(2100,1, 1), "ts_end": datetime(2000, 1, 1)}, False),
+    ]
+
+
+
+@pytest.mark.parametrize("params, expected", date_params_grouped)
+def test_fitbit_grouped(params, expected):
     
-#     connection = CpsConnection(host=DB_HOST, username=DB_USERNAME, password=DB_PASSWORD, port=DB_PORT)
-#     study = MealTrackerStudy(connection)
-#     if expected == True:
-#         try:
-#             next(study.get_fitbit_results_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"]))
-#             return
-#         except StopIteration:
-#             assert False, "Iterator is empty"
-#     else:
-#         with pytest.raises(StopIteration):
-#             next(study.get_fitbit_results_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"]))
+    connection = CpsConnection(host=DB_HOST, username=DB_USERNAME, password=DB_PASSWORD, port=DB_PORT)
+    study = MealTrackerStudy(connection)
+    if expected == True:
+        try:
+            next(study.get_fitbit_results_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"], bin_unit="day"))
+            return
+        except StopIteration:
+            assert False, "Iterator is empty"
+    else:
+        with pytest.raises(StopIteration):
+            next(study.get_fitbit_results_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"], bin_unit="day"))
+
+
+
+@pytest.mark.parametrize("params, expected", date_params_grouped)
+def test_fitbit_at_meals_grouped(params, expected):
+    
+    connection = CpsConnection(host=DB_HOST, username=DB_USERNAME, password=DB_PASSWORD, port=DB_PORT)
+    study = MealTrackerStudy(connection)
+    if expected == True:
+        try:
+            next(study.get_fitbit_at_meals_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"], bin_unit="day"))
+            return
+        except StopIteration:
+            assert False, "Iterator is empty"
+    else:
+        with pytest.raises(StopIteration):
+            next(study.get_fitbit_at_meals_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"], bin_unit="day"))

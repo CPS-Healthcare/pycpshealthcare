@@ -97,7 +97,7 @@ def test_fitbit_grouped(params, expected):
         for participant in participants:
             if len(participant.studies["MealTracker"]) > 0:
                 try:
-                    next(participant.studies["MealTracker"][0].get_fitbit_results_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"]))
+                    next(participant.studies["MealTracker"][0].get_fitbit_results_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"], bin_unit="day"))
                     return
                 except StopIteration:
                     pass
@@ -106,5 +106,27 @@ def test_fitbit_grouped(params, expected):
         for participant in participants:
             if len(participant.studies["MealTracker"]) > 0:
                 with pytest.raises(StopIteration):
-                    next(participant.studies["MealTracker"][0].get_fitbit_results_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"]))
+                    next(participant.studies["MealTracker"][0].get_fitbit_results_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"], bin_unit="day"))
+    
+
+@pytest.mark.parametrize("params, expected", date_params)
+def test_fitbit_at_meals_grouped(params, expected):
+    
+    connection = CpsConnection(host=DB_HOST, username=DB_USERNAME, password=DB_PASSWORD, port=DB_PORT)
+    participant_info = ParticipantInfo(connection)
+    participants = participant_info.get_participants(studies="MealTracker").astype("participant")
+    if expected == True:
+        for participant in participants:
+            if len(participant.studies["MealTracker"]) > 0:
+                try:
+                    next(participant.studies["MealTracker"][0].get_fitbit_at_meals_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"], bin_unit="day"))
+                    return
+                except StopIteration:
+                    pass
+        assert False, "Iterator is empty"
+    else:
+        for participant in participants:
+            if len(participant.studies["MealTracker"]) > 0:
+                with pytest.raises(StopIteration):
+                    next(participant.studies["MealTracker"][0].get_fitbit_at_meals_grouped(timestamp_start=params["ts_start"], timestamp_end=params["ts_end"], bin_unit="day"))
     
