@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 setup(
     name='pycpshealthcare',
     packages=find_packages(),
-    version='2.0.0',
+    version='2.0.1',
     description='Python library for ANID ACT210083 project data collection and processing.',
     author='Fernando Huanca',
     license='MIT',
@@ -10,5 +10,6 @@ setup(
     install_requires=[
         "pandas>=1.0",
         "pymongo>=4.0"
-    ]
+    ],
+    url="https://docs.cpshealthcare.cl/static/pycpshealthcare-html/index.html"
 )
