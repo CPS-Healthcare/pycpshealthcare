@@ -42,6 +42,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">pycpshealthcare</a></li>
 </ul>
 
@@ -78,6 +79,10 @@
     <span class="n">inbody_values</span><span class="p">,</span> <span class="n">freestyle_librelink_values</span><span class="p">,</span> <span class="n">holter_values</span>
 
 <div class="viewcode-block" id="SanPedroStudy"><a class="viewcode-back" href="../../../../pycpshealthcare.db.SanPedro.html#pycpshealthcare.db.SanPedro.study.SanPedroStudy">[docs]</a><span class="k">class</span> <span class="nc">SanPedroStudy</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A study class. Has methods for getting the data of all the sensors and measures of the respective study.\</span>
+<span class="sd">    A study is defined as all the test ocurrences of a corresponding study type for all the participant.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">connection</span>
@@ -99,6 +104,23 @@
 
 <span class="k">def</span> <span class="nf">_create_get_sensor_method</span><span class="p">(</span><span class="n">collection_name</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">get_sensor_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_ids</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: an iterable with the query results</span>
+<span class="sd">        :rtype: pycpshealthcare.db.results.StudyResults</span>
+
+<span class="sd">        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.</span>
+<span class="sd">        :type timestamp_start:  datetime.datetime|None, optional</span>
+
+<span class="sd">        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.</span>
+<span class="sd">        :type timestamp_end:  datetime.datetime|None, optional</span>
+
+<span class="sd">        :param test_ids: The ids of the tests to be queried, defaults to &quot;all&quot; that brings data of all the test ids.</span>
+<span class="sd">        :type test_ids: int|list&lt;int&gt;|None, optional</span>
+
+<span class="sd">        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to &quot;all&quot; that brings  </span>
+<span class="sd">        :type values: str|list&lt;str&gt;|None, optional</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">test_ids</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
             <span class="n">test_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_ids</span>
         <span class="k">else</span><span class="p">:</span>
@@ -113,6 +135,28 @@
 
 <span class="k">def</span> <span class="nf">_create_get_sensor_grouped_method</span><span class="p">(</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">sensor_values</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">get_sensor_results_grouped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_ids</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">bin_size</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">bin_unit</span><span class="o">=</span><span class="s2">&quot;minute&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: an iterable with the query results</span>
+<span class="sd">        :rtype: pycpshealthcare.db.results.StudyResults</span>
+
+<span class="sd">        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.</span>
+<span class="sd">        :type timestamp_start:  datetime.datetime|None, optional</span>
+
+<span class="sd">        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.</span>
+<span class="sd">        :type timestamp_end:  datetime.datetime|None, optional</span>
+
+<span class="sd">        :param test_ids: The ids of the tests to be queried, defaults to &quot;all&quot; that brings data of all the test ids.</span>
+<span class="sd">        :type test_ids: int|list&lt;int&gt;|None, optional</span>
+
+<span class="sd">        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to &quot;all&quot; that brings  </span>
+<span class="sd">        :type values: str|list&lt;str&gt;|None, optional</span>
+
+<span class="sd">        :param bin_size: The width of the mobile window, defaults to 60.</span>
+<span class="sd">        :type bin_size: int, optional</span>
+<span class="sd">        </span>
+<span class="sd">        :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.</span>
+<span class="sd">        :type bin_unit: str, optional</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">test_ids</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
             <span class="n">test_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_ids</span>
         <span class="k">else</span><span class="p">:</span>

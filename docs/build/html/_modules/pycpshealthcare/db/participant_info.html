@@ -42,6 +42,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycpshealthcare</a></li>
 </ul>
 
@@ -111,6 +112,8 @@
                     <span class="n">study_filter</span><span class="p">[</span><span class="s2">&quot;$or&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;studies.Marcoleta&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$exists&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}})</span>
                 <span class="k">elif</span> <span class="n">study</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;chrononevado&quot;</span><span class="p">:</span>
                     <span class="n">study_filter</span><span class="p">[</span><span class="s2">&quot;$or&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;studies.ChronoNevado&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$exists&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}})</span>
+                <span class="k">elif</span> <span class="n">study</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;chronotype&quot;</span><span class="p">:</span>
+                    <span class="n">study_filter</span><span class="p">[</span><span class="s2">&quot;$or&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="sa">f</span><span class="s2">&quot;studies.Chronotype&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$exists&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}})</span>
             <span class="n">query</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">study_filter</span><span class="p">)</span>
         <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">}</span> <span class="k">if</span> <span class="n">query</span> <span class="k">else</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="n">bring_id</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>

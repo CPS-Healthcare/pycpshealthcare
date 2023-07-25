@@ -7,11 +7,12 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   pycpshealthcare.db.ChronoNevado
-   pycpshealthcare.db.Marcoleta
-   pycpshealthcare.db.MealTracker
+   pycpshealthcare.db.Chronotype
    pycpshealthcare.db.Pancreas
+   pycpshealthcare.db.MealTracker
+   pycpshealthcare.db.Marcoleta
    pycpshealthcare.db.SanPedro
+   pycpshealthcare.db.ChronoNevado
 
 Submodules
 ----------

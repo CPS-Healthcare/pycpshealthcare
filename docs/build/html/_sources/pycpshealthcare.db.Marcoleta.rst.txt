@@ -12,14 +12,6 @@ pycpshealthcare.db.Marcoleta.functions module
    :undoc-members:
    :show-inheritance:
 
-pycpshealthcare.db.Marcoleta.participant\_study module
-------------------------------------------------------
-
-.. automodule:: pycpshealthcare.db.Marcoleta.participant_study
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pycpshealthcare.db.Marcoleta.study module
 -----------------------------------------
 
@@ -28,18 +20,26 @@ pycpshealthcare.db.Marcoleta.study module
    :undoc-members:
    :show-inheritance:
 
-pycpshealthcare.db.Marcoleta.values module
-------------------------------------------
+pycpshealthcare.db.Marcoleta.participant\_study module
+------------------------------------------------------
 
-.. automodule:: pycpshealthcare.db.Marcoleta.values
+.. automodule:: pycpshealthcare.db.Marcoleta.participant_study
    :members:
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
+.. pycpshealthcare.db.Marcoleta.values module
+.. ------------------------------------------
 
-.. automodule:: pycpshealthcare.db.Marcoleta
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: pycpshealthcare.db.Marcoleta.values
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:
+
+.. Module contents
+.. ---------------
+
+.. .. automodule:: pycpshealthcare.db.Marcoleta
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:

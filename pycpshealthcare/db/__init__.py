@@ -8,3 +8,4 @@ from .MealTracker.study import MealTrackerStudy
 from .SanPedro.study import SanPedroStudy
 from .Marcoleta.study import MarcoletaStudy
 from .ChronoNevado.study import ChronoNevadoStudy
+from .Chronotype.study import ChronotypeStudy

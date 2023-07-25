@@ -12,6 +12,14 @@ pycpshealthcare.db.SanPedro.functions module
    :undoc-members:
    :show-inheritance:
 
+pycpshealthcare.db.SanPedro.study module
+----------------------------------------
+
+.. automodule:: pycpshealthcare.db.SanPedro.study
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
 pycpshealthcare.db.SanPedro.participant\_study module
 -----------------------------------------------------
 
@@ -20,26 +28,19 @@ pycpshealthcare.db.SanPedro.participant\_study module
    :undoc-members:
    :show-inheritance:
 
-pycpshealthcare.db.SanPedro.study module
-----------------------------------------
 
-.. automodule:: pycpshealthcare.db.SanPedro.study
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. pycpshealthcare.db.SanPedro.values module
+.. -----------------------------------------
 
-pycpshealthcare.db.SanPedro.values module
------------------------------------------
+.. .. automodule:: pycpshealthcare.db.SanPedro.values
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:
 
-.. automodule:: pycpshealthcare.db.SanPedro.values
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. Module contents
+.. ---------------
 
-Module contents
----------------
-
-.. automodule:: pycpshealthcare.db.SanPedro
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: pycpshealthcare.db.SanPedro
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:

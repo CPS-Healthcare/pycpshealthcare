@@ -5,6 +5,11 @@ from .values import fitbit_v2_values, fitbit_values, freestyle_librelink_values,
 
 class SanPedroStudyOcurrence:
 
+    """
+    A study ocurrence class. Has methods for getting the data of all the sensors and measures of the respective study.\
+    An ocurrence is defined as a unit test and is related to only one participant.
+    """
+
     def __init__(self, study_info, connection):
         self.connection = connection
         # self.test_name = study_info["Nombre prueba"]
@@ -28,6 +33,20 @@ class SanPedroStudyOcurrence:
 
 def _create_get_sensor_method(collection_name):
     def get_sensor_results(self, timestamp_start=None, timestamp_end=None, values="all"):
+        """
+        :return: an iterable with the query results
+        :rtype: pycpshealthcare.db.results.StudyResults
+
+        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.
+        :type timestamp_start:  datetime.datetime|None, optional
+
+        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
+        :type timestamp_end:  datetime.datetime|None, optional
+
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :type values: str|list<str>|None, optional
+
+        """
         test_ids = [self.test_id]
         collection = self.connection.collections["SanPedro"][collection_name]
         return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values)
@@ -36,6 +55,25 @@ def _create_get_sensor_method(collection_name):
 
 def _create_get_sensor_grouped_method(collection_name, sensor_values):
     def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None,values="all", bin_size=60, bin_unit="minute"):
+        """
+        :return: an iterable with the query results
+        :rtype: pycpshealthcare.db.results.StudyResults
+
+        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.
+        :type timestamp_start:  datetime.datetime|None, optional
+
+        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
+        :type timestamp_end:  datetime.datetime|None, optional
+
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :type values: str|list<str>|None, optional
+
+        :param bin_size: The width of the mobile window, defaults to 60.
+        :type bin_size: int, optional
+        
+        :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.
+        :type bin_unit: str, optional
+        """
         test_ids = [self.test_id]
         if values == "all":
             values = sensor_values 
@@ -73,6 +111,11 @@ for key, value in grouped_methods_parameters.items():
 
 class ParticipantSanPedroStudiesGroup:
 
+    """
+    A participant studies group class. Has methods for getting the data of all the sensors and measures of the respective studies group.\
+    A participant studies group is defined as all the ocurrences of a corresponding study type for a specific participant and is related to only one participant.
+    """
+
     def __init__(self, data, connection):
         self.connection = connection
         self.data = data
@@ -97,6 +140,23 @@ class ParticipantSanPedroStudiesGroup:
 
 def _create_get_sensor_method_2(collection_name):
     def get_sensor_results(self, timestamp_start=None, timestamp_end=None, values="all"):
+        """
+        :return: an iterable with the query results
+        :rtype: pycpshealthcare.db.results.StudyResults
+
+        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.
+        :type timestamp_start:  datetime.datetime|None, optional
+
+        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
+        :type timestamp_end:  datetime.datetime|None, optional
+
+        :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
+        :type test_ids: int|list<int>|None, optional
+
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :type values: str|list<str>|None, optional
+
+        """
         test_ids = [x.test_id for x in self.data]
         collection = self.connection.collections["SanPedro"][collection_name]
         return get_sanpedro_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values)
@@ -105,6 +165,28 @@ def _create_get_sensor_method_2(collection_name):
 
 def _create_get_sensor_grouped_method_2(collection_name, sensor_values):
     def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", bin_size=60, bin_unit="minute"):
+        """
+        :return: an iterable with the query results
+        :rtype: pycpshealthcare.db.results.StudyResults
+
+        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.
+        :type timestamp_start:  datetime.datetime|None, optional
+
+        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
+        :type timestamp_end:  datetime.datetime|None, optional
+
+        :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
+        :type test_ids: int|list<int>|None, optional
+
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :type values: str|list<str>|None, optional
+
+        :param bin_size: The width of the mobile window, defaults to 60.
+        :type bin_size: int, optional
+        
+        :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.
+        :type bin_unit: str, optional
+        """
         if test_ids == "all":
             test_ids = [x.test_id for x in self.data]
         else:

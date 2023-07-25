@@ -39,6 +39,8 @@ class ParticipantInfo:
                     study_filter["$or"].append({f"studies.Marcoleta": {"$exists": True}})
                 elif study.lower() == "chrononevado":
                     study_filter["$or"].append({f"studies.ChronoNevado": {"$exists": True}})
+                elif study.lower() == "chronotype":
+                    study_filter["$or"].append({f"studies.Chronotype": {"$exists": True}})
             query.update(study_filter)
         parameters = {"filter": query} if query else {}
         if bring_id==False:

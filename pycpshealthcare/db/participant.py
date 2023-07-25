@@ -8,6 +8,8 @@ from .Marcoleta.participant_study import ParticipantMarcoletaStudiesGroup
 from .Marcoleta.participant_study import MarcoletaStudyOcurrence
 from .ChronoNevado.participant_study import ChronoNevadoStudyOcurrence
 from .ChronoNevado.participant_study import ParticipantChronoNevadoStudiesGroup
+from .Chronotype.participant_study import ChronotypeStudyOcurrence
+from .Chronotype.participant_study import ParticipantChronotypeStudiesGroup
 
 
 class Participant:
@@ -70,6 +72,12 @@ class Participant:
                     study_obj = ChronoNevadoStudyOcurrence(study, self.connection)
                     self.studies["ChronoNevado"].append(study_obj)
                 self.studies_groups["ChronoNevado"] = ParticipantChronoNevadoStudiesGroup(self.studies["ChronoNevado"], self.connection)
+            elif study_type == "Chronotype":
+                self.studies["Chronotype"] = []
+                for study in study_raw:
+                    study_obj = ChronotypeStudyOcurrence(study, self.connection)
+                    self.studies["Chronotype"].append(study_obj)
+                self.studies_groups["Chronotype"] = ParticipantChronotypeStudiesGroup(self.studies["Chronotype"], self.connection)
 
     
     def __repr__(self) -> str:

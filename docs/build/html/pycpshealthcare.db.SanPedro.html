@@ -20,7 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="pycpshealthcare.db.Pancreas package" href="pycpshealthcare.db.Pancreas.html" /> 
+    <link rel="next" title="pycpshealthcare.db.ChronoNevado package" href="pycpshealthcare.db.ChronoNevado.html" />
+    <link rel="prev" title="pycpshealthcare.db.Marcoleta package" href="pycpshealthcare.db.Marcoleta.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,6 +45,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">pycpshealthcare</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pycpshealthcare.html">pycpshealthcare package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="pycpshealthcare.html#subpackages">Subpackages</a><ul class="current">
@@ -94,17 +96,417 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.functions.get_sanpedro_metadata_results">
 <span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.SanPedro.functions.</span></span><span class="sig-name descname"><span class="pre">get_sanpedro_metadata_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/SanPedro/functions.html#get_sanpedro_metadata_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.SanPedro.functions.get_sanpedro_metadata_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>A function that generates a MongoDB query from arguments for the specified collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterable with the database query results.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_ids</strong> (<em>list</em><em> of </em><em>int</em>) – A list of test ids to query.</p></li>
+<li><p><strong>collection</strong> (<em>pymongo.collection.Collection</em>) – The collection of the sensor to query.</p></li>
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>metadata_type</strong> (<em>str</em>) – The type of metadata to be queried.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.functions.get_sanpedro_results_grouped">
 <span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.SanPedro.functions.</span></span><span class="sig-name descname"><span class="pre">get_sanpedro_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/SanPedro/functions.html#get_sanpedro_results_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.SanPedro.functions.get_sanpedro_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.functions.get_sanpedro_sensor_results">
 <span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.SanPedro.functions.</span></span><span class="sig-name descname"><span class="pre">get_sanpedro_sensor_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_sorted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/SanPedro/functions.html#get_sanpedro_sensor_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.SanPedro.functions.get_sanpedro_sensor_results" title="Permalink to this definition"></a></dt>
+<dd><p>A function that generates a MongoDB query from arguments for the specified collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterable with the database query results.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_ids</strong> (<em>list&lt;int&gt;</em>) – A list of test ids to query.</p></li>
+<li><p><strong>collection</strong> (<em>pymongo.collection.Collection</em>) – The collection of the sensor to query.</p></li>
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycpshealthcare.db.SanPedro.study">
+<span id="pycpshealthcare-db-sanpedro-study-module"></span><h2>pycpshealthcare.db.SanPedro.study module<a class="headerlink" href="#module-pycpshealthcare.db.SanPedro.study" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.SanPedro.study.</span></span><span class="sig-name descname"><span class="pre">SanPedroStudy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/SanPedro/study.html#SanPedroStudy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A study class. Has methods for getting the data of all the sensors and measures of the respective study.    A study is defined as all the test ocurrences of a corresponding study type for all the participant.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_alimentacion_results">
+<span class="sig-name descname"><span class="pre">get_alimentacion_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_alimentacion_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_alimentacion_results_grouped">
+<span class="sig-name descname"><span class="pre">get_alimentacion_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_alimentacion_results_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_results">
+<span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_results_grouped">
+<span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_metadata_results">
+<span class="sig-name descname"><span class="pre">get_fitbit_v2_metadata_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/SanPedro/study.html#SanPedroStudy.get_fitbit_v2_metadata_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_metadata_results" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_results">
+<span class="sig-name descname"><span class="pre">get_fitbit_v2_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_results_grouped">
+<span class="sig-name descname"><span class="pre">get_fitbit_v2_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_results_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_freestyle_librelink_results">
+<span class="sig-name descname"><span class="pre">get_freestyle_librelink_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_freestyle_librelink_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_freestyle_librelink_results_grouped">
+<span class="sig-name descname"><span class="pre">get_freestyle_librelink_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_freestyle_librelink_results_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_holter_results">
+<span class="sig-name descname"><span class="pre">get_holter_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_holter_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_holter_results_grouped">
+<span class="sig-name descname"><span class="pre">get_holter_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_holter_results_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_inbody_results">
+<span class="sig-name descname"><span class="pre">get_inbody_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_inbody_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_inbody_results_grouped">
+<span class="sig-name descname"><span class="pre">get_inbody_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_inbody_results_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_patrones_minsal_2018_results">
+<span class="sig-name descname"><span class="pre">get_patrones_minsal_2018_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_patrones_minsal_2018_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_patrones_minsal_2018_results_grouped">
+<span class="sig-name descname"><span class="pre">get_patrones_minsal_2018_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_patrones_minsal_2018_results_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.value">
+<span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.SanPedro.study.</span></span><span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.value" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-pycpshealthcare.db.SanPedro.participant_study">
@@ -113,25 +515,94 @@
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.SanPedro.participant_study.</span></span><span class="sig-name descname"><span class="pre">ParticipantSanPedroStudiesGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/SanPedro/participant_study.html#ParticipantSanPedroStudiesGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A participant studies group class. Has methods for getting the data of all the sensors and measures of the respective studies group.    A participant studies group is defined as all the ocurrences of a corresponding study type for a specific participant and is related to only one participant.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_alimentacion_results">
 <span class="sig-name descname"><span class="pre">get_alimentacion_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_alimentacion_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_alimentacion_results_grouped">
 <span class="sig-name descname"><span class="pre">get_alimentacion_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_alimentacion_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_fitbit_results">
 <span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_fitbit_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_fitbit_results_grouped">
 <span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_fitbit_v2_metadata_results">
@@ -141,52 +612,222 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_fitbit_v2_results">
 <span class="sig-name descname"><span class="pre">get_fitbit_v2_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_fitbit_v2_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_fitbit_v2_results_grouped">
 <span class="sig-name descname"><span class="pre">get_fitbit_v2_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_fitbit_v2_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_freestyle_librelink_results">
 <span class="sig-name descname"><span class="pre">get_freestyle_librelink_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_freestyle_librelink_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_freestyle_librelink_results_grouped">
 <span class="sig-name descname"><span class="pre">get_freestyle_librelink_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_freestyle_librelink_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_holter_results">
 <span class="sig-name descname"><span class="pre">get_holter_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_holter_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_holter_results_grouped">
 <span class="sig-name descname"><span class="pre">get_holter_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_holter_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_inbody_results">
 <span class="sig-name descname"><span class="pre">get_inbody_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_inbody_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_inbody_results_grouped">
 <span class="sig-name descname"><span class="pre">get_inbody_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_inbody_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_patrones_minsal_2018_results">
 <span class="sig-name descname"><span class="pre">get_patrones_minsal_2018_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_patrones_minsal_2018_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_patrones_minsal_2018_results_grouped">
 <span class="sig-name descname"><span class="pre">get_patrones_minsal_2018_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_patrones_minsal_2018_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.ParticipantSanPedroStudiesGroup.get_test_instance">
@@ -199,25 +840,90 @@
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.SanPedro.participant_study.</span></span><span class="sig-name descname"><span class="pre">SanPedroStudyOcurrence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/SanPedro/participant_study.html#SanPedroStudyOcurrence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A study ocurrence class. Has methods for getting the data of all the sensors and measures of the respective study.    An ocurrence is defined as a unit test and is related to only one participant.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_alimentacion_results">
 <span class="sig-name descname"><span class="pre">get_alimentacion_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_alimentacion_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_alimentacion_results_grouped">
 <span class="sig-name descname"><span class="pre">get_alimentacion_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_alimentacion_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_fitbit_results">
 <span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_fitbit_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_fitbit_results_grouped">
 <span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_fitbit_v2_metadata_results">
@@ -227,155 +933,238 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_fitbit_v2_results">
 <span class="sig-name descname"><span class="pre">get_fitbit_v2_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_fitbit_v2_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_fitbit_v2_results_grouped">
 <span class="sig-name descname"><span class="pre">get_fitbit_v2_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_fitbit_v2_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_freestyle_librelink_results">
 <span class="sig-name descname"><span class="pre">get_freestyle_librelink_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_freestyle_librelink_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_freestyle_librelink_results_grouped">
 <span class="sig-name descname"><span class="pre">get_freestyle_librelink_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_freestyle_librelink_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_holter_results">
 <span class="sig-name descname"><span class="pre">get_holter_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_holter_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_holter_results_grouped">
 <span class="sig-name descname"><span class="pre">get_holter_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_holter_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_inbody_results">
 <span class="sig-name descname"><span class="pre">get_inbody_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_inbody_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_inbody_results_grouped">
 <span class="sig-name descname"><span class="pre">get_inbody_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_inbody_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_patrones_minsal_2018_results">
 <span class="sig-name descname"><span class="pre">get_patrones_minsal_2018_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_patrones_minsal_2018_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_patrones_minsal_2018_results_grouped">
 <span class="sig-name descname"><span class="pre">get_patrones_minsal_2018_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.SanPedroStudyOcurrence.get_patrones_minsal_2018_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.participant_study.value">
 <span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.SanPedro.participant_study.</span></span><span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.participant_study.value" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</section>
-<section id="module-pycpshealthcare.db.SanPedro.study">
-<span id="pycpshealthcare-db-sanpedro-study-module"></span><h2>pycpshealthcare.db.SanPedro.study module<a class="headerlink" href="#module-pycpshealthcare.db.SanPedro.study" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.SanPedro.study.</span></span><span class="sig-name descname"><span class="pre">SanPedroStudy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/SanPedro/study.html#SanPedroStudy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_alimentacion_results">
-<span class="sig-name descname"><span class="pre">get_alimentacion_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_alimentacion_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_alimentacion_results_grouped">
-<span class="sig-name descname"><span class="pre">get_alimentacion_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_alimentacion_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_results">
-<span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_results_grouped">
-<span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_metadata_results">
-<span class="sig-name descname"><span class="pre">get_fitbit_v2_metadata_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/SanPedro/study.html#SanPedroStudy.get_fitbit_v2_metadata_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_metadata_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_results">
-<span class="sig-name descname"><span class="pre">get_fitbit_v2_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_results_grouped">
-<span class="sig-name descname"><span class="pre">get_fitbit_v2_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_fitbit_v2_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_freestyle_librelink_results">
-<span class="sig-name descname"><span class="pre">get_freestyle_librelink_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_freestyle_librelink_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_freestyle_librelink_results_grouped">
-<span class="sig-name descname"><span class="pre">get_freestyle_librelink_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_freestyle_librelink_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_holter_results">
-<span class="sig-name descname"><span class="pre">get_holter_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_holter_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_holter_results_grouped">
-<span class="sig-name descname"><span class="pre">get_holter_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_holter_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_inbody_results">
-<span class="sig-name descname"><span class="pre">get_inbody_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_inbody_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_inbody_results_grouped">
-<span class="sig-name descname"><span class="pre">get_inbody_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_inbody_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_patrones_minsal_2018_results">
-<span class="sig-name descname"><span class="pre">get_patrones_minsal_2018_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_patrones_minsal_2018_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_patrones_minsal_2018_results_grouped">
-<span class="sig-name descname"><span class="pre">get_patrones_minsal_2018_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.SanPedroStudy.get_patrones_minsal_2018_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="pycpshealthcare.db.SanPedro.study.value">
-<span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.SanPedro.study.</span></span><span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycpshealthcare.db.SanPedro.study.value" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</section>
-<section id="module-pycpshealthcare.db.SanPedro.values">
-<span id="pycpshealthcare-db-sanpedro-values-module"></span><h2>pycpshealthcare.db.SanPedro.values module<a class="headerlink" href="#module-pycpshealthcare.db.SanPedro.values" title="Permalink to this heading"></a></h2>
-</section>
-<section id="module-pycpshealthcare.db.SanPedro">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycpshealthcare.db.SanPedro" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -383,7 +1172,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pycpshealthcare.db.Pancreas.html" class="btn btn-neutral float-left" title="pycpshealthcare.db.Pancreas package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pycpshealthcare.db.Marcoleta.html" class="btn btn-neutral float-left" title="pycpshealthcare.db.Marcoleta package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pycpshealthcare.db.ChronoNevado.html" class="btn btn-neutral float-right" title="pycpshealthcare.db.ChronoNevado package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

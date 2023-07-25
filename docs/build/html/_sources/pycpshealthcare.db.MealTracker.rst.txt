@@ -12,6 +12,14 @@ pycpshealthcare.db.MealTracker.functions module
    :undoc-members:
    :show-inheritance:
 
+pycpshealthcare.db.MealTracker.study module
+-------------------------------------------
+
+.. automodule:: pycpshealthcare.db.MealTracker.study
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
 pycpshealthcare.db.MealTracker.participant\_study module
 --------------------------------------------------------
 
@@ -20,18 +28,11 @@ pycpshealthcare.db.MealTracker.participant\_study module
    :undoc-members:
    :show-inheritance:
 
-pycpshealthcare.db.MealTracker.study module
--------------------------------------------
 
-.. automodule:: pycpshealthcare.db.MealTracker.study
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. Module contents
+.. ---------------
 
-Module contents
----------------
-
-.. automodule:: pycpshealthcare.db.MealTracker
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. .. automodule:: pycpshealthcare.db.MealTracker
+..    :members:
+..    :undoc-members:
+..    :show-inheritance:

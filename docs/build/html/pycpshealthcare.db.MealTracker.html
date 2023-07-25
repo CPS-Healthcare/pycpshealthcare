@@ -20,8 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pycpshealthcare.db.Pancreas package" href="pycpshealthcare.db.Pancreas.html" />
-    <link rel="prev" title="pycpshealthcare.db.Marcoleta package" href="pycpshealthcare.db.Marcoleta.html" /> 
+    <link rel="next" title="pycpshealthcare.db.Marcoleta package" href="pycpshealthcare.db.Marcoleta.html" />
+    <link rel="prev" title="pycpshealthcare.db.Pancreas package" href="pycpshealthcare.db.Pancreas.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,6 +45,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">pycpshealthcare</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pycpshealthcare.html">pycpshealthcare package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="pycpshealthcare.html#subpackages">Subpackages</a><ul class="current">
@@ -95,86 +96,70 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.functions.get_mealtracker_fitbit_results">
 <span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.functions.</span></span><span class="sig-name descname"><span class="pre">get_mealtracker_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_sorted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/functions.html#get_mealtracker_fitbit_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.functions.get_mealtracker_fitbit_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>A function that generates a MongoDB query from arguments for the specified collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterable with the database query results.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_ids</strong> (<em>list&lt;int&gt;</em>) – A list of test ids to query.</p></li>
+<li><p><strong>collection</strong> (<em>pymongo.collection.Collection</em>) – The collection of the sensor to query.</p></li>
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.functions.get_mealtracker_fitbit_results_grouped">
 <span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.functions.</span></span><span class="sig-name descname"><span class="pre">get_mealtracker_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/functions.html#get_mealtracker_fitbit_results_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.functions.get_mealtracker_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.functions.get_mealtracker_meals_results">
 <span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.functions.</span></span><span class="sig-name descname"><span class="pre">get_mealtracker_meals_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ouput_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unwinded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/functions.html#get_mealtracker_meals_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.functions.get_mealtracker_meals_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</section>
-<section id="module-pycpshealthcare.db.MealTracker.participant_study">
-<span id="pycpshealthcare-db-mealtracker-participant-study-module"></span><h2>pycpshealthcare.db.MealTracker.participant_study module<a class="headerlink" href="#module-pycpshealthcare.db.MealTracker.participant_study" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.participant_study.</span></span><span class="sig-name descname"><span class="pre">MealTrackerStudyOcurrence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_at_meals">
-<span class="sig-name descname"><span class="pre">get_fitbit_at_meals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence.get_fitbit_at_meals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_at_meals" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_at_meals_grouped">
-<span class="sig-name descname"><span class="pre">get_fitbit_at_meals_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence.get_fitbit_at_meals_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_at_meals_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_results">
-<span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence.get_fitbit_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_results_grouped">
-<span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence.get_fitbit_results_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_meals_results">
-<span class="sig-name descname"><span class="pre">get_meals_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ouput_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unwinded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence.get_meals_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_meals_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.participant_study.</span></span><span class="sig-name descname"><span class="pre">ParticipantMealTrackerStudiesGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals">
-<span class="sig-name descname"><span class="pre">get_fitbit_at_meals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals_grouped">
-<span class="sig-name descname"><span class="pre">get_fitbit_at_meals_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results">
-<span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results_grouped">
-<span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_results_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_meals_results">
-<span class="sig-name descname"><span class="pre">get_meals_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ouput_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unwinded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_meals_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_meals_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_test_instance">
-<span class="sig-name descname"><span class="pre">get_test_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">specific_test_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_test_instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_test_instance" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<dd><p>A function that generates a MongoDB query from arguments for the specified collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>An iterable with the database query results.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>test_ids</strong> (<em>list&lt;int&gt;</em>) – A list of test ids to query.</p></li>
+<li><p><strong>collection</strong> (<em>pymongo.collection.Collection</em>) – The collection of the sensor to query.</p></li>
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>ouput_format</strong> (<em>str</em>) – unwinded|original</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -187,33 +172,348 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_at_meals">
 <span class="sig-name descname"><span class="pre">get_fitbit_at_meals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/study.html#MealTrackerStudy.get_fitbit_at_meals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_at_meals" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_at_meals_grouped">
 <span class="sig-name descname"><span class="pre">get_fitbit_at_meals_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/study.html#MealTrackerStudy.get_fitbit_at_meals_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_at_meals_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_results">
 <span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/study.html#MealTrackerStudy.get_fitbit_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_results_grouped">
 <span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/study.html#MealTrackerStudy.get_fitbit_results_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_meals_results">
 <span class="sig-name descname"><span class="pre">get_meals_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ouput_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unwinded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/study.html#MealTrackerStudy.get_meals_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.study.MealTrackerStudy.get_meals_results" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>ouput_format</strong> (<em>str</em>) – unwinded|original</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
 </section>
-<section id="module-pycpshealthcare.db.MealTracker">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycpshealthcare.db.MealTracker" title="Permalink to this heading"></a></h2>
+<section id="module-pycpshealthcare.db.MealTracker.participant_study">
+<span id="pycpshealthcare-db-mealtracker-participant-study-module"></span><h2>pycpshealthcare.db.MealTracker.participant_study module<a class="headerlink" href="#module-pycpshealthcare.db.MealTracker.participant_study" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.participant_study.</span></span><span class="sig-name descname"><span class="pre">MealTrackerStudyOcurrence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">study_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A study class. Has methods for getting the data of all the sensors and measures of the respective study.    A study is defined as all the test ocurrences of a corresponding study type for all the participant.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_at_meals">
+<span class="sig-name descname"><span class="pre">get_fitbit_at_meals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence.get_fitbit_at_meals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_at_meals" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_at_meals_grouped">
+<span class="sig-name descname"><span class="pre">get_fitbit_at_meals_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence.get_fitbit_at_meals_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_at_meals_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_results">
+<span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence.get_fitbit_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_results_grouped">
+<span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence.get_fitbit_results_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_meals_results">
+<span class="sig-name descname"><span class="pre">get_meals_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ouput_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unwinded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#MealTrackerStudyOcurrence.get_meals_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.MealTrackerStudyOcurrence.get_meals_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>ouput_format</strong> (<em>str</em>) – unwinded|original</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycpshealthcare.db.MealTracker.participant_study.</span></span><span class="sig-name descname"><span class="pre">ParticipantMealTrackerStudiesGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals">
+<span class="sig-name descname"><span class="pre">get_fitbit_at_meals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals_grouped">
+<span class="sig-name descname"><span class="pre">get_fitbit_at_meals_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_at_meals_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results">
+<span class="sig-name descname"><span class="pre">get_fitbit_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results_grouped">
+<span class="sig-name descname"><span class="pre">get_fitbit_results_grouped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minute'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_fitbit_results_grouped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_fitbit_results_grouped" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>values</strong> (<em>str</em><em>|</em><em>list&lt;str&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The names (keys) of the values of the sensors to be returned by the query, defaults to “all” that brings</p></li>
+<li><p><strong>bin_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The width of the mobile window, defaults to 60.</p></li>
+<li><p><strong>bin_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – The unit of the mobile window, defaults to minute. Options are minute, hour, day.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_meals_results">
+<span class="sig-name descname"><span class="pre">get_meals_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ouput_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unwinded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_meals_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_meals_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterable with the query results</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pycpshealthcare.db.html#pycpshealthcare.db.results.StudyResults" title="pycpshealthcare.db.results.StudyResults">pycpshealthcare.db.results.StudyResults</a></p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timestamp_start</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results from start of records.</p></li>
+<li><p><strong>timestamp_end</strong> (<em>datetime.datetime</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – Datetime start filter for query. If not specified query will bring results to end of records.</p></li>
+<li><p><strong>test_ids</strong> (<em>int</em><em>|</em><em>list&lt;int&gt;</em><em>|</em><em>None</em><em>, </em><em>optional</em>) – The ids of the tests to be queried, defaults to “all” that brings data of all the test ids.</p></li>
+<li><p><strong>ouput_format</strong> (<em>str</em>) – unwinded|original</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_test_instance">
+<span class="sig-name descname"><span class="pre">get_test_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">specific_test_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycpshealthcare/db/MealTracker/participant_study.html#ParticipantMealTrackerStudiesGroup.get_test_instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycpshealthcare.db.MealTracker.participant_study.ParticipantMealTrackerStudiesGroup.get_test_instance" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -221,8 +521,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pycpshealthcare.db.Marcoleta.html" class="btn btn-neutral float-left" title="pycpshealthcare.db.Marcoleta package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pycpshealthcare.db.Pancreas.html" class="btn btn-neutral float-right" title="pycpshealthcare.db.Pancreas package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pycpshealthcare.db.Pancreas.html" class="btn btn-neutral float-left" title="pycpshealthcare.db.Pancreas package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pycpshealthcare.db.Marcoleta.html" class="btn btn-neutral float-right" title="pycpshealthcare.db.Marcoleta package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

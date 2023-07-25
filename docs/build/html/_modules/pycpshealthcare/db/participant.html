@@ -42,6 +42,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycpshealthcare</a></li>
 </ul>
 
@@ -80,6 +81,8 @@
 <span class="kn">from</span> <span class="nn">.Marcoleta.participant_study</span> <span class="kn">import</span> <span class="n">MarcoletaStudyOcurrence</span>
 <span class="kn">from</span> <span class="nn">.ChronoNevado.participant_study</span> <span class="kn">import</span> <span class="n">ChronoNevadoStudyOcurrence</span>
 <span class="kn">from</span> <span class="nn">.ChronoNevado.participant_study</span> <span class="kn">import</span> <span class="n">ParticipantChronoNevadoStudiesGroup</span>
+<span class="kn">from</span> <span class="nn">.Chronotype.participant_study</span> <span class="kn">import</span> <span class="n">ChronotypeStudyOcurrence</span>
+<span class="kn">from</span> <span class="nn">.Chronotype.participant_study</span> <span class="kn">import</span> <span class="n">ParticipantChronotypeStudiesGroup</span>
 
 
 <div class="viewcode-block" id="Participant"><a class="viewcode-back" href="../../../pycpshealthcare.db.html#pycpshealthcare.db.participant.Participant">[docs]</a><span class="k">class</span> <span class="nc">Participant</span><span class="p">:</span>
@@ -142,6 +145,12 @@
                     <span class="n">study_obj</span> <span class="o">=</span> <span class="n">ChronoNevadoStudyOcurrence</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">studies</span><span class="p">[</span><span class="s2">&quot;ChronoNevado&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">study_obj</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">studies_groups</span><span class="p">[</span><span class="s2">&quot;ChronoNevado&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ParticipantChronoNevadoStudiesGroup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">studies</span><span class="p">[</span><span class="s2">&quot;ChronoNevado&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">study_type</span> <span class="o">==</span> <span class="s2">&quot;Chronotype&quot;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">studies</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">study</span> <span class="ow">in</span> <span class="n">study_raw</span><span class="p">:</span>
+                    <span class="n">study_obj</span> <span class="o">=</span> <span class="n">ChronotypeStudyOcurrence</span><span class="p">(</span><span class="n">study</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">studies</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">study_obj</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">studies_groups</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ParticipantChronotypeStudiesGroup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">studies</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span>
 
     
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>

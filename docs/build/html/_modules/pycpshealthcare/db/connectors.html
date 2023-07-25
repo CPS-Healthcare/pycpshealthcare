@@ -42,6 +42,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycpshealthcare</a></li>
 </ul>
 
@@ -127,7 +128,8 @@
                         <span class="s2">&quot;GlobalInfo&quot;</span><span class="p">:</span> <span class="s2">&quot;GlobalInfo&quot;</span><span class="p">,</span>
                         <span class="s2">&quot;SanPedro&quot;</span><span class="p">:</span> <span class="s2">&quot;SanPedro&quot;</span><span class="p">,</span>
                         <span class="s2">&quot;Marcoleta&quot;</span><span class="p">:</span> <span class="s2">&quot;Marcoleta&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;ChronoNevado&quot;</span><span class="p">:</span> <span class="s2">&quot;ChronoNevado&quot;</span>
+                        <span class="s2">&quot;ChronoNevado&quot;</span><span class="p">:</span> <span class="s2">&quot;ChronoNevado&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;Chronotype&quot;</span><span class="p">:</span> <span class="s2">&quot;Chronotype&quot;</span><span class="p">,</span>
                         <span class="p">},</span>
                     <span class="n">tzinfo</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tzinfo</span> <span class="o">=</span> <span class="n">tzinfo</span> <span class="k">if</span> <span class="n">tzinfo</span> <span class="k">else</span> <span class="n">pytz</span><span class="o">.</span><span class="n">UTC</span>
@@ -145,7 +147,8 @@
             <span class="s2">&quot;MealTracker&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">[</span><span class="n">database_names</span><span class="p">[</span><span class="s2">&quot;MealTracker&quot;</span><span class="p">]],</span>
             <span class="s2">&quot;SanPedro&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">[</span><span class="n">database_names</span><span class="p">[</span><span class="s2">&quot;SanPedro&quot;</span><span class="p">]],</span>
             <span class="s2">&quot;Marcoleta&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">[</span><span class="n">database_names</span><span class="p">[</span><span class="s2">&quot;Marcoleta&quot;</span><span class="p">]],</span>
-            <span class="s2">&quot;ChronoNevado&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">[</span><span class="n">database_names</span><span class="p">[</span><span class="s2">&quot;ChronoNevado&quot;</span><span class="p">]]</span>
+            <span class="s2">&quot;ChronoNevado&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">[</span><span class="n">database_names</span><span class="p">[</span><span class="s2">&quot;ChronoNevado&quot;</span><span class="p">]],</span>
+            <span class="s2">&quot;Chronotype&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">[</span><span class="n">database_names</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">]],</span>
         <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">collections</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="s2">&quot;Pancreas&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
@@ -189,6 +192,15 @@
             <span class="s2">&quot;FinapresRawData&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbs</span><span class="p">[</span><span class="s2">&quot;ChronoNevado&quot;</span><span class="p">][</span><span class="s2">&quot;FinapresRawData&quot;</span><span class="p">],</span>
             <span class="s2">&quot;Spo2RawData&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbs</span><span class="p">[</span><span class="s2">&quot;ChronoNevado&quot;</span><span class="p">][</span><span class="s2">&quot;Spo2RawData&quot;</span><span class="p">],</span>
 
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;activitymodule&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbs</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">][</span><span class="s2">&quot;activitymodule&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;corepill&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbs</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">][</span><span class="s2">&quot;corepill&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;equivital&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbs</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">][</span><span class="s2">&quot;equivital&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;oscar&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbs</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">][</span><span class="s2">&quot;oscar&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;salivette&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbs</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">][</span><span class="s2">&quot;salivette&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;sunsprite&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbs</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">][</span><span class="s2">&quot;sunsprite&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;survey_data&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbs</span><span class="p">[</span><span class="s2">&quot;Chronotype&quot;</span><span class="p">][</span><span class="s2">&quot;survey_data&quot;</span><span class="p">],</span>
         <span class="p">}</span>
         
 <div class="viewcode-block" id="CpsConnection.close"><a class="viewcode-back" href="../../../pycpshealthcare.db.html#pycpshealthcare.db.connectors.CpsConnection.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

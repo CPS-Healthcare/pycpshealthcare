@@ -15,6 +15,23 @@ class MealTrackerStudy:
 
         
     def get_fitbit_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all"):
+        """
+        :return: an iterable with the query results
+        :rtype: pycpshealthcare.db.results.StudyResults
+
+        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.
+        :type timestamp_start:  datetime.datetime|None, optional
+
+        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
+        :type timestamp_end:  datetime.datetime|None, optional
+
+        :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
+        :type test_ids: int|list<int>|None, optional
+
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :type values: str|list<str>|None, optional
+
+        """
         if test_ids == "all":
             test_ids = self.test_ids
         else:
@@ -27,6 +44,23 @@ class MealTrackerStudy:
 
 
     def get_meals_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", ouput_format="unwinded"):
+        """
+        :return: an iterable with the query results
+        :rtype: pycpshealthcare.db.results.StudyResults
+
+        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.
+        :type timestamp_start:  datetime.datetime|None, optional
+
+        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
+        :type timestamp_end:  datetime.datetime|None, optional
+
+        :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
+        :type test_ids: int|list<int>|None, optional
+
+        :param ouput_format: unwinded|original
+        :type ouput_format:  str
+
+        """
         if test_ids == "all":
             test_ids = self.test_ids
         else:
@@ -39,6 +73,23 @@ class MealTrackerStudy:
 
     
     def get_fitbit_at_meals(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all"):
+        """
+        :return: an iterable with the query results
+        :rtype: pycpshealthcare.db.results.StudyResults
+
+        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.
+        :type timestamp_start:  datetime.datetime|None, optional
+
+        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
+        :type timestamp_end:  datetime.datetime|None, optional
+
+        :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
+        :type test_ids: int|list<int>|None, optional
+
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :type values: str|list<str>|None, optional
+
+        """
         if test_ids == "all":
             test_ids = self.test_ids
         else:
@@ -58,6 +109,28 @@ class MealTrackerStudy:
 
 
     def get_fitbit_results_grouped(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", bin_size=60, bin_unit="minute"):
+        """
+        :return: an iterable with the query results
+        :rtype: pycpshealthcare.db.results.StudyResults
+
+        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.
+        :type timestamp_start:  datetime.datetime|None, optional
+
+        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
+        :type timestamp_end:  datetime.datetime|None, optional
+
+        :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
+        :type test_ids: int|list<int>|None, optional
+
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :type values: str|list<str>|None, optional
+
+        :param bin_size: The width of the mobile window, defaults to 60.
+        :type bin_size: int, optional
+        
+        :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.
+        :type bin_unit: str, optional
+        """
         if test_ids == "all":
             test_ids = self.test_ids
         else:
@@ -72,6 +145,28 @@ class MealTrackerStudy:
     
 
     def get_fitbit_at_meals_grouped(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", bin_size=60, bin_unit="minute"):
+        """
+        :return: an iterable with the query results
+        :rtype: pycpshealthcare.db.results.StudyResults
+
+        :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.
+        :type timestamp_start:  datetime.datetime|None, optional
+
+        :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
+        :type timestamp_end:  datetime.datetime|None, optional
+
+        :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
+        :type test_ids: int|list<int>|None, optional
+
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :type values: str|list<str>|None, optional
+
+        :param bin_size: The width of the mobile window, defaults to 60.
+        :type bin_size: int, optional
+        
+        :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.
+        :type bin_unit: str, optional
+        """
         if test_ids == "all":
             test_ids = self.test_ids
         else:

@@ -55,7 +55,8 @@ class CpsConnection:
                         "GlobalInfo": "GlobalInfo",
                         "SanPedro": "SanPedro",
                         "Marcoleta": "Marcoleta",
-                        "ChronoNevado": "ChronoNevado"
+                        "ChronoNevado": "ChronoNevado",
+                        "Chronotype": "Chronotype",
                         },
                     tzinfo=None):
         self.tzinfo = tzinfo if tzinfo else pytz.UTC
@@ -73,7 +74,8 @@ class CpsConnection:
             "MealTracker": self.client[database_names["MealTracker"]],
             "SanPedro": self.client[database_names["SanPedro"]],
             "Marcoleta": self.client[database_names["Marcoleta"]],
-            "ChronoNevado": self.client[database_names["ChronoNevado"]]
+            "ChronoNevado": self.client[database_names["ChronoNevado"]],
+            "Chronotype": self.client[database_names["Chronotype"]],
         }
         self.collections = {}
         self.collections["Pancreas"] = {
@@ -117,6 +119,15 @@ class CpsConnection:
             "FinapresRawData": self.dbs["ChronoNevado"]["FinapresRawData"],
             "Spo2RawData": self.dbs["ChronoNevado"]["Spo2RawData"],
 
+        }
+        self.collections["Chronotype"] = {
+            "activitymodule": self.dbs["Chronotype"]["activitymodule"],
+            "corepill": self.dbs["Chronotype"]["corepill"],
+            "equivital": self.dbs["Chronotype"]["equivital"],
+            "oscar": self.dbs["Chronotype"]["oscar"],
+            "salivette": self.dbs["Chronotype"]["salivette"],
+            "sunsprite": self.dbs["Chronotype"]["sunsprite"],
+            "survey_data": self.dbs["Chronotype"]["survey_data"],
         }
         
     def close(self):

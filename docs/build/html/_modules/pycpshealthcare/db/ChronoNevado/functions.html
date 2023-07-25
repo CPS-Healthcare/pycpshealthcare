@@ -42,6 +42,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">pycpshealthcare</a></li>
 </ul>
 
@@ -81,21 +82,20 @@
 <span class="sd">    :rtype: pycpshealthcare.db.results.StudyResults</span>
 
 <span class="sd">    :param test_ids: A list of test ids to query.</span>
-<span class="sd">    :type test_ids: list of int</span>
+<span class="sd">    :type test_ids: list&lt;int&gt;</span>
 
 <span class="sd">    :param collection: The collection of the sensor to query.</span>
 <span class="sd">    :type collection:  pymongo.collection.Collection</span>
 
-<span class="sd">    :param timestamp_start: Datetime start filter for query. If not specified </span>
-<span class="sd">    query will bring results from start of records.</span>
+<span class="sd">    :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.</span>
 <span class="sd">    :type timestamp_start:  datetime.datetime|None, optional</span>
 
-<span class="sd">    :param timestamp_end: Datetime start filter for query. If not specified </span>
-<span class="sd">    query will bring results to end of records.</span>
+<span class="sd">    :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.</span>
 <span class="sd">    :type timestamp_end:  datetime.datetime|None, optional</span>
 
-<span class="sd">    :param specific_test_ids: </span>
-<span class="sd">    :type specific_test_ids:  datetime.datetime|None, optional</span>
+<span class="sd">    :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to &quot;all&quot; that brings  </span>
+<span class="sd">    :type values: str|list&lt;str&gt;|None, optional</span>
+
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -141,6 +141,28 @@
 
 
 <div class="viewcode-block" id="get_chrononevado_results_grouped"><a class="viewcode-back" href="../../../../pycpshealthcare.db.ChronoNevado.html#pycpshealthcare.db.ChronoNevado.functions.get_chrononevado_results_grouped">[docs]</a><span class="k">def</span> <span class="nf">get_chrononevado_results_grouped</span><span class="p">(</span><span class="n">test_ids</span><span class="p">,</span> <span class="n">collection</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">bin_size</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">bin_unit</span><span class="o">=</span><span class="s2">&quot;minute&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :return: an iterable with the query results</span>
+<span class="sd">    :rtype: pycpshealthcare.db.results.StudyResults</span>
+
+<span class="sd">    :param timestamp_start: Datetime start filter for query. If not specified query will bring results from start of records.</span>
+<span class="sd">    :type timestamp_start:  datetime.datetime|None, optional</span>
+
+<span class="sd">    :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.</span>
+<span class="sd">    :type timestamp_end:  datetime.datetime|None, optional</span>
+
+<span class="sd">    :param test_ids: The ids of the tests to be queried, defaults to &quot;all&quot; that brings data of all the test ids.</span>
+<span class="sd">    :type test_ids: int|list&lt;int&gt;|None, optional</span>
+
+<span class="sd">    :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to &quot;all&quot; that brings  </span>
+<span class="sd">    :type values: str|list&lt;str&gt;|None, optional</span>
+
+<span class="sd">    :param bin_size: The width of the mobile window, defaults to 60.</span>
+<span class="sd">    :type bin_size: int, optional</span>
+<span class="sd">    </span>
+<span class="sd">    :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.</span>
+<span class="sd">    :type bin_unit: str, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">id_match</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;test_id&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$in&quot;</span><span class="p">:</span> <span class="n">test_ids</span><span class="p">}}</span>
     <span class="n">pipeline</span> <span class="o">=</span> <span class="n">generate_narray_pipeline</span><span class="p">(</span><span class="n">id_match</span><span class="p">,</span> <span class="n">bin_size</span><span class="p">,</span> <span class="n">bin_unit</span><span class="p">,</span> <span class="n">timestamp_start</span><span class="p">,</span> <span class="n">timestamp_end</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
