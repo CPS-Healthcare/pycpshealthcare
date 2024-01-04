@@ -11,9 +11,8 @@ corepill_values = [
     "pill_ser_2",
     "pill_temp_1",
     "pill_temp_2",
-
 ]
-    
+
 equivital_values = [
     "acc_lat",
     "acc_lon",
@@ -58,7 +57,7 @@ oscar_values = [
 salivette_values = [
     "mel",
 ]
-    
+
 sunsprite_values = [
     "lux",
     "uv",

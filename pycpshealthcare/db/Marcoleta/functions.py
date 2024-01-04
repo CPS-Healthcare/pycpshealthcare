@@ -2,10 +2,12 @@ from ..results import StudyResults
 from ..utils import generate_narray_pipeline
 
 
-def get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, time_sorted=True):
+def get_marcoleta_sensor_results(
+    test_ids, collection, timestamp_start, timestamp_end, values, time_sorted=True
+):
     """
     A function that generates a MongoDB query from arguments for the specified collection.
-    
+
     :return: An iterable with the database query results.
     :rtype: pycpshealthcare.db.results.StudyResults
 
@@ -21,7 +23,7 @@ def get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestam
     :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
     :type timestamp_end:  datetime.datetime|None, optional
 
-    :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+    :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings
     :type values: str|list<str>|None, optional
     """
 
@@ -30,11 +32,9 @@ def get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestam
         "timestamp": 1,
         "test_id": 1,
         "values": 1,
-    }       
-
-    query = {
-        "test_id": {"$in": test_ids}
     }
+
+    query = {"test_id": {"$in": test_ids}}
 
     if values == "all":
         pass
@@ -48,7 +48,6 @@ def get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestam
         for sensor in values:
             query["$or"].append({f"values.{sensor}": {"$exists": True}})
             projection[f"values.{sensor}"] = 1
-
 
     if timestamp_start or timestamp_end:
         query["timestamp"] = {}
@@ -66,10 +65,12 @@ def get_marcoleta_sensor_results(test_ids, collection, timestamp_start, timestam
         return StudyResults(collection.find(**parameters))
 
 
-def get_marcoleta_metadata_results(test_ids, collection, timestamp_start, timestamp_end, metadata_type):
+def get_marcoleta_metadata_results(
+    test_ids, collection, timestamp_start, timestamp_end, metadata_type
+):
     """
     A function that generates a MongoDB query from arguments for the specified collection.
-    
+
     :return: An iterable with the database query results.
     :rtype: pycpshealthcare.db.results.StudyResults
 
@@ -94,10 +95,7 @@ def get_marcoleta_metadata_results(test_ids, collection, timestamp_start, timest
         "_id": 0,
     }
 
-    query = {
-            "test_id": {"$in": test_ids}
-        }
-
+    query = {"test_id": {"$in": test_ids}}
 
     query[f"metadata_type"] = metadata_type
 
@@ -114,8 +112,9 @@ def get_marcoleta_metadata_results(test_ids, collection, timestamp_start, timest
     return StudyResults(collection.find(**parameters))
 
 
-
-def get_marcoleta_sensor_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size=60, bin_unit="minute"):
+def get_marcoleta_sensor_results_grouped(
+    test_ids, collection, timestamp_start, timestamp_end, values, bin_size=60, bin_unit="minute"
+):
     """
     :return: an iterable with the query results
     :rtype: pycpshealthcare.db.results.StudyResults
@@ -129,18 +128,20 @@ def get_marcoleta_sensor_results_grouped(test_ids, collection, timestamp_start, 
     :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
     :type test_ids: int|list<int>|None, optional
 
-    :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+    :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings
     :type values: str|list<str>|None, optional
 
     :param bin_size: The width of the mobile window, defaults to 60.
     :type bin_size: int, optional
-    
+
     :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.
     :type bin_unit: str, optional
     """
 
     id_match = {"test_id": {"$in": test_ids}}
 
-    pipeline = generate_narray_pipeline(id_match, bin_size, bin_unit, timestamp_start, timestamp_end, types=values)
+    pipeline = generate_narray_pipeline(
+        id_match, bin_size, bin_unit, timestamp_start, timestamp_end, types=values
+    )
     print(pipeline)
     return StudyResults(collection.aggregate(pipeline))

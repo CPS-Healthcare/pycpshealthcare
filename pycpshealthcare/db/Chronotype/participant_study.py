@@ -1,6 +1,12 @@
 from .functions import get_chronotype_sensor_results, get_chronotype_results_grouped
-from .values import activitymodule_values, corepill_values, equivital_values,\
-    oscar_values, salivette_values, sunsprite_values
+from .values import (
+    activitymodule_values,
+    corepill_values,
+    equivital_values,
+    oscar_values,
+    salivette_values,
+    sunsprite_values,
+)
 
 # TODO: Test this classes!
 
@@ -17,7 +23,7 @@ class ChronotypeStudyOcurrence:
         self.test_name = study_info["test_id"]
         self.test_id = study_info["test_id"]
         self.start = study_info["timestamp_start"]
-        self.end = study_info["timestamp_end"] 
+        self.end = study_info["timestamp_end"]
         self.study_info = study_info
 
     def __repr__(self) -> str:
@@ -38,18 +44,23 @@ def _create_get_sensor_method(collection_name):
         :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
         :type timestamp_end:  datetime.datetime|None, optional
 
-        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings
         :type values: str|list<str>|None, optional
 
         """
         test_ids = [self.test_id]
         collection = self.connection.collections["Chronotype"][collection_name]
-        return get_chronotype_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values)
+        return get_chronotype_sensor_results(
+            test_ids, collection, timestamp_start, timestamp_end, values
+        )
+
     return get_sensor_results
 
 
 def _create_get_sensor_grouped_method(collection_name, sensor_values):
-    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, values="all", bin_size=60, bin_unit="minute"):
+    def get_sensor_results_grouped(
+        self, timestamp_start=None, timestamp_end=None, values="all", bin_size=60, bin_unit="minute"
+    ):
         """
         :return: an iterable with the query results
         :rtype: pycpshealthcare.db.results.StudyResults
@@ -60,12 +71,12 @@ def _create_get_sensor_grouped_method(collection_name, sensor_values):
         :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
         :type timestamp_end:  datetime.datetime|None, optional
 
-        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings
         :type values: str|list<str>|None, optional
 
         :param bin_size: The width of the mobile window, defaults to 60.
         :type bin_size: int, optional
-        
+
         :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.
         :type bin_unit: str, optional
         """
@@ -73,9 +84,12 @@ def _create_get_sensor_grouped_method(collection_name, sensor_values):
         if values == "all":
             values = sensor_values
         collection = self.connection.collections["Chronotype"][collection_name]
-        return get_chronotype_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
+        return get_chronotype_results_grouped(
+            test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit
+        )
+
     return get_sensor_results_grouped
-    
+
 
 methods_parameters = {
     "get_activitymodule_results": _create_get_sensor_method(collection_name="activitymodule"),
@@ -89,29 +103,23 @@ methods_parameters = {
 
 grouped_methods_parameters = {
     "get_activitymodule_results_grouped": _create_get_sensor_grouped_method(
-        collection_name="activitymodule",
-        sensor_values=activitymodule_values
-        ),
+        collection_name="activitymodule", sensor_values=activitymodule_values
+    ),
     "get_corepill_results_grouped": _create_get_sensor_grouped_method(
-        collection_name="corepill",
-        sensor_values=corepill_values
-        ),
+        collection_name="corepill", sensor_values=corepill_values
+    ),
     "get_equivital_results_grouped": _create_get_sensor_grouped_method(
-        collection_name="equivital",
-        sensor_values=equivital_values
-        ),
+        collection_name="equivital", sensor_values=equivital_values
+    ),
     "get_oscar_results_grouped": _create_get_sensor_grouped_method(
-        collection_name="oscar",
-        sensor_values=oscar_values
-        ),
+        collection_name="oscar", sensor_values=oscar_values
+    ),
     "get_salivette_results_grouped": _create_get_sensor_grouped_method(
-        collection_name="salivette",
-        sensor_values=salivette_values
-        ),
+        collection_name="salivette", sensor_values=salivette_values
+    ),
     "get_sunsprite_results_grouped": _create_get_sensor_grouped_method(
-        collection_name="sunsprite",
-        sensor_values=sunsprite_values
-        ),
+        collection_name="sunsprite", sensor_values=sunsprite_values
+    ),
 }
 
 for key, value in methods_parameters.items():
@@ -119,7 +127,6 @@ for key, value in methods_parameters.items():
 
 for key, value in grouped_methods_parameters.items():
     setattr(ChronotypeStudyOcurrence, key, value)
-
 
 
 class ParticipantChronotypeStudiesGroup:
@@ -140,7 +147,9 @@ class ParticipantChronotypeStudiesGroup:
 
 
 def _create_get_sensor_method_2(collection_name):
-    def get_sensor_results(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all"):
+    def get_sensor_results(
+        self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all"
+    ):
         """
         :return: an iterable with the query results
         :rtype: pycpshealthcare.db.results.StudyResults
@@ -154,7 +163,7 @@ def _create_get_sensor_method_2(collection_name):
         :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
         :type test_ids: int|list<int>|None, optional
 
-        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings
         :type values: str|list<str>|None, optional
 
         """
@@ -167,12 +176,23 @@ def _create_get_sensor_method_2(collection_name):
                 test_ids = test_ids
 
         collection = self.connection.collections["Chronotype"][collection_name]
-        return get_chronotype_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values)
+        return get_chronotype_sensor_results(
+            test_ids, collection, timestamp_start, timestamp_end, values
+        )
+
     return get_sensor_results
 
 
 def _create_get_sensor_grouped_method_2(collection_name, sensor_values):
-    def get_sensor_results_grouped(self, timestamp_start=None, timestamp_end=None, test_ids="all", values="all", bin_size=60, bin_unit="minute"):
+    def get_sensor_results_grouped(
+        self,
+        timestamp_start=None,
+        timestamp_end=None,
+        test_ids="all",
+        values="all",
+        bin_size=60,
+        bin_unit="minute",
+    ):
         """
         :return: an iterable with the query results
         :rtype: pycpshealthcare.db.results.StudyResults
@@ -186,12 +206,12 @@ def _create_get_sensor_grouped_method_2(collection_name, sensor_values):
         :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
         :type test_ids: int|list<int>|None, optional
 
-        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+        :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings
         :type values: str|list<str>|None, optional
 
         :param bin_size: The width of the mobile window, defaults to 60.
         :type bin_size: int, optional
-        
+
         :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.
         :type bin_unit: str, optional
         """
@@ -206,8 +226,12 @@ def _create_get_sensor_grouped_method_2(collection_name, sensor_values):
         if values == "all":
             values = sensor_values
         collection = self.connection.collections["Chronotype"][collection_name]
-        return get_chronotype_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit)
+        return get_chronotype_results_grouped(
+            test_ids, collection, timestamp_start, timestamp_end, values, bin_size, bin_unit
+        )
+
     return get_sensor_results_grouped
+
 
 methods_parameters_2 = {
     "get_activitymodule_results": _create_get_sensor_method_2(collection_name="activitymodule"),
@@ -221,29 +245,23 @@ methods_parameters_2 = {
 
 grouped_methods_parameters_2 = {
     "get_activitymodule_results_grouped": _create_get_sensor_grouped_method_2(
-        collection_name="activitymodule",
-        sensor_values=activitymodule_values
-        ),
+        collection_name="activitymodule", sensor_values=activitymodule_values
+    ),
     "get_corepill_results_grouped": _create_get_sensor_grouped_method_2(
-        collection_name="corepill",
-        sensor_values=corepill_values
-        ),
+        collection_name="corepill", sensor_values=corepill_values
+    ),
     "get_equivital_results_grouped": _create_get_sensor_grouped_method_2(
-        collection_name="equivital",
-        sensor_values=equivital_values
-        ),
+        collection_name="equivital", sensor_values=equivital_values
+    ),
     "get_oscar_results_grouped": _create_get_sensor_grouped_method_2(
-        collection_name="oscar",
-        sensor_values=oscar_values
-        ),
+        collection_name="oscar", sensor_values=oscar_values
+    ),
     "get_salivette_results_grouped": _create_get_sensor_grouped_method_2(
-        collection_name="salivette",
-        sensor_values=salivette_values
-        ),
+        collection_name="salivette", sensor_values=salivette_values
+    ),
     "get_sunsprite_results_grouped": _create_get_sensor_grouped_method_2(
-        collection_name="sunsprite",
-        sensor_values=sunsprite_values
-        ),
+        collection_name="sunsprite", sensor_values=sunsprite_values
+    ),
 }
 
 for key, value in methods_parameters_2.items():

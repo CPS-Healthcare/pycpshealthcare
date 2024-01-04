@@ -240,7 +240,7 @@ finapres_raw_data_values = [
     "RPP",
     "BRS",
     "HFNorm",
- ]
+]
 
 spo2_raw_data_values = [
     "Heart_Rate_POX",

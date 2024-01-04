@@ -17,7 +17,7 @@ class StudyResults:
         else:
             self._index += 1
         return item
-    
+
     def __add__(self, other):
         return StudyResults(chain(self.results, other.results))
 
@@ -28,6 +28,8 @@ class StudyResults:
             if split_columns:
                 df = pd.DataFrame(self.results)
                 if "values" in df.columns:
-                    df = pd.concat([df.drop(["values"], axis=1), df["values"].apply(pd.Series)], axis=1)
+                    df = pd.concat(
+                        [df.drop(["values"], axis=1), df["values"].apply(pd.Series)], axis=1
+                    )
                 return df
             return pd.DataFrame(self.results)

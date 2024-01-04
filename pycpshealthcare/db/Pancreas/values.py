@@ -6,7 +6,7 @@ fitbit_values = [
     "level",
     "seconds",
 ]
-# FIXME: Review the sensor possible values 
+# FIXME: Review the sensor possible values
 empatica_values = [
     "TEMP",
     "accx",

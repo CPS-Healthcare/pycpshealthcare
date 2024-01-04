@@ -6,5 +6,5 @@ realtime_fitbit_values = [
     "gyro_y",
     "gyro_z",
     "hrm",
-    "batt"
+    "batt",
 ]

@@ -18,13 +18,13 @@ class CpsConnection:
 
     :param username: Database username. Not needed if connection_uri is passed.
     :type username:  str, optional
-    
+
     :param password: Database password. Not needed if connection_uri is passed.
     :type password:  str, optional
-    
+
     :param port: Database port. Not needed if connection_uri is passed.
     :type port:  str|int, optional
-    
+
     :param database_names: Database dict that maps pycpshealthcare studies names to databases names, defaults to {
         "mealtracker": "MealTracker",
         "pancreas": "Pancreas",
@@ -41,28 +41,35 @@ class CpsConnection:
     - Example with connection_uri::
 
         connection = CpsConnection(uri="mongodb://user:pass@localhost:27017")
-        
+
     - Example without connection_uri::
 
         connection = CpsConnection(username="user", password="pass", host="localhost", port="27017")
     """
 
-    def __init__(self, connection_uri=None, host=None,
-                    username=None, password=None, port=None,
-                    database_names = {
-                        "MealTracker": "MealTrackerV2",
-                        "Pancreas": "Pancreas",
-                        "GlobalInfo": "GlobalInfo",
-                        "SanPedro": "SanPedro",
-                        "Marcoleta": "Marcoleta",
-                        "ChronoNevado": "ChronoNevado",
-                        "Chronotype": "Chronotype",
-                        },
-                    tzinfo=None):
+    def __init__(
+        self,
+        connection_uri=None,
+        host=None,
+        username=None,
+        password=None,
+        port=None,
+        database_names={
+            "MealTracker": "MealTrackerV2",
+            "Pancreas": "Pancreas",
+            "GlobalInfo": "GlobalInfo",
+            "SanPedro": "SanPedro",
+            "Marcoleta": "Marcoleta",
+            "ChronoNevado": "ChronoNevado",
+            "Chronotype": "Chronotype",
+        },
+        tzinfo=None,
+    ):
         self.tzinfo = tzinfo if tzinfo else pytz.UTC
         if all([username, password, host]):
             uri = f"mongodb://{username}:{password}@{host}"
-            if port: uri = f"{uri}:{port}"
+            if port:
+                uri = f"{uri}:{port}"
             self.client = MongoClient(host=uri, tz_aware=True, tzinfo=self.tzinfo)
         elif connection_uri:
             self.client = MongoClient(host=connection_uri, tz_aware=True, tzinfo=self.tzinfo)
@@ -89,7 +96,7 @@ class CpsConnection:
         }
         self.collections["MealTracker"] = {
             "MealTrack": self.dbs["MealTracker"]["MealTrack"],
-            "RealtimeFitbit": self.dbs["MealTracker"]["RealtimeFitbit"]
+            "RealtimeFitbit": self.dbs["MealTracker"]["RealtimeFitbit"],
         }
         self.collections["GlobalInfo"] = {
             "ParticipantInfo": self.dbs["GlobalInfo"]["ParticipantInfo"]
@@ -118,7 +125,6 @@ class CpsConnection:
             "FinapresData": self.dbs["ChronoNevado"]["FinapresData"],
             "FinapresRawData": self.dbs["ChronoNevado"]["FinapresRawData"],
             "Spo2RawData": self.dbs["ChronoNevado"]["Spo2RawData"],
-
         }
         self.collections["Chronotype"] = {
             "activitymodule": self.dbs["Chronotype"]["activitymodule"],
@@ -129,10 +135,9 @@ class CpsConnection:
             "sunsprite": self.dbs["Chronotype"]["sunsprite"],
             "survey_data": self.dbs["Chronotype"]["survey_data"],
         }
-        
+
     def close(self):
         """
         Closes database connection.
         """
         self.client.close()
-

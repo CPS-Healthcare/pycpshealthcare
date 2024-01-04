@@ -1,10 +1,17 @@
 from ..results import StudyResults
-from ..utils import generate_narray_pipeline, generate_vector_magnitude_pipeline, generate_vector_stats_magnitude_pipeline
+from ..utils import (
+    generate_narray_pipeline,
+    generate_vector_magnitude_pipeline,
+    generate_vector_stats_magnitude_pipeline,
+)
 
-def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp_end, values, time_sorted=True):
+
+def get_pancreas_sensor_results(
+    test_ids, collection, timestamp_start, timestamp_end, values, time_sorted=True
+):
     """
     A function that generates a MongoDB query from arguments for the specified collection.
-    
+
     :return: An iterable with the database query results.
     :rtype: pycpshealthcare.db.results.StudyResults
 
@@ -20,7 +27,7 @@ def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp
     :param timestamp_end: Datetime start filter for query. If not specified query will bring results to end of records.
     :type timestamp_end:  datetime.datetime|None, optional
 
-    :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+    :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings
     :type values: str|list<str>|None, optional
 
 
@@ -31,11 +38,9 @@ def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp
         "timestamp": 1,
         "test_id": 1,
         "values": 1,
-    }       
-
-    query = {
-        "test_id": {"$in": test_ids}
     }
+
+    query = {"test_id": {"$in": test_ids}}
 
     if values == "all":
         pass
@@ -50,7 +55,6 @@ def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp
             query["$or"].append({f"values.{sensor}": {"$exists": True}})
             projection[f"values.{sensor}"] = 1
 
-
     if timestamp_start or timestamp_end:
         query["timestamp"] = {}
         if timestamp_start:
@@ -59,15 +63,17 @@ def get_pancreas_sensor_results(test_ids, collection, timestamp_start, timestamp
             query["timestamp"]["$lte"] = timestamp_end
 
     parameters = {"filter": query}
-    if projection: parameters["projection"] = projection
+    if projection:
+        parameters["projection"] = projection
     if time_sorted:
         return StudyResults(collection.find(**parameters).sort([["timestamp", 1]]))
     else:
         return StudyResults(collection.find(**parameters))
 
 
-
-def get_pancreas_results_grouped(test_ids, collection, timestamp_start, timestamp_end, values, bin_size=60, bin_unit="minute"):
+def get_pancreas_results_grouped(
+    test_ids, collection, timestamp_start, timestamp_end, values, bin_size=60, bin_unit="minute"
+):
     """
     :return: an iterable with the query results
     :rtype: pycpshealthcare.db.results.StudyResults
@@ -81,24 +87,26 @@ def get_pancreas_results_grouped(test_ids, collection, timestamp_start, timestam
     :param test_ids: The ids of the tests to be queried, defaults to "all" that brings data of all the test ids.
     :type test_ids: int|list<int>|None, optional
 
-    :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings  
+    :param values: The names (keys) of the values of the sensors to be returned by the query, defaults to "all" that brings
     :type values: str|list<str>|None, optional
 
     :param bin_size: The width of the mobile window, defaults to 60.
     :type bin_size: int, optional
-    
+
     :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.
     :type bin_unit: str, optional
     """
     id_match = {"test_id": {"$in": test_ids}}
-    pipeline = generate_narray_pipeline(id_match, bin_size, bin_unit, timestamp_start, timestamp_end, types=values)
+    pipeline = generate_narray_pipeline(
+        id_match, bin_size, bin_unit, timestamp_start, timestamp_end, types=values
+    )
     return StudyResults(collection.aggregate(pipeline))
 
 
 def get_accel_vector_magnitude(test_ids, collection, timestamp_start, timestamp_end):
     """
     A function that generates a MongoDB query from arguments for the specified collection.
-    
+
     :return: An iterable with the database query results.
     :rtype: pycpshealthcare.db.results.StudyResults
 
@@ -120,7 +128,9 @@ def get_accel_vector_magnitude(test_ids, collection, timestamp_start, timestamp_
     return StudyResults(collection.aggregate(pipeline))
 
 
-def get_accel_vector_magnitude_grouped(test_ids, collection, timestamp_start, timestamp_end, bin_size=60, bin_unit="minute"):
+def get_accel_vector_magnitude_grouped(
+    test_ids, collection, timestamp_start, timestamp_end, bin_size=60, bin_unit="minute"
+):
     """
     :return: an iterable with the query results
     :rtype: pycpshealthcare.db.results.StudyResults
@@ -136,10 +146,12 @@ def get_accel_vector_magnitude_grouped(test_ids, collection, timestamp_start, ti
 
     :param bin_size: The width of the mobile window, defaults to 60.
     :type bin_size: int, optional
-    
+
     :param bin_unit: The unit of the mobile window, defaults to minute. Options are minute, hour, day.
     :type bin_unit: str, optional
     """
     id_match = {"test_id": {"$in": test_ids}}
-    pipeline = generate_vector_stats_magnitude_pipeline(id_match, bin_size, bin_unit, timestamp_start, timestamp_end)
+    pipeline = generate_vector_stats_magnitude_pipeline(
+        id_match, bin_size, bin_unit, timestamp_start, timestamp_end
+    )
     return StudyResults(collection.aggregate(pipeline))
